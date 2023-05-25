@@ -36,10 +36,6 @@ export class CreateUserDto {
   })
   readonly password: string;
 
-  @IsString()
-  @Matches('password')
-  readonly confirmPassword: string;
-
   @IsUUID('5')
   readonly verificationCode?: string;
 
