@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -10,6 +18,14 @@ export class UsersController {
   @Post()
   createUserHandler(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUserHandler(createUserDto);
+  }
+
+  @Post('verify/:userId/:verifyCode')
+  verifyUserHandler(
+    @Param('userId') userId: string,
+    @Param('verifyCode') verifyCode: string
+  ) {
+    return this.usersService.verifyUserHandler(userId, verifyCode);
   }
 
   @Get()
