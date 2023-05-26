@@ -1,10 +1,7 @@
 import {
-  IsBoolean,
   IsEmail,
   IsString,
   IsStrongPassword,
-  IsUUID,
-  Matches,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -36,12 +33,6 @@ export class CreateUserDto {
   })
   readonly password: string;
 
-  @IsUUID('5')
-  readonly verificationCode?: string;
-
   @IsString()
-  readonly passwordResetCode?: string | null;
-
-  @IsBoolean()
-  readonly verified?: boolean;
+  readonly passwordConfirmation:string
 }

@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UsersModule } from './users/users.module';
-import configuration from './config/configuration';
+import configuration from 'config/configuration';
+import { UsersModule } from '../src/users/users.module';
 
 const configService = new ConfigService();
 
@@ -12,11 +12,13 @@ const configService = new ConfigService();
       isGlobal: true,
       load: [configuration],
     }),
-    MongooseModule.forRoot(configService.get<string>('mongo_uri')),
-    UsersModule,
+    MongooseModule.forRoot(configService.get<string>('mongo_uri'), {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }),
+    UsersModule
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule {
-}
+export class AppModule {}

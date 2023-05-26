@@ -25,7 +25,6 @@ export class mailer {
   });
 
   public async sendEmail(payload: SendMailOptions) {
-    this.logger.log(this.transporter);
     this.transporter.sendMail(payload, (err, info) => {
       if (err) {
         this.logger.error(err, 'Error sending email');

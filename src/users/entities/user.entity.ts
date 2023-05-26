@@ -1,8 +1,7 @@
 import { Logger } from '@nestjs/common';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, HydratedDocument, ObtainDocumentType } from 'mongoose';
-
-import { v4 } from 'uuid';
+import { randomUUID } from 'crypto';
+import { Document, HydratedDocument } from 'mongoose';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -23,7 +22,10 @@ export class User extends Document {
   @Prop({ type: String })
   password: string;
 
-  @Prop({ required: true, default: v4() })
+  @Prop({ type: String })
+  passwordConfirmation: string;
+
+  @Prop({ required: true, default: randomUUID() })
   public verificationCode?: string;
 
   @Prop()
