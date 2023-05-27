@@ -1,19 +1,17 @@
 import {
   Controller,
-  Get,
   Post,
   Body,
-  Patch,
   Param,
-  Delete,
   Query,
   ValidationPipe,
   UsePipes,
+  Get,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { ForgotPasswordDto } from './dto/forgot-password.dto';
+import { PasswordResetDto } from './dto/password-reset.dto';
+import { Response } from 'express';
 
 @Controller('users')
 export class UsersController {
@@ -39,23 +37,17 @@ export class UsersController {
     return this.usersService.forgotPasswordHandler(email);
   }
 
-  @Get()
-  findAll() {
-    return this.usersService.findAll();
+  @UsePipes(new ValidationPipe())
+  @Post('resetpassword')
+  async resetPasswordHandler(
+    @Body() passwordResetDto: PasswordResetDto
+  ): Promise<string> {
+    return this.usersService.resetPasswordHandler(passwordResetDto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  @Get('me')
+  async getCurrentUserHandler(res: Response) {
+    return res.locals.user;
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
-  }
 }

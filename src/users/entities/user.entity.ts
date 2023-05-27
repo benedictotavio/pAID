@@ -1,9 +1,18 @@
 import { Logger } from '@nestjs/common';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { compare } from 'bcrypt';
 import { randomUUID } from 'crypto';
 import { Document, HydratedDocument } from 'mongoose';
 
 export type UserDocument = HydratedDocument<User>;
+
+export const privateFields = [
+  'password',
+  '__v',
+  'verificationCode',
+  'passwordResetCode',
+  'verified',
+];
 
 @Schema({
   timestamps: true,
@@ -11,28 +20,25 @@ export type UserDocument = HydratedDocument<User>;
 })
 export class User extends Document {
   @Prop({ type: String, required: true })
-  firstName: string;
+  firstName?: string;
 
   @Prop({ type: String, required: true })
-  lastName: string;
+  lastName?: string;
 
   @Prop({ type: String, required: true, unique: true })
-  email: string;
+  email?: string;
 
   @Prop({ type: String })
-  password: string;
-
-  @Prop({ type: String })
-  passwordConfirmation: string;
+  password?: string;
 
   @Prop({ required: true, default: randomUUID() })
-  public verificationCode?: string;
+  verificationCode?: string;
 
   @Prop()
-  public passwordResetCode?: string | null;
+  passwordResetCode?: string | null;
 
   @Prop({ default: false })
-  public verified?: boolean;
+  verified?: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

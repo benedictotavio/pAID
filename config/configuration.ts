@@ -5,8 +5,13 @@ export default () => ({
   refreshTokenPrivateKey: process.env.REFRESH_PRIVATE_KEY,
   accessTokenPublicKey: process.env.ACCESS_TOKEN_PUBLIC_KEY,
   refreshTokenPublicKey: process.env.REFRESH_PUBLIC_KEY,
-  user: process.env.EMAIL_USER,
-  pass: process.env.EMAIL_PASS,
-  host: process.env.EMAIL_HOST,
   web_url: process.env.WEB_URL,
+  smtp: {
+    service: 'gmail',
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+    host: process.env.EMAIL_HOST,
+    port: 587,
+    secure: false,
+  },
 });

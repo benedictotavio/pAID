@@ -1,27 +1,24 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 
 // DTO`s
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { ForgotPasswordDto } from './dto/forgot-password.dto';
-
 import { User, UserDocument } from './entities/user.entity';
-
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { genSalt, hash } from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
-import { mailer } from 'src/users/utils/mailer';
 import { randomUUID } from 'crypto';
+import { PasswordResetDto } from './dto/password-reset.dto';
+import { MailerService } from './utils/mailer';
 
 @Injectable()
 export class UsersService {
   private readonly logger = new Logger(UsersService.name);
-  private readonly configService = new ConfigService();
-  private readonly mailer = new mailer();
   constructor(
     @InjectModel(User.name)
-    private userModel: Model<UserDocument>
+    private userModel: Model<UserDocument>,
+    @Inject(MailerService) private readonly mailer: MailerService,
+    private readonly configService: ConfigService
   ) {}
   async createUserHandler(createUserDto: CreateUserDto) {
     const userBody = createUserDto;
@@ -65,7 +62,7 @@ export class UsersService {
             <p>
             Copie e cole o codigo <code>${
               userSession.verificationCode
-            }</code> no site: <a>${process.env.WEB_URL}</a>
+            }</code> no site: <a>${this.configService.get('web_url')}</a>
             </p>
             </div>`,
           });
@@ -85,7 +82,6 @@ export class UsersService {
       }
     }
   }
-
   async verifyUserHandler(userId: string, verificationCode: string) {
     const userVerify = await this.userModel.findOne({ _id: userId });
 
@@ -109,7 +105,6 @@ export class UsersService {
 
     return 'Could not verify user';
   }
-
   async forgotPasswordHandler(emailRequest: string): Promise<string> {
     this.logger.log(emailRequest);
     const emailUserPasswordReset = emailRequest;
@@ -134,22 +129,53 @@ export class UsersService {
 
     await userPasswordReset.save();
 
-    return 'Senha alterada com sucesso';
-  }
+    await this.mailer.sendEmail({
+      to: emailRequest,
+      from: 'test@example.com',
+      subject: 'Reset your password',
+      text: `Password reset code: ${passwordResetCode}`,
+    });
 
-  findAll() {
-    return `This action returns all users`;
-  }
+    this.logger.debug(`Password reset email sent to ${emailRequest}`);
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+    return userPasswordReset._id;
   }
+  async resetPasswordHandler(passwordResetDto: PasswordResetDto) {
+    const userResetPassword = await this.userModel.findOne({
+      email: passwordResetDto.email,
+    });
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+    if (
+      !userResetPassword ||
+      !userResetPassword.passwordResetCode ||
+      userResetPassword.passwordResetCode !== passwordResetDto.passwordResetCode
+    ) {
+      return 'Could not reset user password';
+    }
+
+    userResetPassword.passwordResetCode = null;
+
+    const saltOrRounds = await genSalt();
+
+    const newPasswordHashed = await hash(
+      passwordResetDto.newPassword,
+      saltOrRounds
+    );
+
+    userResetPassword.password = newPasswordHashed;
+
+    await userResetPassword.save();
+
+    return 'Successfully updated password';
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async findUserByEmail(email: string) {
+    return await this.userModel.findOne({ email: email });
+  }
+  async findUserById(id: string) {
+    try {
+      return this.userModel.findOne({ _id: id });
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }

@@ -4,6 +4,8 @@ import { UsersController } from './users.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './entities/user.entity';
 import { ConfigModule } from '@nestjs/config';
+import { MailerService } from './utils/mailer';
+import { Jwt } from './utils/jwt';
 
 @Module({
   imports: [
@@ -13,7 +15,7 @@ import { ConfigModule } from '@nestjs/config';
     ]),
   ],
   controllers: [UsersController],
-  providers: [UsersService],
-  exports: [UsersModule],
+  providers: [UsersService, MailerService],
+  exports: [UsersService],
 })
 export class UsersModule {}

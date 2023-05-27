@@ -1,0 +1,47 @@
+# Register
+
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+    "firstName": "Otavio",
+    "lastName": "Benedicto",
+    "email": "otavio.bene@outlook.com",
+    "password": "T@v!nho22",
+    "passwordConfirmation": "T@v!nho22"
+}
+
+
+###
+POST http://localhost:8080/users/verify/64719e2414f44003229587c3?verifyCode=2d5a3427-e238-4536-9d87-01a68f69981d
+
+
+###
+POST http://localhost:8080/users/forgotpassword?email=otavio.bene@outlook.com
+
+
+###
+POST http://localhost:8080/users/resetpassword
+Content-Type: application/json
+
+{
+    "email":"otavio.bene@outlook.com",
+    "passwordResetCode":"c4b49014-aa1d-4638-a55a-26d70912433b",
+    "newPassword":"T@v!nho122110"
+}
+
+###
+GET http://localhost:8080/users/me
+
+# Login
+
+###
+POST http://localhost:8080/auth/sessions
+Content-Type: application/json
+
+{
+    "email":"otavio.bene@outlook.com",
+    "password":"T@v!nho122110"
+}
+
+###
