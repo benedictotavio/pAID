@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { SignOptions, sign, verify } from 'jsonwebtoken';
 
@@ -14,7 +14,7 @@ export class Jwt {
       this.configService.get<string>(keyName),
       'base64'
     ).toString('ascii');
-
+    console.debug(privateKey);
     return sign(object, privateKey, {
       ...options,
       algorithm: 'RS256',
@@ -31,12 +31,12 @@ export class Jwt {
     ).toString('ascii');
 
     try {
-      const decoded = verify(token as string, publicKey, {
+      const decoded = verify(token, publicKey, {
         algorithms: ['RS256'],
       }) as T | object;
       return decoded;
     } catch (err) {
-      return { err };
+      return err;
     }
   }
 }

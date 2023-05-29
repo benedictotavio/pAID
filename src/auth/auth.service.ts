@@ -56,37 +56,48 @@ export class AuthService {
     };
   }
 
-  async refreshAccessTokenHandler(req: string) {
-    const refreshToken = get(req, 'headers.x-refresh') as string;
-
+  async refreshAccessTokenHandler(
+    refreshToken: string
+  ): Promise<string | object> {
     type Decoded = {
       session: string;
     };
 
-    const decoded = this.jwt.verifyJwt(
+    const decoded = (await this.jwt.verifyJwt(
       refreshToken,
       'refreshTokenPublicKey'
-    ) as unknown as Decoded;
+    )) as Decoded;
 
     if (!decoded) {
       return 'Could not refresh access token';
     }
 
-    const session = await this.findSessionById(decoded.session);
+    try {
+      const session = await this.authModel.findOne({
+        _id: decoded.session,
+      });
 
-    if (!session || !session.valid) {
-      return 'Could not refresh access token';
+      console.log(session);
+
+      if (!session || !session.valid) {
+        return 'Could not refresh access token';
+      }
+
+      const userToken = await this.userService.findUserById(session.user);
+
+      if (!userToken) {
+        return 'Could not refresh access token';
+      }
+
+      const accessToken = this.signAccessToken(userToken);
+
+      return accessToken;
+    } catch (error) {
+      return {
+        error: error,
+        message: 'Session is not find in Session Collection',
+      };
     }
-
-    const userToken = await this.userService.findUserById(String(session.user));
-
-    if (!userToken) {
-      return 'Could not refresh access token';
-    }
-
-    const accessToken = this.signAccessToken(userToken);
-
-    return { accessToken };
   }
 
   // Services Repositories
@@ -105,24 +116,27 @@ export class AuthService {
     return accessToken;
   }
   private async signRefreshToken({ userId }: { userId: any }) {
-    const session = await this.createSession({
-      userId,
-    });
-
-    const refreshToken = await this.jwt.signJwt(
-      {
-        session: session._id,
-      },
-      'refreshTokenPrivateKey',
-      {
-        expiresIn: '1y',
-        algorithm: 'RS256',
+    try {
+      const session = await this.authModel.create({
+        user: userId,
+      });
+      if (session) {
+        const refreshToken = this.jwt.signJwt(
+          {
+            session: session._id,
+          },
+          'refreshTokenPrivateKey',
+          {
+            expiresIn: '1y',
+          }
+        );
+        return refreshToken;
+      } else {
+        return 'Error refresh token';
       }
-    );
-    return refreshToken;
-  }
-  private async createSession({ userId }: { userId: string }) { 
-    return await this.authModel.create({ user: userId });
+    } catch (error) {
+      this.logger.error(error);
+    }
   }
   private async findSessionById(id: string) {
     return this.authModel.findById(id);

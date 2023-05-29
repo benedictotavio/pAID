@@ -7,6 +7,8 @@ import {
   ValidationPipe,
   UsePipes,
   Get,
+  Res,
+  HttpStatus,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -46,8 +48,7 @@ export class UsersController {
   }
 
   @Get('me')
-  async getCurrentUserHandler(res: Response) {
-    return res.locals.user;
+  async getCurrentUserHandler(@Res() res: Response) {
+    return res.status(HttpStatus.FOUND).json(res.locals.user);
   }
-
 }

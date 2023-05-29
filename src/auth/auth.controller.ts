@@ -3,15 +3,14 @@ import {
   Get,
   Post,
   Body,
-  Patch,
-  Param,
-  Delete,
   Req,
   UsePipes,
   ValidationPipe,
+  Res,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SessionAuthDto } from './dto/session-auth.dto';
+import { Request } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -24,8 +23,9 @@ export class AuthController {
   }
 
   @UsePipes(new ValidationPipe())
-  @Post('sessions/refresh')
-  refreshToken(@Req() req: string) {
-    return this.authService.refreshAccessTokenHandler(req);
+  @Get('sessions/refresh')
+  refreshToken(@Req() req: Request) {
+    const token = req.headers.authorization?.split(' ')[1];
+    return this.authService.refreshAccessTokenHandler(token);
   }
 }
