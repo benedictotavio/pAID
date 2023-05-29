@@ -63,17 +63,24 @@ export class TicketsService {
       )}`;
     }
 
-    const indexTicketTrade = userSeller.tickets.findIndex(
+    const ticketTrade = userSeller.tickets.find(
       (item) => item._id === tradeTicketDto.ticketId
     );
 
-    if (!indexTicketTrade) {
-      return `ticket ${tradeTicketDto.ticketId}, was not found!`;
+    if (!ticketTrade) {
+      return `ticket ${tradeTicketDto.ticketId}, was not found! in User ${userSeller.firstName} ${userSeller.lastName}`;
     }
 
     try {
-      userBuyer.tickets.unshift(userBuyer[indexTicketTrade]);
-      userSeller.tickets.slice(indexTicketTrade, indexTicketTrade);
+      userBuyer.tickets.unshift(ticketTrade);
+
+      const index = userSeller.tickets.findIndex(
+        (item) => item._id == ticketTrade._id
+      );
+      index >= 0 && userSeller.tickets.splice(index, 1);
+      userBuyer.save();
+      userSeller.save();
+      return `Finish trade between ${userSeller.firstName} and ${userBuyer.firstName}.`;
     } catch (error) {
       throw new Error(error.toString());
     }

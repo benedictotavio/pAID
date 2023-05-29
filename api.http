@@ -12,7 +12,7 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:8080/users/verify/6474b9404bb7702165f4ae67?verifyCode=1024d39b-09b2-418b-ba88-8bab4d028b37
+POST http://localhost:8080/users/verify/64751b600a45effad6633d22?verifyCode=7efec98b-2804-47d5-83dd-4ff2df32d06c
 
 
 ###
@@ -30,7 +30,7 @@ Content-Type: application/json
 }
 ###
 GET http://localhost:8080/users/me
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc0Yjk0MDRiYjc3MDIxNjVmNGFlNjciLCJmaXJzdE5hbWUiOiJTdXBvcnRlIiwibGFzdE5hbWUiOiJUaSIsImVtYWlsIjoic3Vwb3J0ZUBoZWJyb21iZW5lZmljaW9zLmNvbS5iciIsInRpY2tldHMiOlt7Il9pZCI6ImNlODQyOGQ2LWE2NzUtNDVkOC1hYTUzLTIxYzlkNzg1ZWEzOSIsImNhdGVnb3J5IjoiZXZlbnQiLCJ0aXRsZSI6IlR1c2NhIiwiZGF0ZUJ1eSI6IjIwMjMtMDUtMjlUMTc6NDE6NDIuNDEyWiJ9LHsiX2lkIjoiZTE0NTcyM2UtYjhiYy00ZWJlLWI0ZTMtMDdjODQwZGJiOTgxIiwiY2F0ZWdvcnkiOiJnYW1lIiwidGl0bGUiOiJDUzpHbyIsImRhdGVCdXkiOiIyMDIzLTA1LTI5VDE3OjM1OjE2LjM4OVoifV0sImNyZWF0ZWRBdCI6IjIwMjMtMDUtMjlUMTQ6NDA6MDAuNzI5WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDUtMjlUMTc6NDE6NDIuNDEzWiIsImlhdCI6MTY4NTM4MjExNSwiZXhwIjoxNjg1MzgzMDE1fQ.KHvl02r4evgCiRzBu7zcMfgum1B5Sokmj4WZ4S5AOp5ygMlcjAwojAbebKhCtpFX9RI0wP-LE8O5Y-qnAbrM2ija1KWtvQMJX9op88S-nJzMndv-YBWMmTOWjOj88fqSjTVEwcBtHYKGCJwHCk7w88Y4sJJ4jQhuTEdmJO4c-1YnOskC-25lH2wPCB7ygIv6mK9IcFH03N8KmYEAp2AVmK5K1YV8HXvUo5YqIdVnOWWrENIJTQaYy7YF3Wf7j02j97UDP2z4HVPD87HwmkV_b-1wx0CXm9_AcO68XJ3tvUCc32Ykf7rJD5bfdYIJCJkaX90Jai94NL9Kd2CUonGYSA
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc1MWI2MDBhNDVlZmZhZDY2MzNkMjIiLCJmaXJzdE5hbWUiOiJTdXBvcnRlIiwibGFzdE5hbWUiOiJUaSIsImVtYWlsIjoic3Vwb3J0ZUBoZWJyb21iZW5lZmljaW9zLmNvbS5iciIsInRpY2tldHMiOltdLCJjcmVhdGVkQXQiOiIyMDIzLTA1LTI5VDIxOjM4OjQwLjk4OVoiLCJ1cGRhdGVkQXQiOiIyMDIzLTA1LTI5VDIyOjI0OjE5LjcyMFoiLCJpYXQiOjE2ODUzOTk0NTMsImV4cCI6MTY4NTQwMDM1M30.F50FkpZ_Mgf5agXmzpLdCcsutn-RU1H4dodzwoQwoDTUq0T-eTAL3n_9C2yrWPrwcRKDOMjjNk9m7ZeLbgoFQQbeozWIro41hQ67UvoLtfrdR8u9dGUqUZOKdDxaS6ATKHVVqQQUiKUH-JD0kcODFxJgVsar70NRS97L46rmG70CpmrznZZsUbrlh516KXif2HZgeDEnjNFBiw0N5CBc9B7Zk54P3RWINPCzW3JCZzWysMygSwJio710S-Vt_AXL3eLPqC7OhTwl_sKOmKXy6SLC5eSnK-2wvaV6ZfQQe-8jh39z4-7sEqzFDWUlWRf-Ouo3o7XYHF_N7T8K5F94iw
 
 
 # Login
@@ -45,26 +45,26 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/auth/sessions/refresh
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ3NGJiZTcxM2QyY2Y3Y2I2NDY5Zjc5IiwiaWF0IjoxNjg1MzcxODc5LCJleHAiOjE3MTY5Mjk0Nzl9.F8pV9Hd_43v5OUoYJX82QGlZwpZ_7wEqoaCfSFR4172s7GUMkUewk1nxP_e0PFktvNK3wnrEbzr70Ut5FXZF2fqykBUC9q_KOocoUt_WFgkLUn-PxSpm9M3q3QteIAU_IoL6hOpQpwYDpuCF9kkwmNAg8AM6lGGK7HWAtlr-KM2EcdExn7ylIX3AuqA1YnqhlE510CYPeo4BemCrHHl_gvUnL2EstvOVzHCx005q9EmvRL66mB90FktuWAexRysmdiuQhT6ZcTGs2UREsB5GflKLDJ7y91VkYtPvZmr38FCFHTWTV1k5nseFS1jPR6Adp9IAe2e3LBu98iBfmVa7-A
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ3NTFjZGIwYTQ1ZWZmYWQ2NjMzZDJmIiwiaWF0IjoxNjg1Mzk2Njk5LCJleHAiOjE3MTY5NTQyOTl9.EXJLRxzle4yt7HBwtGOO-wj0xIMjbKrKe9Nea2ipJWsBdFKwg7hh_j4l1wgOu3OnpyOa1W2coq3dwvCkYtf6o8Ang20jcfIAyl-njBgYkprMmLgOEF36uQaa4CjeO_TBkOYCvvTU3JVxa9AEdeBI02lmhsXqkpdwQw4a1eBhXEPd8s4EIceKba-JZ7VtZvz0VTVyuN5NeHTinImJbKjqhla6OON0oIyetKarH7IVlbwhlKIDcZoU9J0Fku6hpUPI6-3NDdmZsb4J8OvyZ26KIAgEkLR5ZcS8PzNH6o3-uLJXYInOd85beJVZBXLzR0wKPC0x-6jQ7W3Hhg4suKR0Lg
  
 # Tickets
 ###
-POST http://localhost:8080/tickets/new/6474b9404bb7702165f4ae67
+POST http://localhost:8080/tickets/new/64751b600a45effad6633d22
 Content-Type: application/json
 
 {
-    "title":"Tusca",
-    "category":"event"
+    "title":"League of Legends - Garen",
+    "category":"game"
 }
 
 ###
-GET http://localhost:8080/tickets/6474b9404bb7702165f4ae67
+GET http://localhost:8080/tickets/64751b600a45effad6633d22
 
 ###
-POST http://localhost:8080/tickets/trade/6474b9404bb7702165f4ae67
+POST http://localhost:8080/tickets/trade/64741ee070cb40a9c96bfe81
 Content-Type: application/json
 
 {
-    "ticketId":"ce8428d6-a675-45d8-aa53-21c9d785ea39",
-    "emailBuyer":"otavio.bene@outlook.com"
+    "ticketId":"51a71334-d6f1-4f7c-a38d-59ceac0ab513",
+    "emailBuyer":"suporte@hebrombeneficios.com.br"
 }

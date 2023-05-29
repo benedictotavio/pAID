@@ -14,7 +14,6 @@ export class Jwt {
       this.configService.get<string>(keyName),
       'base64'
     ).toString('ascii');
-    console.debug(privateKey);
     return sign(object, privateKey, {
       ...options,
       algorithm: 'RS256',

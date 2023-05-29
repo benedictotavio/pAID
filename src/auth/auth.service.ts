@@ -75,8 +75,6 @@ export class AuthService {
         _id: decoded.session,
       });
 
-      console.log(session);
-
       if (!session || !session.valid) {
         return 'Could not refresh access token';
       }
