@@ -5,7 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './entities/user.entity';
 import { ConfigModule } from '@nestjs/config';
 import { MailerService } from './utils/mailer';
-import { Jwt } from './utils/jwt';
+import { TicketsModule } from 'src/tickets/tickets.module';
 
 @Module({
   imports: [

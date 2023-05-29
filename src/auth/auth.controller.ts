@@ -7,6 +7,7 @@ import {
   UsePipes,
   ValidationPipe,
   Res,
+  HttpStatus,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SessionAuthDto } from './dto/session-auth.dto';

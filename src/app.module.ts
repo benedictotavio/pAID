@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { UserMiddlewares } from './users/middleware/user.midleware';
 import { UsersController } from './users/users.controller';
 import { Jwt } from './users/utils/jwt';
+import { TicketsModule } from './tickets/tickets.module';
 
 const configService = new ConfigService();
 
@@ -25,6 +26,7 @@ const configService = new ConfigService();
     }),
     AuthModule,
     UsersModule,
+    TicketsModule,
   ],
   controllers: [],
   providers: [Jwt],
