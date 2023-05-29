@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { TicketsService } from './tickets.service';
 import { CreateTicketDto } from './dto/create-ticket.dto';
+import { TradeTicketDto } from './dto/trade-ticket.dto';
 
 @Controller('tickets')
 export class TicketsController {
@@ -25,5 +26,11 @@ export class TicketsController {
   @Get(':id')
   getTicketsByUser(@Param('id') id: string) {
     return this.ticketsService.getTicketsByUser(id);
+  }
+
+  @Post('trade/:id')
+  @UsePipes(new ValidationPipe())
+  tradeTicket(@Param('id') id: string, @Body() tradeTicketDto: TradeTicketDto) {
+    return this.ticketsService.tradeTicket(id, tradeTicketDto);
   }
 }
