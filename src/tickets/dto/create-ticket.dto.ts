@@ -1,10 +1,11 @@
-import { IsString } from 'class-validator';
+import { IsString, Matches } from 'class-validator';
 
 export class CreateTicketDto {
   @IsString()
   title: string;
+  @Matches(/^(event|game)+$/gi, {
+    message: 'Category must be a event or game.',
+  })
   @IsString()
-  category: string;
-  @IsString()
-  user: string;
+  category: 'event' | 'game';
 }

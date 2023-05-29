@@ -12,7 +12,7 @@ import { Jwt } from 'src/users/utils/jwt';
   imports: [
     ConfigModule,
     MongooseModule.forFeature([
-      { name: Auth.name, schema: AuthSchema, collection: 'sessions' },
+      { name: Auth.name, schema: AuthSchema, collection: 'auth_sessions' },
     ]),
     UsersModule,
   ],

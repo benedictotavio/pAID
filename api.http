@@ -3,16 +3,16 @@ POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-    "firstName": "Otavio",
-    "lastName": "Benedicto",
-    "email": "otavio.bene@outlook.com",
-    "password": "T@v!nho22",
-    "passwordConfirmation": "T@v!nho22"
+    "firstName": "Suporte",
+    "lastName": "Ti",
+    "email": "suporte@hebrombeneficios.com.br",
+    "password": "Hebrom@1234",
+    "passwordConfirmation": "Hebrom@1234"
 }
 
 
 ###
-POST http://localhost:8080/users/verify/64741ee070cb40a9c96bfe81?verifyCode=e0db867e-55df-468c-a7d7-5b781b89a7bb
+POST http://localhost:8080/users/verify/6474a058f244b868ea6707da?verifyCode=cfe6ad9c-aa3e-4733-9f81-c4cbb7e12077
 
 
 ###
@@ -30,7 +30,7 @@ Content-Type: application/json
 }
 ###
 GET http://localhost:8080/users/me
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc0MWVlMDcwY2I0MGE5Yzk2YmZlODEiLCJmaXJzdE5hbWUiOiJPdGF2aW8iLCJsYXN0TmFtZSI6IkJlbmVkaWN0byIsImVtYWlsIjoib3RhdmlvLmJlbmVAb3V0bG9vay5jb20iLCJ0aWNrZXRzIjpbXSwiY3JlYXRlZEF0IjoiMjAyMy0wNS0yOVQwMzo0MToyMC4xMTJaIiwidXBkYXRlZEF0IjoiMjAyMy0wNS0yOVQwMzo0MjowMS42NjZaIiwiaWF0IjoxNjg1MzMxNzI4LCJleHAiOjE2ODUzMzI2Mjh9.LhpbLhUgawWWecizIsjllekirGXjMio2XAxNp0919PKG14pANz29GpjH-nlmyIlM1o-4JBAusuIgdaHM4lyfFL7szKQ8W3Zap5pUy8_5p_91E6r6B0HjEkUizMdUoa_SBDfdl7xO919E6cv9eMNPJVEvy5jGRIASqVlU2NHZachhgvOOojhDKerUG_5kfZl2CQKXO23B4Rbkq_jOfeBEjVewjTQYA-O5ZpDU1JPfbFUwMDuYpEiycZbHz7fcQvSVHkEuY_l9UHT6vmdgSvLF0cibRxY5ktYpeFi-UjbH5N9au79KuDiLHsOtHVKlbg6l2pmpcPJqkl2YwhBJMZv1iw
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc0YTA1OGYyNDRiODY4ZWE2NzA3ZGEiLCJmaXJzdE5hbWUiOiJTdXBvcnRlIiwibGFzdE5hbWUiOiJUaSIsImVtYWlsIjoic3Vwb3J0ZUBoZWJyb21iZW5lZmljaW9zLmNvbS5iciIsInRpY2tldHMiOlt7ImNhdGVnb3J5IjoiZXZlbnQiLCJ0aXRsZSI6IkNTIEdPOiBSdXNzaWFuIFdhcnJpb3IifV0sImNyZWF0ZWRBdCI6IjIwMjMtMDUtMjlUMTI6NTM6NDQuNTc2WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDUtMjlUMTM6NDE6NTAuMjY0WiIsImlhdCI6MTY4NTM2NzgwNSwiZXhwIjoxNjg1MzY4NzA1fQ.Yyrfg-pZLoKCp_mTtPYe91FUX11SaUZGWenb0a-8AETZqBED9yemy7VUiIF-9YG9xQSULUHXm_tlLlPsc9rWl69J99KrtyPLVzDfKSmv32gRj0RPwgG3vsm6p-_JgTEmr6jY10Gvdo0vH6LpQ47Cvr5de14CgvQx5B3Nzn61m4YCxHzCUmomKVryr4AStqBXZVLi3Vk1hM_eTAof-bLPrlYEUlhatuu9osKtSE9_CphpFVMqq7uMLZXCoJzt--FWVrc1zQd3lNVHJfTxx6SrYZLh63AqyjS6AnQ0mB0bOreJIt-pyHNKRKRaeP3Jva1lpwsGE3uJLX7FqsdGH2wADw
 
 
 # Login
@@ -39,25 +39,24 @@ POST http://localhost:8080/auth/sessions
 Content-Type: application/json
 
 {
-    "email":"otavio.bene@outlook.com",
-    "password":"T@v!nho22"
+    "email":"suporte@hebrombeneficios.com.br",
+    "password":"Hebrom@1234"
 }
 
 ###
 GET http://localhost:8080/auth/sessions/refresh
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ3M2ZlNWJkYjI1MDQ2NDI0NTU4NmQ4IiwiaWF0IjoxNjg1MzIzMzU1LCJleHAiOjE3MTY4ODA5NTV9.dkWIvLwVo_uqSxkDfB7-Bp4iSsGNexPoVsMTgRrTs5nRRJ1qWcccjxAw_Ju5celiSI9taoG2f_616HIVxhxoEMRxIVJmRoSa4-gf41UIo23u2c4dIaOmXFpGA_wQKE18BLfE8x6q5WOQlRaYu5XvvTkDLximfkQFo-lXA0yH9X7nT16LIWVhc64_Kc7tGiliQTJVuDAJwVIOY8-y0tzdrbDi9VzasyZ4BS2qTzXV64sX0MZPzfwyuSUOda6dBA6NfXMzSvF4IA1da5_WZAVFvUSJo-ny9E-74wQO27CcCyI69Siw27ets2LRloXscef5P7asdlZ12kS7CZBgkTxddA
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ3NGFiZmRiMmUxOTI2NWE0MWY3M2M1IiwiaWF0IjoxNjg1MzY3ODA1LCJleHAiOjE3MTY5MjU0MDV9.cguW3D4uTSfU6es8tppI_640evUEaEjd4I7XLCS0EP7RVgGaNghuuFynseUc_EDQPH5dNfHWBbW7W4YPhiSU6c79hjc1zD2wIJWow5XLfCccsX274LHAlvpkzF-jMV7QCw2WZFrhcSZcrJkaOZtcWyWzTsfndvqw37DkfFvyBa62iZYB0Q1K3FZvodw0aUodb5HOZrjEjxQ3kvgZXQ_jsSV0R4MDFzw8yO7Y00ZPsnpTOMsyI_XK7dKdAofHH35w_BWPC1NFhPin-KZfqpCOkiOCsfJxQvEeghUwbA8CLVH5uugkot418l0kkQPlVF3Gg_9bE-oxG0zwbSlg2yG5RA
 
 
 # Tickets
 ###
-POST http://localhost:8080/tickets/new
+POST http://localhost:8080/tickets/new/6474a058f244b868ea6707da
 Content-Type: application/json
 
 {
-    "title": "Carnatenda",
-    "category": "party",
-    "user":"64741ee070cb40a9c96bfe81"
+    "title":"CS GO: Russian Warrior",
+    "category":"event"
 }
 
 ###
-GET http://localhost:8080/tickets/64741ee070cb40a9c96bfe81
+GET http://localhost:8080/tickets/6474a058f244b868ea6707da

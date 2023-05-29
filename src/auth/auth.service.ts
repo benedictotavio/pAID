@@ -47,8 +47,6 @@ export class AuthService {
       userId: userLoginSession._id,
     });
 
-    this.logger.log(refreshToken);
-
     return {
       accessToken,
       refreshToken,

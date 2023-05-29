@@ -23,7 +23,6 @@ export class AuthController {
     return this.authService.login(createAuthDto);
   }
 
-  @UsePipes(new ValidationPipe())
   @Get('sessions/refresh')
   refreshToken(@Req() req: Request) {
     const token = req.headers.authorization?.split(' ')[1];

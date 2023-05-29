@@ -6,7 +6,7 @@ export type AuthDocument = HydratedDocument<Auth>;
 
 @Schema({
   timestamps: true,
-  collection: 'sessions',
+  collection: 'auth_sessions',
 })
 export class Auth extends Document {
   @Prop({ type: String })

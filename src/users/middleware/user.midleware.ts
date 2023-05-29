@@ -12,8 +12,6 @@ export class UserMiddlewares implements NestMiddleware {
       return next();
     }
 
-    console.log(accessToken);
-
     const decoded = await this.jwt.verifyJwt(
       accessToken,
       'accessTokenPublicKey'

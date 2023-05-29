@@ -25,6 +25,7 @@ export class UsersController {
     return this.usersService.createUserHandler(createUserDto);
   }
 
+  @UsePipes(new ValidationPipe())
   @Post('verify/:userId')
   async verifyUserHandler(
     @Param('userId') userId: string,
@@ -42,7 +43,7 @@ export class UsersController {
   @UsePipes(new ValidationPipe())
   @Post('resetpassword')
   async resetPasswordHandler(
-    @Body() passwordResetDto: PasswordResetDto
+    @Body() passwordResetDto: PasswordResetDto,
   ): Promise<string> {
     return this.usersService.resetPasswordHandler(passwordResetDto);
   }
