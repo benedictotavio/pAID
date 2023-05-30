@@ -25,12 +25,13 @@ Content-Type: application/json
 
 {
     "email":"otavio.bene@outlook.com",
-    "passwordResetCode":"c4b49014-aa1d-4638-a55a-26d70912433b",
-    "newPassword":"T@v!nho122110"
+    "passwordResetCode":"bfb7c7f3-aca2-43d7-a13d-cb2669bc7173",
+    "newPassword":"T@v!nho12"
 }
+
 ###
 GET http://localhost:8080/users/me
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc1MWI2MDBhNDVlZmZhZDY2MzNkMjIiLCJmaXJzdE5hbWUiOiJTdXBvcnRlIiwibGFzdE5hbWUiOiJUaSIsImVtYWlsIjoic3Vwb3J0ZUBoZWJyb21iZW5lZmljaW9zLmNvbS5iciIsInRpY2tldHMiOltdLCJjcmVhdGVkQXQiOiIyMDIzLTA1LTI5VDIxOjM4OjQwLjk4OVoiLCJ1cGRhdGVkQXQiOiIyMDIzLTA1LTI5VDIyOjI0OjE5LjcyMFoiLCJpYXQiOjE2ODUzOTk0NTMsImV4cCI6MTY4NTQwMDM1M30.F50FkpZ_Mgf5agXmzpLdCcsutn-RU1H4dodzwoQwoDTUq0T-eTAL3n_9C2yrWPrwcRKDOMjjNk9m7ZeLbgoFQQbeozWIro41hQ67UvoLtfrdR8u9dGUqUZOKdDxaS6ATKHVVqQQUiKUH-JD0kcODFxJgVsar70NRS97L46rmG70CpmrznZZsUbrlh516KXif2HZgeDEnjNFBiw0N5CBc9B7Zk54P3RWINPCzW3JCZzWysMygSwJio710S-Vt_AXL3eLPqC7OhTwl_sKOmKXy6SLC5eSnK-2wvaV6ZfQQe-8jh39z4-7sEqzFDWUlWRf-Ouo3o7XYHF_N7T8K5F94iw
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc0MWVlMDcwY2I0MGE5Yzk2YmZlODEiLCJmaXJzdE5hbWUiOiJPdGF2aW8iLCJsYXN0TmFtZSI6IkJlbmVkaWN0byIsImVtYWlsIjoib3RhdmlvLmJlbmVAb3V0bG9vay5jb20iLCJ0aWNrZXRzIjpbeyJfaWQiOiJlMTQyNDZmZi0zZDhkLTRmY2MtODYwNy01MjVkMGY0ZTY4ZjkiLCJjYXRlZ29yeSI6ImV2ZW50IiwidGl0bGUiOiJGYXJyYWlhbCAtIDIwMjMiLCJkYXRlQnV5IjoiMjAyMy0wNS0yOVQyMTo0ODozNC4wNjZaIn1dLCJjcmVhdGVkQXQiOiIyMDIzLTA1LTI5VDAzOjQxOjIwLjExMloiLCJ1cGRhdGVkQXQiOiIyMDIzLTA1LTMwVDAwOjUxOjU4LjE3NloiLCJpYXQiOjE2ODU0MDc5MzMsImV4cCI6MTY4NTQwODgzM30.YiKgW_YU4a3HCll_t5UuCnewfh2qxv2I9vjpN_0xq7AnNaSFd3hVLahe1CZ8L_Q58znLImU4YKayKt4JcRXJFZLCSm38iAp8VEC0oRsYl6jRBWv0XPw6JxR8gSm4NHQ9M9CNV8wdSI_3kN8FJw8JB5GGHLL-_2-yQFlYXh_gzdcErXpBIRGnMkf8fxyBqP44RQGSjp100bXQHzrsX2fn_4c5HtzonHE3-_9PxKf54-drLTHb1apXOjlyvCVAkeu7F_eiXV2HxOLT0ZfxOkQiSWSYRXpet9jRZN67WzUAiPBrH1UtwG6xFGPmZ1ropYr7nZbVxwqw7fFQ782Vi_vSyA
 
 
 # Login
@@ -39,32 +40,32 @@ POST http://localhost:8080/auth/sessions
 Content-Type: application/json
 
 {
-    "email":"suporte@hebrombeneficios.com.br",
-    "password":"Hebrom@1234"
+    "email":"otavio.bene@outlook.com",
+    "password":"T@v!nho12"
 }
 
 ###
 GET http://localhost:8080/auth/sessions/refresh
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ3NTFjZGIwYTQ1ZWZmYWQ2NjMzZDJmIiwiaWF0IjoxNjg1Mzk2Njk5LCJleHAiOjE3MTY5NTQyOTl9.EXJLRxzle4yt7HBwtGOO-wj0xIMjbKrKe9Nea2ipJWsBdFKwg7hh_j4l1wgOu3OnpyOa1W2coq3dwvCkYtf6o8Ang20jcfIAyl-njBgYkprMmLgOEF36uQaa4CjeO_TBkOYCvvTU3JVxa9AEdeBI02lmhsXqkpdwQw4a1eBhXEPd8s4EIceKba-JZ7VtZvz0VTVyuN5NeHTinImJbKjqhla6OON0oIyetKarH7IVlbwhlKIDcZoU9J0Fku6hpUPI6-3NDdmZsb4J8OvyZ26KIAgEkLR5ZcS8PzNH6o3-uLJXYInOd85beJVZBXLzR0wKPC0x-6jQ7W3Hhg4suKR0Lg
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ3NTQ4YmQxYzVkMGZlMWViMmJiNWIxIiwiaWF0IjoxNjg1NDA3OTMzLCJleHAiOjE3MTY5NjU1MzN9.XimtYbR9RKcJwmbBloxMWmW-QMd4YG9VDcnPMOV89ortH-zxn7G7k8CeKjIdpHjqgMAyzTS3gsAvLyEsgrFBDGo9fJPdIyyykwwjxYa1oMd4YGolg__S_KnlhMjQne2mlP4YL08auBJlDq2LfgupUkwTfkQSo5ewjpXDnrAWU8u0iGTb9OmVxy3n9t2PBNEhlsD2DP83yBvZFJWCgHkKHvk670p8PnBzNGYB4cvWvFVI5ig0klhLbxM16PX1hmNvKGrRWlAFbSffcWAjh2myxHP7oZxCPdbA8n7vwyPJQolRmc9o2tyyJdQM_N82UqPN98XteJDj41qXSYESOFMRIg
  
 # Tickets
 ###
-POST http://localhost:8080/tickets/new/64751b600a45effad6633d22
+POST http://localhost:8080/tickets/new/64741ee070cb40a9c96bfe81
 Content-Type: application/json
 
 {
-    "title":"League of Legends - Garen",
-    "category":"game"
+    "title":"Tibia Account - nv.60",
+    "category":"event"
 }
 
 ###
 GET http://localhost:8080/tickets/64751b600a45effad6633d22
 
 ###
-POST http://localhost:8080/tickets/trade/64741ee070cb40a9c96bfe81
+POST http://localhost:8080/tickets/trade/64751b600a45effad6633d22
 Content-Type: application/json
 
 {
-    "ticketId":"51a71334-d6f1-4f7c-a38d-59ceac0ab513",
-    "emailBuyer":"suporte@hebrombeneficios.com.br"
+    "ticketId":"86440b20-357d-43ee-be07-91f9931b5af4",
+    "emailBuyer":"otavio.bene@outlook.com"
 }

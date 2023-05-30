@@ -1,4 +1,4 @@
-import { IsString, Matches } from 'class-validator';
+import { IsNumber, IsString, Matches } from 'class-validator';
 
 export class CreateTicketDto {
   @IsString()
@@ -8,4 +8,7 @@ export class CreateTicketDto {
   })
   @IsString()
   category: 'event' | 'game';
+
+  @IsNumber()
+  price: number;
 }

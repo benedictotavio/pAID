@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { randomUUID } from 'crypto';
 import { Document, HydratedDocument } from 'mongoose';
 import { Ticket } from '../../tickets/entities/ticket.entity';
+import { Trade } from 'src/trades/entities/trade.entity';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -41,6 +42,9 @@ export class User extends Document {
 
   @Prop({ default: false })
   verified?: boolean;
+
+  @Prop({ default: [] })
+  trades: Trade[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

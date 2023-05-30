@@ -10,4 +10,6 @@ export class Ticket {
   _id?: UUID;
   @Prop({ default: new Date(Date.now()) })
   dateBuy?: Date;
+  @Prop({ type: Number })
+  price: number;
 }
