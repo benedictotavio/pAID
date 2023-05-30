@@ -72,7 +72,7 @@ export class UsersService {
         }
       } else {
         this.logger.error('User is alrady registered!');
-        return 'O Usuário ja esta em uso!';
+        return `O e-mail ${createUserDto.email} ja esta em uso!`;
       }
     } catch (e: any) {
       if (e.code === 11000) {

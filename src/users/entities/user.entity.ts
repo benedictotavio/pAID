@@ -1,8 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { randomUUID } from 'crypto';
-import { Document, HydratedDocument } from 'mongoose';
+import { UUID, randomUUID } from 'crypto';
+import { Document, HydratedDocument, ObjectId } from 'mongoose';
 import { Ticket } from '../../tickets/entities/ticket.entity';
-import { Trade } from 'src/trades/entities/trade.entity';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -31,20 +30,23 @@ export class User extends Document {
   @Prop({ type: String })
   password: string;
 
-  @Prop({ required: true, default: randomUUID() })
+  @Prop({ type: String, required: true, default: randomUUID() })
   verificationCode?: string;
 
-  @Prop({ default: [] })
+  @Prop({ type: Array, default: [] })
   tickets?: Array<Ticket>;
 
-  @Prop()
+  @Prop({ type: String })
   passwordResetCode?: string | null;
 
-  @Prop({ default: false })
+  @Prop({ type: Boolean, default: false })
   verified?: boolean;
 
-  @Prop({ default: [] })
-  trades: Trade[];
+  @Prop({ type: Object, default: { sales: [], shop: [] } })
+  trades?: {
+    sales: ObjectId[];
+    shop: ObjectId[];
+  };
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

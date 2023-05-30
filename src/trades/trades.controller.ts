@@ -23,9 +23,9 @@ export class TradesController {
     return this.tradesService.createTrade(createTradeDto);
   }
 
-  @Get()
-  findAll() {
-    return this.tradesService.findAll();
+  @Get(':id')
+  findAllTradesByUser(@Param('id') id: string) {
+    return this.tradesService.findAllTradesByUser(id);
   }
 
   @Get(':id')

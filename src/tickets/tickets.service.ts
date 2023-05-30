@@ -29,7 +29,7 @@ export class TicketsService {
         category: createTicketDto.category,
         title: createTicketDto.title,
         dateBuy: new Date(Date.now()),
-        price: 125,
+        price: createTicketDto.price,
       });
 
       userSession.save();
@@ -84,29 +84,33 @@ export class TicketsService {
       buyerId: userBuyer._id,
       salerId: userSeller._id,
       payment: {
-        price: 500,
+        price: ticketTrade.price,
         installment: 1,
         method: 'PIX',
       },
     });
 
     if (tradeConfirmUsers) {
+      this.logger.debug(tradeConfirmUsers);
       try {
-
         userBuyer.tickets.unshift(ticketTrade);
         const index = userSeller.tickets.findIndex(
           (item) => item._id == ticketTrade._id
         );
 
         index >= 0 && userSeller.tickets.splice(index, 1);
+
+        userSeller.trades.sales.unshift(tradeConfirmUsers._id);
+        userBuyer.trades.shop.unshift(tradeConfirmUsers._id);
+
+        console.log(userSeller.trades);
+        console.log(userBuyer.trades);
+        console.debug('Vendedor: ', userSeller);
+        
         userBuyer.save();
         userSeller.save();
 
-        userSeller.trades.push(tradeConfirmUsers._id);
-        userBuyer.trades.push(tradeConfirmUsers._id);
-
         return `Finish trade between ${userSeller.firstName} and ${userBuyer.firstName}.`;
-        
       } catch (error) {
         throw new Error(error.toString());
       }

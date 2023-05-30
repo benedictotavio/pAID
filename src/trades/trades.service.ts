@@ -15,12 +15,13 @@ export class TradesService {
     @InjectModel(Trade.name) private readonly tradeModel: Model<TradeDocument>
   ) {}
   async createTrade(createTradeDto: CreateTradeDto) {
-    const createdTrade = await new this.tradeModel(createTradeDto);
+    const createdTrade = new this.tradeModel(createTradeDto);
     return createdTrade.save();
   }
 
-  findAll() {
-    return `This action returns all trades`;
+  async findAllTradesByUser(id_user: string) {
+    const userSession = await this.userService.findUserById(id_user);
+    return userSession.trades;
   }
 
   findOne(id: number) {
