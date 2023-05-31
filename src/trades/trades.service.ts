@@ -19,9 +19,12 @@ export class TradesService {
     return await createdTrade.save();
   }
 
-  async findAllTradesByUser(id_user: string) {
+  async findAllTradesByUser(id_user: string): Promise<object> {
     const userSession = await this.userService.findUserById(id_user);
-    return userSession
+    return {
+      sales: userSession.sales,
+      buy: userSession.shop,
+    };
   }
 
   findOne(id: number) {

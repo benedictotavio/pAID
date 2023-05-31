@@ -27,11 +27,11 @@ export class User extends Document {
   @Prop({ type: String, required: true, unique: true })
   email: string;
 
-  @Prop({ type: Array<ObjectId>, default: { shop: [], sales: [] } })
-  trades?: {
-    shop: string[];
-    sales: string[];
-  };
+  @Prop({ default: [] })
+  shop: ObjectId[];
+  
+  @Prop({ default: [] })
+  sales: ObjectId[];
 
   @Prop({ type: String })
   password: string;

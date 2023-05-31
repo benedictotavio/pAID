@@ -96,13 +96,10 @@ export class TicketsService {
         })
         .then((res) => {
           try {
-            userSeller.trades.sales.unshift(res._id.toString());
-            userBuyer.trades.shop.unshift(res._id.toString());
-
+            userSeller.sales.unshift(res._id.toString());
+            userBuyer.shop.unshift(res._id.toString());
             userBuyer.save();
             userSeller.save();
-
-            console.log(res._id);
           } catch (error) {
             this.logger.debug(error);
           }
