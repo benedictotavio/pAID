@@ -10,7 +10,6 @@ import { ConfigService } from '@nestjs/config';
 import { randomUUID } from 'crypto';
 import { PasswordResetDto } from './dto/password-reset.dto';
 import { MailerService } from './utils/mailer';
-import { type } from 'os';
 
 @Injectable()
 export class UsersService {

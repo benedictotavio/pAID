@@ -70,4 +70,4 @@ Content-Type: application/json
 
 # Trades
 ###
-GET http://localhost:8080/trade/64775c09bbdf9ec406783c43
+GET http://localhost:8080/trades/64775c09bbdf9ec406783c43

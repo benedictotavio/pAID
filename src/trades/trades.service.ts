@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTradeDto } from './dto/create-trade.dto';
-import { UpdateTradeDto } from './dto/update-trade.dto';
 import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { Trade, TradeDocument } from './entities/trade.entity';
@@ -15,8 +14,8 @@ export class TradesService {
     @InjectModel(Trade.name) private readonly tradeModel: Model<TradeDocument>
   ) {}
   async createTrade(createTradeDto: CreateTradeDto) {
-    const createdTrade = new this.tradeModel(createTradeDto);
-    return await createdTrade.save();
+    const newTrade = new this.tradeModel(createTradeDto);
+    return await newTrade.save();
   }
 
   async findAllTradesByUser(id_user: string): Promise<object> {
@@ -27,15 +26,16 @@ export class TradesService {
     };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} trade`;
+  private async defineTimeTrade(timeTrade: Date, price: number) {
+    const dateLititToTradeTicket =
+      timeTrade.getTime() +
+      this.configService.get<number>('time.fixed_time') +
+      price;
+
+    return new Date(dateLititToTradeTicket);
   }
 
-  update(id: number, updateTradeDto: UpdateTradeDto) {
-    return `This action updates a #${id} trade`;
-  }
+  private async configTradeOptions(){
 
-  remove(id: number) {
-    return `This action removes a #${id} trade`;
   }
 }

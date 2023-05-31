@@ -96,8 +96,8 @@ export class TicketsService {
         })
         .then((res) => {
           try {
-            userSeller.sales.unshift(res._id.toString());
-            userBuyer.shop.unshift(res._id.toString());
+            userSeller.sales.unshift(res._id);
+            userBuyer.shop.unshift(res._id);
             userBuyer.save();
             userSeller.save();
           } catch (error) {

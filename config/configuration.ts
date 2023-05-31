@@ -14,4 +14,7 @@ export default () => ({
     port: 587,
     secure: false,
   },
+  time: {
+    fixed_time: process.env.FIXED_TIME_TRADE,
+  },
 });

@@ -7,6 +7,12 @@ export type TradeDocument = HydratedDocument<Trade>;
 
 @Schema({
   timestamps: true,
+  timeseries: {
+    timeField: 'timestamp',
+    metaField: 'metadata',
+    granularity: 'hours',
+  },
+  validateBeforeSave: true,
 })
 export class Trade extends Document {
   @Prop({ type: String })
