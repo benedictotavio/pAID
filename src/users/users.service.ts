@@ -3,20 +3,21 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 // DTO`s
 import { CreateUserDto } from './dto/create-user.dto';
 import { User, UserDocument } from './entities/user.entity';
-import { Model } from 'mongoose';
+import { Model, ObjectId } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { genSalt, hash } from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 import { randomUUID } from 'crypto';
 import { PasswordResetDto } from './dto/password-reset.dto';
 import { MailerService } from './utils/mailer';
+import { type } from 'os';
 
 @Injectable()
 export class UsersService {
   private readonly logger = new Logger(UsersService.name);
   constructor(
     @InjectModel(User.name)
-    private userModel: Model<UserDocument>,
+    private readonly userModel: Model<UserDocument>,
     @Inject(MailerService) private readonly mailer: MailerService,
     private readonly configService: ConfigService
   ) {}
@@ -33,13 +34,17 @@ export class UsersService {
         email: userBody.email,
       });
 
+      if (userBody.password != userBody.passwordConfirmation) {
+        return `Password and confirmation password must be equal`;
+      }
+
       if (!UserInDataBase) {
         const userSession = new this.userModel({
           ...userBody,
           password: passwordHash,
         });
 
-        userSession.save();
+        await userSession.save();
 
         try {
           await this.mailer.sendEmail({
@@ -173,7 +178,7 @@ export class UsersService {
   }
   async findUserById(id: string) {
     try {
-      return this.userModel.findOne({ _id: id });
+      return await this.userModel.findOne({ _id: id });
     } catch (error) {
       throw new Error(error);
     }

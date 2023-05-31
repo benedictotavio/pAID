@@ -27,26 +27,26 @@ export class User extends Document {
   @Prop({ type: String, required: true, unique: true })
   email: string;
 
+  @Prop({ type: Array<ObjectId>, default: { shop: [], sales: [] } })
+  trades?: {
+    shop: string[];
+    sales: string[];
+  };
+
   @Prop({ type: String })
   password: string;
 
-  @Prop({ type: String, required: true, default: randomUUID() })
+  @Prop({ required: true, default: randomUUID() })
   verificationCode?: string;
 
-  @Prop({ type: Array, default: [] })
+  @Prop({ default: [] })
   tickets?: Array<Ticket>;
 
-  @Prop({ type: String })
+  @Prop()
   passwordResetCode?: string | null;
 
-  @Prop({ type: Boolean, default: false })
+  @Prop({ default: false })
   verified?: boolean;
-
-  @Prop({ type: Object, default: { sales: [], shop: [] } })
-  trades?: {
-    sales: ObjectId[];
-    shop: ObjectId[];
-  };
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

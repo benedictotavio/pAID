@@ -11,9 +11,9 @@ import { TradesService } from 'src/trades/trades.service';
 export class TicketsService {
   private readonly logger = new Logger();
   constructor(
-    private readonly tradeService: TradesService,
     private readonly userService: UsersService,
-    private readonly configService: ConfigService
+    private readonly configService: ConfigService,
+    private readonly tradeService: TradesService
   ) {}
   async addNewTicket(
     createTicketDto: CreateTicketDto,
@@ -28,11 +28,11 @@ export class TicketsService {
         _id: randomUUID(),
         category: createTicketDto.category,
         title: createTicketDto.title,
-        dateBuy: new Date(Date.now()),
         price: createTicketDto.price,
+        dateBuy: new Date(Date.now()),
       });
 
-      userSession.save();
+      await userSession.save();
 
       return userSession.tickets[0];
     } catch (error) {
@@ -56,16 +56,12 @@ export class TicketsService {
   ): Promise<string> {
     const userSeller = await this.userService.findUserById(id_seller);
 
-    if (!userSeller) {
-      return 'Vendedor não esta cadastrado!';
-    }
-
     const userBuyer = await this.userService.findUserByEmail(
       tradeTicketDto.emailBuyer
     );
 
     if (!userBuyer) {
-      return `Voce não esta cadastrado. Faça seu cadastro em ${this.configService.get(
+      return `You are not signed. Please Sign up in ${this.configService.get(
         'web_url'
       )}`;
     }
@@ -75,45 +71,45 @@ export class TicketsService {
     );
 
     if (!ticketTrade) {
-      return `Ticket ${tradeTicketDto.ticketId}, não foi encontrado no cadastro de ${userSeller.firstName} ${userSeller.lastName}`;
+      return `ticket ${tradeTicketDto.ticketId}, was not found! in User ${userSeller.firstName} ${userSeller.lastName}`;
     }
 
-    // Trade alagorithm section
-    const tradeConfirmUsers = await this.tradeService.createTrade({
-      ticketId: tradeTicketDto.ticketId,
-      buyerId: userBuyer._id,
-      salerId: userSeller._id,
-      payment: {
-        price: ticketTrade.price,
-        installment: 1,
-        method: 'PIX',
-      },
-    });
+    try {
+      userBuyer.tickets.unshift(ticketTrade);
 
-    if (tradeConfirmUsers) {
-      this.logger.debug(tradeConfirmUsers);
-      try {
-        userBuyer.tickets.unshift(ticketTrade);
-        const index = userSeller.tickets.findIndex(
-          (item) => item._id == ticketTrade._id
-        );
+      const index = userSeller.tickets.findIndex(
+        (item) => item._id == ticketTrade._id
+      );
 
-        index >= 0 && userSeller.tickets.splice(index, 1);
+      index >= 0 && userSeller.tickets.splice(index, 1);
 
-        userSeller.trades.sales.unshift(tradeConfirmUsers._id);
-        userBuyer.trades.shop.unshift(tradeConfirmUsers._id);
+      await this.tradeService
+        .createTrade({
+          ticketId: ticketTrade._id,
+          buyerId: userBuyer._id,
+          salerId: userSeller._id,
+          payment: {
+            price: ticketTrade.price,
+            installment: 1,
+            method: 'PIX',
+          },
+        })
+        .then((res) => {
+          try {
+            userSeller.trades.sales.unshift(res._id.toString());
+            userBuyer.trades.shop.unshift(res._id.toString());
 
-        console.log(userSeller.trades);
-        console.log(userBuyer.trades);
-        console.debug('Vendedor: ', userSeller);
-        
-        userBuyer.save();
-        userSeller.save();
+            userBuyer.save();
+            userSeller.save();
 
-        return `Finish trade between ${userSeller.firstName} and ${userBuyer.firstName}.`;
-      } catch (error) {
-        throw new Error(error.toString());
-      }
+            console.log(res._id);
+          } catch (error) {
+            this.logger.debug(error);
+          }
+        });
+      return `Finish trade between ${userSeller.firstName} and ${userBuyer.firstName}.`;
+    } catch (error) {
+      throw new Error(error.toString());
     }
   }
 }

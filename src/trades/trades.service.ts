@@ -16,12 +16,12 @@ export class TradesService {
   ) {}
   async createTrade(createTradeDto: CreateTradeDto) {
     const createdTrade = new this.tradeModel(createTradeDto);
-    return createdTrade.save();
+    return await createdTrade.save();
   }
 
   async findAllTradesByUser(id_user: string) {
     const userSession = await this.userService.findUserById(id_user);
-    return userSession.trades;
+    return userSession
   }
 
   findOne(id: number) {

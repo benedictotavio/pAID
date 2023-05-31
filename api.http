@@ -3,16 +3,16 @@ POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-    "firstName": "Otavio",
-    "lastName": "Benedicto",
-    "email": "otavio.bene@outlook.com",
-    "password": "Tav!nho12",
-    "passwordConfirmation": "Tav!nho12"
+    "email":"ot@email.com",
+    "firstName":"Ot",
+    "lastName":"Ot",
+    "password":"Otaxx@12",
+    "passwordConfirmation":"Otaxx@12"
 }
 
 
 ###
-POST http://localhost:8080/users/verify/6475f25c16a0b25c650bb162?verifyCode=5690892d-9842-4d51-9873-d6edf0e0f147
+POST http://localhost:8080/users/verify/6476a71d71110f390e440034?verifyCode=a1845fa7-64d7-4a22-8a02-9f688e91f009
 
 ###
 POST http://localhost:8080/users/forgotpassword?email=otavio.bene@outlook.com
@@ -29,9 +29,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/users/me
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc1ZjI1YzE2YTBiMjVjNjUwYmIxNjIiLCJmaXJzdE5hbWUiOiJPdGF2aW8iLCJsYXN0TmFtZSI6IkJlbmVkaWN0byIsImVtYWlsIjoib3RhdmlvLmJlbmVAb3V0bG9vay5jb20iLCJ0aWNrZXRzIjpbeyJfaWQiOiJjMDM3YWM4Ni1jYzA5LTQzNGYtYjQwNy0wNmVmNmE3MzcxOTciLCJjYXRlZ29yeSI6ImV2ZW50IiwidGl0bGUiOiJHbGVlIC0gTyBNdXNpY2FsIC0gTWVpYS1FbnRyYWRhIiwiZGF0ZUJ1eSI6IjIwMjMtMDUtMzBUMTQ6MTI6NTguOTY0WiIsInByaWNlIjo3NX0seyJfaWQiOiI4YjVlNzhiOS04ZmE1LTRhYTAtODI0NC0yNTdkMjc3YmNjMmYiLCJjYXRlZ29yeSI6ImV2ZW50IiwidGl0bGUiOiJUdXNjYSAyMDI0IC0gRGlhIDMiLCJkYXRlQnV5IjoiMjAyMy0wNS0zMFQxMzoyNjoyNS43NzlaIiwicHJpY2UiOjEyNX0seyJfaWQiOiJmYWY3MGMxZC1jMGMxLTQ4YjAtYTQ1My0wOGUyOTJmYjYwNmEiLCJjYXRlZ29yeSI6ImV2ZW50IiwidGl0bGUiOiJGYXJyYWlhbCAyMDI0IC0gTWF0aGV1cyBlIEthdWFuIiwiZGF0ZUJ1eSI6IjIwMjMtMDUtMzBUMTM6MjE6NTMuMzY4WiIsInByaWNlIjoxMjV9LHsiX2lkIjoiZDFhOTM0YWMtYWI1Ni00MDczLWE5MTYtMjQ4ZTIzYTYzYjNiIiwiY2F0ZWdvcnkiOiJnYW1lIiwidGl0bGUiOiJUaWJpYSBBY2NvdW50IC0gbnYuNjAiLCJkYXRlQnV5IjoiMjAyMy0wNS0zMFQxMzoxOToxMS4yMzBaIiwicHJpY2UiOjMwMH1dLCJ0cmFkZXMiOnsic2FsZXMiOltdLCJzaG9wIjpbXX0sImNyZWF0ZWRBdCI6IjIwMjMtMDUtMzBUMTI6NTU6NTYuNzU0WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDUtMzBUMTQ6MTM6MzIuMjE1WiIsImlhdCI6MTY4NTQ1NjY5MywiZXhwIjoxNjg1NDU3NTkzfQ.mmJe7j_5jrHdnnniH_UiZQHWI_vqlFCgZtBWYnXdU7akXbH_sIYBmOaDH8anAq0SVONqwBQOETtFGHcv9hE9I-d4lcH18cMXYYWZwEHixn6AwIZBahCWtCQh1x2oa-fPpJu_palIV8utMoHnoc4-InCnoC98hgECr5mXpcLa5-2xmqnd2180XxfMfaFB7-xwORWZItYOjREeJhx5FlI6suCiU6TaBfweW_47o5KToiW4-Q35LO1sE_H5WrIgADbm5wmvFr-x4VHfRcFDyEDR0b1DGrPvIN3xi266MASX1LhLKJ8g_CDQlsVgFPXffMp2CE9viOtGisANEyG7AdObug
-
-
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc2YzNkMjAxYmU0MWU4YzE4YzYxN2QiLCJmaXJzdE5hbWUiOiJPdCIsImxhc3ROYW1lIjoiT3QiLCJlbWFpbCI6Im90QGVtYWlsLmNvbSIsInRpY2tldHMiOltdLCJ0cmFkZXMiOnsic2hvcCI6W10sInNhbGVzIjpbXX0sImNyZWF0ZWRBdCI6IjIwMjMtMDUtMzFUMDM6NDk6MzguNzA3WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDUtMzFUMDM6NDk6MzguNzA3WiIsImlhdCI6MTY4NTUwNTA0NiwiZXhwIjoxNjg1NTA1OTQ2fQ.A9ZqUDvoOuodAVaJXSbI85awM8_YprSfwvqD00yi5jj00ZOC1K_-CsJMvtADwcUfCnyQbaGWHyqXcjX_dytw_gGns3Lz9NB1msy_sN_uN-vnbfq1ykD6YeBysMk8GxhodTDSkuQj0Q8NxS9siKv0LN9B7KiyYpul_zs3otx4Jd4hoeZlp4hkKo7dnaKN-RXA4CJXRS2VWpGqtwdiFpVIC5Fh50NlAz-oOtApUfI-5g6FwHrfpyh7m0l5n08lpZyI5LAMc36_W9N2VcreHVbzOk8tBKwwJGyh9NgZkbGkn85K62YigeBbPuyUBJ3heaLRyCdKYO6DORXJDCK83DY2Dg
 
 # Login
 ###
@@ -39,35 +37,35 @@ POST http://localhost:8080/auth/sessions
 Content-Type: application/json
 
 {
-    "email":"otavio.bene@outlook.com",
-    "password":"Tav!nho12"
+    "email":"ot@email.com",
+    "password":"Otaxx@12"
 }
 
 ###
 GET http://localhost:8080/auth/sessions/refresh
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ3NWY0MWUxNmEwYjI1YzY1MGJiMTY4IiwiaWF0IjoxNjg1NDUxODA2LCJleHAiOjE3MTcwMDk0MDZ9.MAdfwTAvn4Ki3rw4hb3fKF-goKO8sUkwQkOxrvMv6U0fG-Pn8Wp8Nzf4T7yO1pNAecIzuVrel49_YlbHf9OuY6Nt97eQINS8uT75GoQGbwEPDLtb3AhuU-ZKWczm7pJRKEH1MTdqmkppNpC1nclT0NzHL7T3NjQdyjwfNk_Aba_trQie_f5i4Z2nDri9rStoY7TSrSbw65_jl3DKHkWmekxMpsaGAezsm-xJzRTp2y39glt-53-F0RFzqiZcxCOOhSZZfY7Wjwk-qgj4YvMFHZj9BnI9oIz0-xT91rjc_WEVOvsHNAfMc9EVYHivADFl30xN76uiiI7S1tadlQA4FA
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ3NmM0MjUwMWJlNDFlOGMxOGM2MTgzIiwiaWF0IjoxNjg1NTA1MDYxLCJleHAiOjE3MTcwNjI2NjF9.B1lvWrSUrcC2xHJFZyle-1tNRVYurAioq-47TAc-VqmtYCPDzWBP3BmilFbpvaLx_6ZB1_jSvd2UF0NzYJhB5aSSio-kY0j2FtBBHsr0WBOUkXKYZeGmln4cCQa9mt9U68Ji7M16bPffvEJjr-OR0pz8psWhloEhNNtDy-90ldGJJCVd-LEgincldxdOnLE0SSsZxiJtw18yaYvvbyKdFElcH80T5Jw3JUjffl11MtyU4fdmYksK8wx56fee7vGpe3XGltVIf5zSOMz9Qub8TY5holLNh2XutnbqA4nH-V1PRmNXzBAS5KbdOqTWYv2Tb7YWFuqzNdP1ePRZebG0FA
  
 # Tickets
 ###
-POST http://localhost:8080/tickets/new/6475f080f66f248ee6127ca1
+POST http://localhost:8080/tickets/new/6476c3d201be41e8c18c617d
 Content-Type: application/json
 
 {
-    "title":"Glee - O Musical - Meia-Entrada",
-    "category":"event",
-    "price":75
+    "title":"CS: Session Teste",
+    "category":"game",
+    "price":100
 }
 
 ###
-GET http://localhost:8080/tickets/6475f080f66f248ee6127ca1
+GET http://localhost:8080/tickets/6476c3d201be41e8c18c617d
 
 ###
-POST http://localhost:8080/tickets/trade/6475f25c16a0b25c650bb162
+POST http://localhost:8080/tickets/trade/6476c3d201be41e8c18c617d
 Content-Type: application/json
 
 {
-    "ticketId":"c037ac86-cc09-434f-b407-06ef6a737197",
-    "emailBuyer":"suporte@hebrombeneficios.com.br"
+    "ticketId":"c6d8d325-c855-4717-8d1b-72ebdc53c6ab",
+    "emailBuyer":"ze@email.com"
 }
 
 # Trades

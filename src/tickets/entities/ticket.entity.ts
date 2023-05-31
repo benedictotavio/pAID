@@ -6,10 +6,10 @@ export class Ticket {
   title: string;
   @Prop({ type: String, required: true })
   category: string;
+  @Prop({ type: Number, required: true })
+  price: number;
   @Prop({ default: randomUUID(), unique: true })
   _id?: UUID;
   @Prop({ default: new Date(Date.now()) })
   dateBuy?: Date;
-  @Prop({ type: Number })
-  price: number;
 }
