@@ -96,8 +96,8 @@ export class TicketsService {
         })
         .then((res) => {
           try {
-            userSeller.sales.unshift(res._id);
-            userBuyer.shop.unshift(res._id);
+            userSeller.trades.sales.unshift(res._id);
+            userBuyer.trades.shop.unshift(res._id);
             userBuyer.save();
             userSeller.save();
           } catch (error) {
@@ -106,7 +106,7 @@ export class TicketsService {
         });
       return `Finish trade between ${userSeller.firstName} and ${userBuyer.firstName}.`;
     } catch (error) {
-      throw new Error(error.toString());
+      throw new Error(error);
     }
   }
 }

@@ -13,6 +13,15 @@ export const privateFields = [
   'verified',
 ];
 
+@Schema({ _id: false })
+class Trade extends Document {
+  @Prop({ default: [] })
+  shop: any[];
+
+  @Prop({ default: [] })
+  sales: any[];
+}
+
 @Schema({
   timestamps: true,
   collection: 'users',
@@ -27,20 +36,17 @@ export class User extends Document {
   @Prop({ type: String, required: true, unique: true })
   email: string;
 
-  @Prop({ default: [] })
-  shop: ObjectId[];
-  
-  @Prop({ default: [] })
-  sales: ObjectId[];
-
   @Prop({ type: String })
   password: string;
 
+  @Prop({ type: Trade, default: { sales: [], shop: [] } })
+  trades: Trade;
+
   @Prop({ required: true, default: randomUUID() })
-  verificationCode?: string;
+  verificationCode?: UUID;
 
   @Prop({ default: [] })
-  tickets?: Array<Ticket>;
+  tickets?: Ticket[];
 
   @Prop()
   passwordResetCode?: string | null;

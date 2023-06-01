@@ -14,28 +14,29 @@ export class TradesService {
     @InjectModel(Trade.name) private readonly tradeModel: Model<TradeDocument>
   ) {}
   async createTrade(createTradeDto: CreateTradeDto) {
+    this.defineTimeTrade(createTradeDto.payment.price);
     const newTrade = new this.tradeModel(createTradeDto);
     return await newTrade.save();
   }
 
   async findAllTradesByUser(id_user: string): Promise<object> {
     const userSession = await this.userService.findUserById(id_user);
-    return {
-      sales: userSession.sales,
-      buy: userSession.shop,
-    };
+    return userSession.trades;
   }
 
-  private async defineTimeTrade(timeTrade: Date, price: number) {
+  private async defineTimeTrade(price: number) {
     const dateLititToTradeTicket =
-      timeTrade.getTime() +
-      this.configService.get<number>('time.fixed_time') +
-      price;
-
+      Date.now() +
+      +this.configService.get<number>('time.fixed_time') +
+      price * 5555;
+    console.log(
+      typeof dateLititToTradeTicket,
+      dateLititToTradeTicket,
+      new Date(dateLititToTradeTicket),
+      +this.configService.get<number>('time.fixed_time')
+    );
     return new Date(dateLititToTradeTicket);
   }
 
-  private async configTradeOptions(){
-
-  }
+  private async configTradeOptions() {}
 }
