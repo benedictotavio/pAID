@@ -54,16 +54,25 @@ export class TicketsService {
     id_seller: string,
     tradeTicketDto: TradeTicketDto
   ): Promise<string> {
+
     const userSeller = await this.userService.findUserById(id_seller);
 
     const userBuyer = await this.userService.findUserByEmail(
       tradeTicketDto.emailBuyer
     );
 
+    if (userSeller.tickets.length <= 0) {
+      return `O usuario não possui tickets cadastrados!`;
+    }
+
     if (!userBuyer) {
       return `You are not signed. Please Sign up in ${this.configService.get(
         'web_url'
       )}`;
+    }
+
+    if (userSeller.email === tradeTicketDto.emailBuyer) {
+      return 'O usuario ja possui o ticket!';
     }
 
     const ticketTrade = userSeller.tickets.find(
@@ -92,7 +101,7 @@ export class TicketsService {
             price: ticketTrade.price,
             installment: 1,
             method: 'PIX',
-          },
+          }
         })
         .then((res) => {
           try {

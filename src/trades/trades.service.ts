@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { Trade, TradeDocument } from './entities/trade.entity';
 import { Model } from 'mongoose';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class TradesService {
@@ -14,8 +14,8 @@ export class TradesService {
     @InjectModel(Trade.name) private readonly tradeModel: Model<TradeDocument>
   ) {}
   async createTrade(createTradeDto: CreateTradeDto) {
-    this.defineTimeTrade(createTradeDto.payment.price);
-    const newTrade = new this.tradeModel(createTradeDto);
+    const timeLimit = await this.defineTimeTrade(createTradeDto.payment.price);
+    const newTrade = new this.tradeModel({ ...createTradeDto, timeLimit });
     return await newTrade.save();
   }
 
@@ -24,17 +24,11 @@ export class TradesService {
     return userSession.trades;
   }
 
-  private async defineTimeTrade(price: number) {
+  private async defineTimeTrade(price: number): Promise<Date> {
     const dateLititToTradeTicket =
       Date.now() +
       +this.configService.get<number>('time.fixed_time') +
-      price * 5555;
-    console.log(
-      typeof dateLititToTradeTicket,
-      dateLititToTradeTicket,
-      new Date(dateLititToTradeTicket),
-      +this.configService.get<number>('time.fixed_time')
-    );
+      price * 5595;
     return new Date(dateLititToTradeTicket);
   }
 

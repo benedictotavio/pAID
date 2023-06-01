@@ -6,7 +6,7 @@ import { UUID } from 'crypto';
 export type TradeDocument = HydratedDocument<Trade>;
 
 @Schema({
-  timestamps: true
+  timestamps: true,
 })
 export class Trade extends Document {
   @Prop({ type: String })
@@ -17,6 +17,8 @@ export class Trade extends Document {
   salerId: string;
   @Prop({ type: Object })
   payment: paymentTicket;
+  @Prop({ type: Date })
+  timeLimit: Date;
 }
 
 export const TradeSchema = SchemaFactory.createForClass(Trade);
