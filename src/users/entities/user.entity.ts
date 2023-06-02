@@ -16,10 +16,10 @@ export const privateFields = [
 @Schema({ _id: false })
 class Trade extends Document {
   @Prop({ default: [] })
-  shop: any[];
+  shop: ObjectId[];
 
   @Prop({ default: [] })
-  sales: any[];
+  sales: ObjectId[];
 }
 
 @Schema({

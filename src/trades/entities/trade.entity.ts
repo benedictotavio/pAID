@@ -19,6 +19,8 @@ export class Trade extends Document {
   payment: paymentTicket;
   @Prop({ type: Date })
   timeLimit: Date;
+  @Prop({ type: String })
+  status: 'complete' | 'waiting for seller user' | 'canceled';
 }
 
 export const TradeSchema = SchemaFactory.createForClass(Trade);

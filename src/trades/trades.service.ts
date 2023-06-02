@@ -1,17 +1,18 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateTradeDto } from './dto/create-trade.dto';
 import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { Trade, TradeDocument } from './entities/trade.entity';
 import { Model } from 'mongoose';
 import { UsersService } from '../users/users.service';
+import { MailerService } from '../users/utils/mailer';
 
 @Injectable()
 export class TradesService {
   constructor(
     private readonly userService: UsersService,
     private readonly configService: ConfigService,
-    @InjectModel(Trade.name) private readonly tradeModel: Model<TradeDocument>
+    @InjectModel(Trade.name) private readonly tradeModel: Model<TradeDocument>,
   ) {}
   async createTrade(createTradeDto: CreateTradeDto) {
     const timeLimit = await this.defineTimeTrade(createTradeDto.payment.price);
@@ -32,5 +33,8 @@ export class TradesService {
     return new Date(dateLititToTradeTicket);
   }
 
-  private async configTradeOptions() {}
+  private async configTradeOptions(): Promise<object> {
+    
+    return;
+  }
 }

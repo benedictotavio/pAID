@@ -6,6 +6,7 @@ import { TradeTicketDto } from './dto/trade-ticket.dto';
 import { randomUUID } from 'crypto';
 import { ConfigService } from '@nestjs/config';
 import { TradesService } from 'src/trades/trades.service';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class TicketsService {
@@ -54,15 +55,39 @@ export class TicketsService {
     id_seller: string,
     tradeTicketDto: TradeTicketDto
   ): Promise<string> {
-
-    const userSeller = await this.userService.findUserById(id_seller);
-
-    const userBuyer = await this.userService.findUserByEmail(
+    const usersSessionTranfer = await this.getUsersTranfers(
+      id_seller,
       tradeTicketDto.emailBuyer
     );
 
+    const ticketTrade = usersSessionTranfer.userSeller.tickets.find(
+      (item) => item._id === tradeTicketDto.ticketId
+    );
+
+    if (!ticketTrade) {
+      return `ticket ${tradeTicketDto.ticketId}, was not found! in User ${usersSessionTranfer.userSeller.firstName} ${usersSessionTranfer.userSeller.lastName}`;
+    }
+
+    if (usersSessionTranfer.userSeller.email === tradeTicketDto.emailBuyer) {
+      return 'O usuario já possui o ticket selecionado!';
+    }
+
+    await this.tranferTicket(
+      ticketTrade,
+      usersSessionTranfer.userBuyer,
+      usersSessionTranfer.userSeller
+    );
+
+    return `Finish trade between ${usersSessionTranfer.userSeller.firstName} and ${usersSessionTranfer.userBuyer.firstName}.`;
+  }
+
+  private async tranferTicket(
+    ticketTrade: Ticket,
+    userBuyer: User,
+    userSeller: User
+  ) {
     if (userSeller.tickets.length <= 0) {
-      return `O usuario não possui tickets cadastrados!`;
+      return 'O usuario não possui tickets cadastrados!';
     }
 
     if (!userBuyer) {
@@ -71,27 +96,7 @@ export class TicketsService {
       )}`;
     }
 
-    if (userSeller.email === tradeTicketDto.emailBuyer) {
-      return 'O usuario ja possui o ticket!';
-    }
-
-    const ticketTrade = userSeller.tickets.find(
-      (item) => item._id === tradeTicketDto.ticketId
-    );
-
-    if (!ticketTrade) {
-      return `ticket ${tradeTicketDto.ticketId}, was not found! in User ${userSeller.firstName} ${userSeller.lastName}`;
-    }
-
     try {
-      userBuyer.tickets.unshift(ticketTrade);
-
-      const index = userSeller.tickets.findIndex(
-        (item) => item._id == ticketTrade._id
-      );
-
-      index >= 0 && userSeller.tickets.splice(index, 1);
-
       await this.tradeService
         .createTrade({
           ticketId: ticketTrade._id,
@@ -101,21 +106,34 @@ export class TicketsService {
             price: ticketTrade.price,
             installment: 1,
             method: 'PIX',
-          }
+          },
         })
         .then((res) => {
           try {
             userSeller.trades.sales.unshift(res._id);
             userBuyer.trades.shop.unshift(res._id);
+            userBuyer.tickets.unshift(ticketTrade);
+            const index = userSeller.tickets.findIndex(
+              (item) => item._id == ticketTrade._id
+            );
+            index >= 0 && userSeller.tickets.splice(index, 1);
             userBuyer.save();
             userSeller.save();
           } catch (error) {
             this.logger.debug(error);
           }
         });
-      return `Finish trade between ${userSeller.firstName} and ${userBuyer.firstName}.`;
     } catch (error) {
       throw new Error(error);
     }
+  }
+  private async getUsersTranfers(id: string, email: string) {
+    const userSeller = await this.userService.findUserById(id);
+    const userBuyer = await this.userService.findUserByEmail(email);
+
+    return {
+      userBuyer,
+      userSeller,
+    };
   }
 }
