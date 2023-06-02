@@ -4,6 +4,7 @@ import { TradesController } from './trades.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Trade, TradeSchema } from './entities/trade.entity';
 import { UsersModule } from 'src/users/users.module';
+import { MailerService } from 'src/users/utils/mailer';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { UsersModule } from 'src/users/users.module';
     UsersModule,
   ],
   controllers: [TradesController],
-  providers: [TradesService],
+  providers: [TradesService, MailerService],
   exports: [TradesService],
 })
 export class TradesModule {}

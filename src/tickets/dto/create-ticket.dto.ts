@@ -11,4 +11,7 @@ export class CreateTicketDto {
 
   @IsNumber()
   price: number;
+
+  @IsString()
+  description: string;
 }

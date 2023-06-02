@@ -31,6 +31,7 @@ export class TicketsService {
         title: createTicketDto.title,
         price: createTicketDto.price,
         dateBuy: new Date(Date.now()),
+        description: createTicketDto.description,
       });
 
       await userSession.save();
@@ -50,7 +51,6 @@ export class TicketsService {
       return 'Usuario não encontrado!';
     }
   }
-
   async tradeTicket(
     id_seller: string,
     tradeTicketDto: TradeTicketDto
@@ -59,6 +59,10 @@ export class TicketsService {
       id_seller,
       tradeTicketDto.emailBuyer
     );
+
+    if (!usersSessionTranfer.userBuyer || !usersSessionTranfer.userSeller) {
+      return `Um dos usuarios não foi encontrado.`;
+    }
 
     const ticketTrade = usersSessionTranfer.userSeller.tickets.find(
       (item) => item._id === tradeTicketDto.ticketId
@@ -107,6 +111,7 @@ export class TicketsService {
             installment: 1,
             method: 'PIX',
           },
+          emailBuyer: userBuyer.email,
         })
         .then((res) => {
           try {

@@ -1,4 +1,4 @@
-import { IsDate, IsObject, IsString, IsUUID } from 'class-validator';
+import { IsDate, IsEmail, IsObject, IsString, IsUUID } from 'class-validator';
 import { UUID } from 'crypto';
 
 export type paymentTicket = {
@@ -16,4 +16,6 @@ export class CreateTradeDto {
   salerId: string;
   @IsObject()
   payment: paymentTicket;
+  @IsEmail()
+  emailBuyer: string;
 }

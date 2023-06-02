@@ -19,7 +19,7 @@ export class Trade extends Document {
   payment: paymentTicket;
   @Prop({ type: Date })
   timeLimit: Date;
-  @Prop({ type: String })
+  @Prop({ type: String, default: 'waiting for seller user' })
   status: 'complete' | 'waiting for seller user' | 'canceled';
 }
 

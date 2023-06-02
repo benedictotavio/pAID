@@ -3,16 +3,16 @@ POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-    "email":"ot2@email.com",
-    "firstName":"Ot",
-    "lastName":"Ot",
+    "email":"luis@outlook.com",
+    "firstName":"Otavio",
+    "lastName":"Benedicto",
     "password":"Otaxx@12",
     "passwordConfirmation":"Otaxx@12"
 }
 
 
 ###
-POST http://localhost:8080/users/verify/6476a71d71110f390e440034?verifyCode=a1845fa7-64d7-4a22-8a02-9f688e91f009
+POST http://localhost:8080/users/verify/64795787ea07070452cac7b0?verifyCode=0c21ac75-6950-41bc-b5fe-6c65b89c3ed0
 
 ###
 POST http://localhost:8080/users/forgotpassword?email=otavio.bene@outlook.com
@@ -29,7 +29,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/users/me
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc5NDdmYjY5YjM0MWE3YTQ0ZjQ1MjYiLCJmaXJzdE5hbWUiOiJPdCIsImxhc3ROYW1lIjoiT3QiLCJlbWFpbCI6Im90QGVtYWlsLmNvbSIsInRyYWRlcyI6eyJzaG9wIjpbXSwic2FsZXMiOltdfSwidGlja2V0cyI6W10sImNyZWF0ZWRBdCI6IjIwMjMtMDYtMDJUMDE6Mzg6MDMuMzg1WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDYtMDJUMDE6Mzg6MDMuMzg1WiIsImlhdCI6MTY4NTY2OTkzNywiZXhwIjoxNjg1NjcwODM3fQ.VTDz_F7OB4HhnV5-y14GysudsyVzeKjOymmP_LC2UtKdB9R88P7DfNwPcsol0vxsN3vA_xr9J9yTWWxy_oUyS8NlRENapBN1eGXMoLv7sSNxOrrJzFgH2DpWqUqEr9qBwTciSq3X6sAtSi_ODMNyxMmXPz2N19NEAlQSUtwcfE7jipGK66w5RGEsJ0humdnIh_QlJHwW42LAxGxZWAmk1fTwhdfB36Ps-B0u2lrHaeBcySV7WZG8M7fnELOTRAym_YeW-dA-IDyLDJQpnFiu6eGKh5bHdXgdWrl-7fwxkq2rq5_biUVESCn6hmieL0b8Wq2Sj3Jg-hvS8ruoJtJdIg
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc5NmEzODc0M2I2MDI4MzZkNWU5ODEiLCJmaXJzdE5hbWUiOiJPdGF2aW8iLCJsYXN0TmFtZSI6IkJlbmVkaWN0byIsImVtYWlsIjoib3RhdmlvLmJlbmVAb3V0bG9vay5jb20iLCJ0cmFkZXMiOnsic2hvcCI6W10sInNhbGVzIjpbXX0sInRpY2tldHMiOltdLCJjcmVhdGVkQXQiOiIyMDIzLTA2LTAyVDA0OjA0OjA4LjU2M1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTA2LTAyVDA0OjA0OjA4LjU2M1oiLCJpYXQiOjE2ODU2Nzg3MDcsImV4cCI6MTY4NTY3OTYwN30.lvSW5Gy5YsRELReDUypcljAjlymQb3LpfHkj5g4qidEcjdAgVJwmPJf7vKGPQPGWo5Zw5v3pwMc7h6NfLnizwofZS_7aZssHCHxqd7-vtIgKwBuyhe4YEj-oMnt7XPw9SkPDhGHmiLELbc5sxddeRgSOpRRPSvoNsaTOeVZpKKy45Im1h9LBXRc9bFAJ3n9vZMl21rA_T6oiRTE12Z7ISvoXHwnEVveQXCORfR9Vz55lkNn0m1tyg0bgqE8fjhP6aDRvsBiLlA_VxJPtDCJORGEBF5u4RJEs7GMoJGfU3W9IHKFJ9JmPAnN7r_C5gp45c4lxVqxkT-4t590PkGWNUw
 
 # Login
 ###
@@ -37,36 +37,37 @@ POST http://localhost:8080/auth/sessions
 Content-Type: application/json
 
 {
-    "email":"ot@email.com",
+    "email":"otavio.bene@outlook.com",
     "password":"Otaxx@12"
 }
 
 ###
 GET http://localhost:8080/auth/sessions/refresh
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ3OTQ4MzE2OWIzNDFhN2E0NGY0NTJkIiwiaWF0IjoxNjg1NjY5OTM3LCJleHAiOjE3MTcyMjc1Mzd9.V3I9vL4gpOWp62awrCZ1IrXFaySWy7bsyPR0sfIT06eUGm2gslT-pEvrst0ZOl5fH7ghPhkQXzH-tYAxB9xXHBhKUsbD25elcbiXYyryGxlwscwwlTU0h5y0CmW-75MrxIas16wgmXC7nTw0r_RHu1jADOLIl3TG38_otwR3hcU3LG29TULWZ_qHi6sOngh21a-czCfnZOsy_t3T8Er1EVVtumOPG4tLWokZZzpFvLMJn8qCSz5J-45JKP3xaINSIWS-r4U9miWgiKsFqsabIDwM9TdTdaSzgV61uPoeXowTlcAj4kG8YUQnIbNEd3hvUzRNXI_eDyCYpJejPke68Q
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ3OTZhNzM3NDNiNjAyODM2ZDVlOTg3IiwiaWF0IjoxNjg1Njc4NzA3LCJleHAiOjE3MTcyMzYzMDd9.PpOaALCBZHg7YQFqlQX9ZuIGf0SfPUaWTQLo9PmH9isARINxHCIpmSjdgMNUaFUIj0UcrxKbArjdG-0lJfZj-o5GUb_w51ucao0eoLp3GPBuCRwzEvyuBO_EIVzY4BkOB0wHvpNw8PDJ4Flv_HW0KrlWbLSdN1eox2EqSzAINSVyCHg09NQNzC5kcePga2x6elV_Y_vpu_NVbmQ4iFYpGdpOdZvL3OR0CaLt6AKwhzpzZuAPoIe-TMt3AgSp0cNUnRni7Y--jMc73FLQOle_AejJOCjtPaP_4sXmUtOC_NxorWLIZnXSmlLnLTfQZ3zjYZ3Gn0WZjeQoi-6BZvHNbw
  
 # Tickets
 ###
-POST http://localhost:8080/tickets/new/647947fb69b341a7a44f4526
+POST http://localhost:8080/tickets/new/64796a38743b602836d5e981
 Content-Type: application/json
 
 {
-    "title":"CS: Session Teste",
-    "category":"game",
-    "price":100
+    "title":"Tusca 2024",
+    "category":"event",
+    "price":125,
+    "description":"Ingresso 2 dias do tusca 2023: DJ GBR, Matheus e Kauan."
 }
 
 ###
-GET http://localhost:8080/tickets/647947fb69b341a7a44f4526
+GET http://localhost:8080/tickets/64796a38743b602836d5e981
 
 ###
-POST http://localhost:8080/tickets/trade/647947fb69b341a7a44f4526
+POST http://localhost:8080/tickets/trade/64796a38743b602836d5e981
 Content-Type: application/json
 
-{
-    "ticketId":"33850342-828b-4d7e-b507-bea874a69946",
-    "emailBuyer":"ot2@email.com"
-}
+ {
+    "emailBuyer":"luis@outlook.com",
+    "ticketId":"1638355d-fabe-42dd-b86c-e3b9aee6eeda"
+ }
 
 # Trades
 ###

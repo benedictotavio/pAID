@@ -13,10 +13,30 @@ export class TradesService {
     private readonly userService: UsersService,
     private readonly configService: ConfigService,
     @InjectModel(Trade.name) private readonly tradeModel: Model<TradeDocument>,
+    @Inject(MailerService) private readonly mailer: MailerService
   ) {}
   async createTrade(createTradeDto: CreateTradeDto) {
     const timeLimit = await this.defineTimeTrade(createTradeDto.payment.price);
     const newTrade = new this.tradeModel({ ...createTradeDto, timeLimit });
+    if (newTrade) {
+      await this.mailer.sendEmail({
+        to: createTradeDto.emailBuyer,
+        from: 'verify@paid.com',
+        subject: 'Alerta de compra!',
+        html: `<div>
+      <h3>Parece que alguem comprou seu ticket</h3>
+      <h4>Entre no link:<a> ${this.configService.get('web_url')}/${
+          newTrade._id
+        } </a></h4>
+      <p>Voce tem até ${newTrade.timeLimit.toLocaleString('pt-br', {
+        hour12: false,
+        dateStyle: 'full',
+        timeStyle: 'full',
+      })} para enviar o ticket para o email.<b>${createTradeDto.emailBuyer}</b>.
+        </p>
+      </div>`,
+      });
+    }
     return await newTrade.save();
   }
 
@@ -34,7 +54,6 @@ export class TradesService {
   }
 
   private async configTradeOptions(): Promise<object> {
-    
     return;
   }
 }
