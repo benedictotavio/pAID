@@ -17,4 +17,17 @@ export class TradeTicketDto {
   )
   @IsString()
   emailBuyer: string;
+
+  @IsEmail(
+    {
+      allow_display_name: true,
+      allow_ip_domain: true,
+      domain_specific_validation: true,
+    },
+    {
+      message: 'email must be a valid format',
+    }
+  )
+  @IsString()
+  emailSaller: string;
 }

@@ -12,10 +12,10 @@ export class CreateTradeDto {
   ticketId: UUID;
   @IsString()
   buyerId: string;
-  @IsString()
-  salerId: string;
   @IsObject()
   payment: paymentTicket;
   @IsEmail()
   emailBuyer: string;
+  @IsEmail()
+  emailSaller: string;
 }

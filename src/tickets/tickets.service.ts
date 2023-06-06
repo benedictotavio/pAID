@@ -51,14 +51,12 @@ export class TicketsService {
       return 'Usuario não encontrado!';
     }
   }
-  async tradeTicket(
-    id_seller: string,
-    tradeTicketDto: TradeTicketDto
-  ): Promise<string> {
-    const usersSessionTranfer = await this.getUsersTranfers(
-      id_seller,
-      tradeTicketDto.emailBuyer
-    );
+  async tradeTicket(tradeTicketDto: TradeTicketDto): Promise<string> {
+    const usersSessionTranfer = await this.getUsersTranfers(tradeTicketDto);
+
+    if (usersSessionTranfer.userSeller.tickets.length <= 0) {
+      return `O vendedor não possui tickets disponiveis.`
+    }
 
     if (!usersSessionTranfer.userBuyer || !usersSessionTranfer.userSeller) {
       return `Um dos usuarios não foi encontrado.`;
@@ -105,7 +103,7 @@ export class TicketsService {
         .createTrade({
           ticketId: ticketTrade._id,
           buyerId: userBuyer._id,
-          salerId: userSeller._id,
+          emailSaller: userSeller.email,
           payment: {
             price: ticketTrade.price,
             installment: 1,
@@ -132,9 +130,13 @@ export class TicketsService {
       throw new Error(error);
     }
   }
-  private async getUsersTranfers(id: string, email: string) {
-    const userSeller = await this.userService.findUserById(id);
-    const userBuyer = await this.userService.findUserByEmail(email);
+  private async getUsersTranfers(payload: TradeTicketDto) {
+    const userSeller = await this.userService.findUserByEmail(
+      payload.emailSaller
+    );
+    const userBuyer = await this.userService.findUserByEmail(
+      payload.emailBuyer
+    );
 
     return {
       userBuyer,

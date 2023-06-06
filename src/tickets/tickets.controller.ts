@@ -28,9 +28,9 @@ export class TicketsController {
     return this.ticketsService.getTicketsByUser(id);
   }
 
-  @Post('trade/:id')
+  @Post('trade')
   @UsePipes(new ValidationPipe())
-  tradeTicket(@Param('id') id: string, @Body() tradeTicketDto: TradeTicketDto) {
-    return this.ticketsService.tradeTicket(id, tradeTicketDto);
+  tradeTicket(@Body() tradeTicketDto: TradeTicketDto) {
+    return this.ticketsService.tradeTicket(tradeTicketDto);
   }
 }

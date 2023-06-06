@@ -19,23 +19,30 @@ export class TradesService {
     const timeLimit = await this.defineTimeTrade(createTradeDto.payment.price);
     const newTrade = new this.tradeModel({ ...createTradeDto, timeLimit });
     if (newTrade) {
-      await this.mailer.sendEmail({
-        to: createTradeDto.emailBuyer,
-        from: 'verify@paid.com',
-        subject: 'Alerta de compra!',
-        html: `<div>
+      try {
+        await this.mailer.sendEmail({
+          to: createTradeDto.emailSaller,
+          from: 'sales@paid.com',
+          subject: 'Alerta de compra!',
+          html: `<div>
       <h3>Parece que alguem comprou seu ticket</h3>
       <h4>Entre no link:<a> ${this.configService.get('web_url')}/${
-          newTrade._id
-        } </a></h4>
+            newTrade._id
+          } </a></h4>
       <p>Voce tem até ${newTrade.timeLimit.toLocaleString('pt-br', {
         hour12: false,
         dateStyle: 'full',
         timeStyle: 'full',
-      })} para enviar o ticket para o email.<b>${createTradeDto.emailBuyer}</b>.
+      })} para enviar o ticket para o email: <b>${
+            createTradeDto.emailBuyer
+          }</b>.
         </p>
+        <p>No caso do envio não ser identificado pelo sistema, a compra será cancelada.</p>
       </div>`,
-      });
+        });
+      } catch (error) {
+        throw new Error(error);
+      }
     }
     return await newTrade.save();
   }
@@ -49,7 +56,7 @@ export class TradesService {
     const dateLititToTradeTicket =
       Date.now() +
       +this.configService.get<number>('time.fixed_time') +
-      price * 5595;
+      price * 6595;
     return new Date(dateLititToTradeTicket);
   }
 
