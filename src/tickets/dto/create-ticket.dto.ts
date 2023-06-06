@@ -1,4 +1,10 @@
-import { IsDate, IsNumber, IsString, Matches } from 'class-validator';
+import {
+  IsDate,
+  IsNumber,
+  IsString,
+  IsUppercase,
+  Matches,
+} from 'class-validator';
 
 export class CreateTicketDto {
   @IsString()
@@ -17,4 +23,21 @@ export class CreateTicketDto {
 
   @IsString()
   dateEvent: Date;
+
+  @Matches(
+    /^(ingresso rápido|blacktag|ingresse|sympla|ticket360|tickets for fun|blueticket)+$/gi,
+    {
+      message: 'Plataform is not compatible.',
+    }
+  )
+  @IsUppercase()
+  @IsString()
+  plataform:
+    | 'INGRESSO RÁPIDO'
+    | 'BLACKTAG'
+    | 'INGRESSE'
+    | 'SYMPLA'
+    | 'TICKET360'
+    | 'TICKETS FOR FUN'
+    | 'BLUETICKET';
 }

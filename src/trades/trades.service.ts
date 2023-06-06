@@ -6,7 +6,6 @@ import { Trade, TradeDocument } from './entities/trade.entity';
 import { Model } from 'mongoose';
 import { UsersService } from '../users/users.service';
 import { MailerService } from '../users/utils/mailer';
-import { TradeTicketDto } from 'src/tickets/dto/trade-ticket.dto';
 
 @Injectable()
 export class TradesService {
@@ -33,6 +32,8 @@ export class TradesService {
       <p>${ticket.title}</p>
       <h5>Valor do Ticket</h5>
       <p>${ticket.price}</p>
+      <h5>Plataforma</h5>
+      <p>${ticket.plataform}</p>
       </div>
       <h4>Entre no link:<a> ${this.configService.get('web_url')}/${
             newTrade._id

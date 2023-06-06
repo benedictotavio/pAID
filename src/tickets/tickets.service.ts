@@ -30,6 +30,7 @@ export class TicketsService {
         category: createTicketDto.category,
         title: createTicketDto.title,
         price: createTicketDto.price,
+        plataform: createTicketDto.plataform,
         dateEvent: new Date(createTicketDto.dateEvent),
         dateBuy: new Date(Date.now()),
         description: createTicketDto.description,

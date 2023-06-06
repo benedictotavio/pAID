@@ -29,7 +29,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/users/me
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc5NmEzODc0M2I2MDI4MzZkNWU5ODEiLCJmaXJzdE5hbWUiOiJPdGF2aW8iLCJsYXN0TmFtZSI6IkJlbmVkaWN0byIsImVtYWlsIjoib3RhdmlvLmJlbmVAb3V0bG9vay5jb20iLCJ0cmFkZXMiOnsic2hvcCI6WyI2NDdlOTRhYTA4YWE4YjBhOTEzNTQzZjQiXSwic2FsZXMiOlsiNjQ3ZWEyYWQwMjc1NDk5NDIyYzFlNzAzIiwiNjQ3ZWEyMjkzMDE0YjJlNTliNzM0YzA1IiwiNjQ3ZTlmNmRjZTQyMTBlNmM2YjY1ZDU1IiwiNjQ3ZTlkODg1ZjU3M2VmYWE4OGM0NWQxIiwiNjQ3ZTljYzVkYWUwOGI0ODVkZmU0YmMwIiwiNjQ3ZTk2M2FmNzExZDJlMTE0YTgzMDg4IiwiNjQ3ZTk1YWVhNDgxZDJjZmFkMTdiOTFhIiwiNjQ3ZTk1MmYwOGFhOGIwYTkxMzU0NDAwIiwiNjQ3OTZjNzAxNTY4NWU5YzBjNTIxZTI2IiwiNjQ3OTZiZjg4YWNjZjMwNzYzNzM4ODRmIiwiNjQ3OTZiNDhkOWNkYWUzZDM1NjQwNDU0IiwiNjQ3OTZhZjQyZWUyNjBjOTgxZmQ4ZjZmIl19LCJ0aWNrZXRzIjpbeyJfaWQiOiI0YWU4NmQxNC02NmUzLTQ4ZDItYmE0My1jZGNkZWU1ZDk3M2EiLCJjYXRlZ29yeSI6ImV2ZW50IiwidGl0bGUiOiJUdXNjYSAyMDI0IiwicHJpY2UiOjEyNSwiZGF0ZUJ1eSI6IjIwMjMtMDYtMDZUMDI6MDU6MTIuMTE1WiIsImRlc2NyaXB0aW9uIjoiSW5ncmVzc28gMiBkaWFzIGRvIHR1c2NhIDIwMjM6IERKIEdCUiwgTWF0aGV1cyBlIEthdWFuLiJ9XSwiY3JlYXRlZEF0IjoiMjAyMy0wNi0wMlQwNDowNDowOC41NjNaIiwidXBkYXRlZEF0IjoiMjAyMy0wNi0wNlQwMzowNjoyMS45NTlaIiwiaWF0IjoxNjg2MDIwOTA4LCJleHAiOjE2ODYwMjE4MDh9.XVGPWs8d-D3YvFyb8Cxxt4gecb9oA64O4iAQ3GOm_CDSAD-UiQOZTKeCbZXjr0Er45IqlZm0_os6Rq6VOLZmxb5mCg0NCd3eOApTA6o9-eoXFr3C4LizZgCCbYMTp8NcC71JF6OGKaLskwu0D4ysTeeTyFEhbJrGocyBKMyIXcVTTghh6SaFVxMmHoFIAE2ioHrFxl31SaiqKWG2fiwx3er9OtGjTcQmtdo_PCEmzYuV7sAobZBB4WVDLsNk0QvLpD-Q9vepgI20odO3xhjIBH_TUjkMSuWPbBWzSNRSsCqIXJkfkZyg0XzUkL0HP6XVIGKZMfZNZD-LOqwhCv-Iiw
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDdmMjJmOTk1YWExZWFhOTNmODUzZGYiLCJmaXJzdE5hbWUiOiJTdXBvcnRlIiwibGFzdE5hbWUiOiJUSSIsImVtYWlsIjoic3Vwb3J0ZUBoZWJyb21iZW5lZmljaW9zLmNvbS5iciIsInRyYWRlcyI6eyJzaG9wIjpbXSwic2FsZXMiOltdfSwidGlja2V0cyI6W10sImNyZWF0ZWRBdCI6IjIwMjMtMDYtMDZUMTI6MTM6NDUuOTA5WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDYtMDZUMTI6MTM6NDUuOTA5WiIsImlhdCI6MTY4NjA1NDY3NCwiZXhwIjoxNjg2MDU1NTc0fQ.U-Z7oPpl_IT2QsUEpyKrYIXPNpjUtYPvixT3_oBk2G68AdZF0E1pYZZ9ir_xC8G58lkd1vqQ2f3Vsg_AhZTschWRZuOPCgkqn41H7x7Bf00icYQuwNNX6WZOwU4iw1z4bBA5544jQKLQeSGnpPPrsa__606qqZdnOC75SyRCwIEMeYxl6qJDEtIXDxvQ-zAD0iS-tA5yVyxmeTTq8t15sN1juluXkpFjkLHGu3fAuDU0iPnaId2XC3o0nSn84mFI4YsNC0vzpXcJNvpm-eqBFGR5uLSAiXF0sAteFWhaaBnDdgb8aZ3olC1XNp---FA5ThtkSTNT580lVVsSsmqu-w
 
 
 # Login
@@ -38,40 +38,41 @@ POST http://localhost:8080/auth/sessions
 Content-Type: application/json
 
 {
-    "email":"otavio.bene@outlook.com",
-    "password":"Otaxx@12"
+    "email":"suporte@hebrombeneficios.com.br",
+    "password":"Sup@1a2b3c"
 }
 
 ###
 GET http://localhost:8080/auth/sessions/refresh
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ3ZTk0MjAwOGFhOGIwYTkxMzU0M2VhIiwiaWF0IjoxNjg2MDE3MDU2LCJleHAiOjE3MTc1NzQ2NTZ9.Vc-YlA3AWl9WRlO5JrnX5ByASoDyvbBDxfvm4cQJLSe48LWdvltXtQ3oAZQ0mI0jNbbwFUIZdpdnlyqL4m9wrp43pthcozuKRGpjsRF1WWjWy_Dlf__RYGSMpel9_3BsQ0IAOxly7LViUJKc0xV7WQbbemH9BgruqRFSd4GbL48IbOTBx12NCkQu1vPFUufck97P-SJ2ESY4Iyst6AVNm-KqyDSPT2sgFLxISqmAe539C9hKdtmSCRbH5eAhymmGw900rkOwJjUcn6kITY9mK9znK-xaqmg11G9Cki4P63ATEuCGvWMl3oTo3IqYrNCqYQ9YW2n5zEJcVWG_GszbUA
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ3ZjI3MTIwMGQ5MDViMWQxNDkzNmQ1IiwiaWF0IjoxNjg2MDU0Njc0LCJleHAiOjE3MTc2MTIyNzR9.fs8cCKnO6-UVIjwghqUAxzwe75lBVHMcshmLfv-23fhycPgGBoww7wYkZgk-VtbG0Z2glp1uKITrlCIOhVml9S3KxhmX51A0ixdAYEZ8NAmrR13JV3A08fz5bjD49oOWR3JmRQmFP8iZf8f_H72IFmlGQJf5QJIFgA3ioKfRzism1mPeWYmLuOonpp_c1FZOUvX7hMxnkPF3I4BJGg-YgjG6b8M8-IF1o9Apnnci9BcmW29q9jjMhaQU9xCs6UdRTAidNFA13uUQsESrJNYuVpi_sRZOK4dPLzAkq8otyjNr0IW5hclk0ALvdRw2yPrfPEK6CJ8D0WNK7zHFeaEDqg
  
 # Tickets
 ###
-POST http://localhost:8080/tickets/new/64796a38743b602836d5e981
+POST http://localhost:8080/tickets/new/647f22f995aa1eaa93f853df
 Content-Type: application/json
 
 {
     "title":"Tusca 2024",
     "category":"event",
     "price":125,
+    "plataform":"INGRESSE",
     "description":"Ingresso 2 dias do tusca 2023: DJ GBR, Matheus e Kauan.",
     "dateEvent":"10/15/2023"
 }
 
 ###
-GET http://localhost:8080/tickets/64796a38743b602836d5e981
+GET http://localhost:8080/tickets/647f22f995aa1eaa93f853df
 
 ###
 POST http://localhost:8080/tickets/trade
 Content-Type: application/json
 
- {
-    "emailSaller":"otavio.bene@outlook.com",
-    "emailBuyer":"luis@outlook.com",
-    "ticketId":"7df893b5-9af5-4d5c-b137-db17cdf61ab4"
- }
+{
+    "emailSaller":"suporte@hebrombeneficios.com.br",
+    "emailBuyer":"otavio@email.com",
+    "ticketId":"056d5929-0059-41ec-b66e-f94f614c511b"
+}
 
 # Trades
 ###
-GET http://localhost:8080/trades/64796a58743b602836d5e984
+GET http://localhost:8080/trades/647f22f995aa1eaa93f853df
