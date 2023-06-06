@@ -20,6 +20,7 @@ export class TradesService {
     const timeLimit = await this.defineTimeTrade(createTradeDto);
     const newTrade = new this.tradeModel({ ...createTradeDto, timeLimit });
     if (newTrade) {
+      console.log('Data Limite: ', newTrade.timeLimit);
       try {
         await this.mailer.sendEmail({
           to: createTradeDto.emailSaller,
@@ -62,19 +63,51 @@ export class TradesService {
   }
 
   private async defineTimeTrade(payload: CreateTradeDto): Promise<Date> {
-    const isEventToday = await this.ticketSession(payload);
-    console.log(isEventToday.dateEvent, isEventToday.dateEvent.getDay());
-    const dateLititToTradeTicket =
-      Date.now() +
-      +this.configService.get<number>('time.fixed_time') +
-      payload.payment.price * 8595;
-    return new Date(dateLititToTradeTicket);
+    return await this.dateLimitToTradeTicket(payload);
+  }
+
+  private async dateLimitToTradeTicket(payload: CreateTradeDto) {
+    const isDateEventToday = await this.isToday(
+      (
+        await this.ticketSession(payload)
+      ).dateEvent
+    ).then((res) => res);
+
+    if (isDateEventToday) {
+      return new Date(
+        Date.now() +
+          +this.configService.get<number>('time.fixed_time') +
+          payload.payment.price * 7666
+      );
+    } else {
+      return this.dateToSendTicket(
+        (await this.ticketSession(payload)).dateEvent
+      );
+    }
   }
 
   private async ticketSession(payload: CreateTradeDto) {
     return (
       await this.userService.findUserByEmail(payload.emailSaller)
     ).tickets.find((item) => item._id === payload.ticketId);
+  }
+
+  private async dateToSendTicket(dateEvent: Date) {
+    const today = new Date().getTime();
+    const dateSpecific = dateEvent.getTime();
+
+    let dateToSendTicket =
+      dateSpecific > today && dateSpecific - today + dateSpecific;
+
+    return new Date(dateToSendTicket);
+  }
+
+  private async isToday(date: Date) {
+    const today = new Date();
+    if (today.toDateString() === date.toDateString()) {
+      return true;
+    }
+    return false;
   }
 
   private async configTradeOptions(): Promise<object> {

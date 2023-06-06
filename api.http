@@ -57,7 +57,7 @@ Content-Type: application/json
     "price":125,
     "plataform":"INGRESSE",
     "description":"Ingresso 2 dias do tusca 2023: DJ GBR, Matheus e Kauan.",
-    "dateEvent":"10/15/2023"
+    "dateEvent":"07/22/2023"
 }
 
 ###
@@ -70,7 +70,7 @@ Content-Type: application/json
 {
     "emailSaller":"suporte@hebrombeneficios.com.br",
     "emailBuyer":"otavio@email.com",
-    "ticketId":"056d5929-0059-41ec-b66e-f94f614c511b"
+    "ticketId":"7c79e3f2-f19f-4a37-b90f-e0e1767c01fc"
 }
 
 # Trades
