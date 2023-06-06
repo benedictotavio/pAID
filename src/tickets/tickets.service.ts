@@ -30,6 +30,7 @@ export class TicketsService {
         category: createTicketDto.category,
         title: createTicketDto.title,
         price: createTicketDto.price,
+        dateEvent: new Date(createTicketDto.dateEvent),
         dateBuy: new Date(Date.now()),
         description: createTicketDto.description,
       });
@@ -55,7 +56,7 @@ export class TicketsService {
     const usersSessionTranfer = await this.getUsersTranfers(tradeTicketDto);
 
     if (usersSessionTranfer.userSeller.tickets.length <= 0) {
-      return `O vendedor não possui tickets disponiveis.`
+      return `O vendedor não possui tickets disponiveis.`;
     }
 
     if (!usersSessionTranfer.userBuyer || !usersSessionTranfer.userSeller) {

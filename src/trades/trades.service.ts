@@ -6,6 +6,7 @@ import { Trade, TradeDocument } from './entities/trade.entity';
 import { Model } from 'mongoose';
 import { UsersService } from '../users/users.service';
 import { MailerService } from '../users/utils/mailer';
+import { TradeTicketDto } from 'src/tickets/dto/trade-ticket.dto';
 
 @Injectable()
 export class TradesService {
@@ -16,7 +17,8 @@ export class TradesService {
     @Inject(MailerService) private readonly mailer: MailerService
   ) {}
   async createTrade(createTradeDto: CreateTradeDto) {
-    const timeLimit = await this.defineTimeTrade(createTradeDto.payment.price);
+    const ticket = await this.ticketSession(createTradeDto);
+    const timeLimit = await this.defineTimeTrade(createTradeDto);
     const newTrade = new this.tradeModel({ ...createTradeDto, timeLimit });
     if (newTrade) {
       try {
@@ -26,6 +28,12 @@ export class TradesService {
           subject: 'Alerta de compra!',
           html: `<div>
       <h3>Parece que alguem comprou seu ticket</h3>
+      <div>
+      <h5>Nome do Ticket</h5>
+      <p>${ticket.title}</p>
+      <h5>Valor do Ticket</h5>
+      <p>${ticket.price}</p>
+      </div>
       <h4>Entre no link:<a> ${this.configService.get('web_url')}/${
             newTrade._id
           } </a></h4>
@@ -52,12 +60,20 @@ export class TradesService {
     return userSession.trades;
   }
 
-  private async defineTimeTrade(price: number): Promise<Date> {
+  private async defineTimeTrade(payload: CreateTradeDto): Promise<Date> {
+    const isEventToday = await this.ticketSession(payload);
+    console.log(isEventToday.dateEvent, isEventToday.dateEvent.getDay());
     const dateLititToTradeTicket =
       Date.now() +
       +this.configService.get<number>('time.fixed_time') +
-      price * 6595;
+      payload.payment.price * 8595;
     return new Date(dateLititToTradeTicket);
+  }
+
+  private async ticketSession(payload: CreateTradeDto) {
+    return (
+      await this.userService.findUserByEmail(payload.emailSaller)
+    ).tickets.find((item) => item._id === payload.ticketId);
   }
 
   private async configTradeOptions(): Promise<object> {
