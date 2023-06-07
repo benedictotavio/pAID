@@ -14,7 +14,7 @@ export class TradesService {
     private readonly configService: ConfigService,
     @InjectModel(Trade.name) private readonly tradeModel: Model<TradeDocument>,
     @Inject(MailerService) private readonly mailer: MailerService
-  ) {}
+  ) {}    
 
   async createTrade(createTradeDto: CreateTradeDto) {
     const ticket = await this.ticketSession(createTradeDto);

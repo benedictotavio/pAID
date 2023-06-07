@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TradesController } from './trades.controller';
 import { TradesService } from './trades.service';
-import { random } from 'lodash';
 import { randomUUID } from 'crypto';
 
 describe('Trades Controller', () => {

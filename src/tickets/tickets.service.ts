@@ -21,7 +21,7 @@ export class TicketsService {
     id: string
   ): Promise<string | Ticket> {
     const userSession = await this.userService.findUserById(id);
-    
+
     if (!userSession) {
       return 'Usuario não encontrado!';
     }
@@ -40,10 +40,10 @@ export class TicketsService {
           createTicketDto.dateEvent.hour,
           createTicketDto.dateEvent.minutes
         ),
-        dateBuy: new Date(Date.now()),
+        dateBuy: new Date(),
         description: createTicketDto.description,
       });
-      
+
       await userSession.save();
 
       return userSession.tickets[0];
