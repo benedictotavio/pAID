@@ -1,10 +1,28 @@
+import { Type } from 'class-transformer';
 import {
   IsDate,
+  IsDefined,
+  IsNotEmptyObject,
   IsNumber,
+  IsObject,
   IsString,
   IsUppercase,
   Matches,
+  ValidateNested,
 } from 'class-validator';
+
+class DateFormatDto {
+  @IsNumber()
+  year: number;
+  @IsNumber()
+  month: number;
+  @IsNumber()
+  day: number;
+  @IsNumber()
+  hour: number;
+  @IsNumber()
+  minutes?: number;
+}
 
 export class CreateTicketDto {
   @IsString()
@@ -21,8 +39,13 @@ export class CreateTicketDto {
   @IsString()
   description: string;
 
-  @IsString()
-  dateEvent: Date;
+  @IsObject()
+  @IsDefined()
+  @IsNotEmptyObject()
+  @IsObject()
+  @ValidateNested()
+  @Type(() => DateFormatDto)
+  dateEvent: DateFormatDto;
 
   @Matches(
     /^(ingresso rápido|blacktag|ingresse|sympla|ticket360|tickets for fun|blueticket)+$/gi,

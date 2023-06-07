@@ -21,9 +21,11 @@ export class TicketsService {
     id: string
   ): Promise<string | Ticket> {
     const userSession = await this.userService.findUserById(id);
+    
     if (!userSession) {
       return 'Usuario não encontrado!';
     }
+
     try {
       userSession.tickets.unshift({
         _id: randomUUID(),
@@ -31,11 +33,17 @@ export class TicketsService {
         title: createTicketDto.title,
         price: createTicketDto.price,
         plataform: createTicketDto.plataform,
-        dateEvent: new Date(createTicketDto.dateEvent),
+        dateEvent: new Date(
+          createTicketDto.dateEvent.year,
+          createTicketDto.dateEvent.month - 1,
+          createTicketDto.dateEvent.day,
+          createTicketDto.dateEvent.hour,
+          createTicketDto.dateEvent.minutes
+        ),
         dateBuy: new Date(Date.now()),
         description: createTicketDto.description,
       });
-
+      
       await userSession.save();
 
       return userSession.tickets[0];

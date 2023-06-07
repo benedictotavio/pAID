@@ -3,7 +3,7 @@ POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-    "email":"luis@outlook.com",
+    "email":"otavio.bene@outlook.com",
     "firstName":"Otavio",
     "lastName":"Benedicto",
     "password":"Otaxx@12",
@@ -29,7 +29,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/users/me
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDdmMjJmOTk1YWExZWFhOTNmODUzZGYiLCJmaXJzdE5hbWUiOiJTdXBvcnRlIiwibGFzdE5hbWUiOiJUSSIsImVtYWlsIjoic3Vwb3J0ZUBoZWJyb21iZW5lZmljaW9zLmNvbS5iciIsInRyYWRlcyI6eyJzaG9wIjpbXSwic2FsZXMiOltdfSwidGlja2V0cyI6W10sImNyZWF0ZWRBdCI6IjIwMjMtMDYtMDZUMTI6MTM6NDUuOTA5WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDYtMDZUMTI6MTM6NDUuOTA5WiIsImlhdCI6MTY4NjA1NDY3NCwiZXhwIjoxNjg2MDU1NTc0fQ.U-Z7oPpl_IT2QsUEpyKrYIXPNpjUtYPvixT3_oBk2G68AdZF0E1pYZZ9ir_xC8G58lkd1vqQ2f3Vsg_AhZTschWRZuOPCgkqn41H7x7Bf00icYQuwNNX6WZOwU4iw1z4bBA5544jQKLQeSGnpPPrsa__606qqZdnOC75SyRCwIEMeYxl6qJDEtIXDxvQ-zAD0iS-tA5yVyxmeTTq8t15sN1juluXkpFjkLHGu3fAuDU0iPnaId2XC3o0nSn84mFI4YsNC0vzpXcJNvpm-eqBFGR5uLSAiXF0sAteFWhaaBnDdgb8aZ3olC1XNp---FA5ThtkSTNT580lVVsSsmqu-w
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDdmMjJmOTk1YWExZWFhOTNmODUzZGYiLCJmaXJzdE5hbWUiOiJTdXBvcnRlIiwibGFzdE5hbWUiOiJUSSIsImVtYWlsIjoic3Vwb3J0ZUBoZWJyb21iZW5lZmljaW9zLmNvbS5iciIsInRyYWRlcyI6eyJzaG9wIjpbIjY0ODA4N2RjNWVjYzUzMjNjMmQ4YzlmOSIsIjY0ODA3ZTc4NWVjYzUzMjNjMmQ4YzllYyIsIjY0ODA3NjM3YmRmNzg3NGZiOTA0MTBmOCJdLCJzYWxlcyI6WyI2NDdmNjQzZGZlYTgyZTUyMmRiOWZmMzciLCI2NDdmNjJlNjczZTBlNGI5YjhlYTE2MzYiXX0sInRpY2tldHMiOlt7Il9pZCI6Ijk2NWMwYzdkLWY5Y2ItNDMxZC1hNDJmLWIzZmE3MDc5ZjYwZCIsImNhdGVnb3J5IjoiZXZlbnQiLCJ0aXRsZSI6IlR1c2NhIDIwMjQiLCJwcmljZSI6MTI1LCJwbGF0YWZvcm0iOiJJTkdSRVNTRSIsImRhdGVFdmVudCI6IjIwMjMtMTAtMzFUMTc6MzA6MDAuMDAwWiIsImRhdGVCdXkiOiIyMDIzLTA2LTA3VDEzOjMyOjMwLjk1MloiLCJkZXNjcmlwdGlvbiI6IkluZ3Jlc3NvIDIgZGlhcyBkbyB0dXNjYSAyMDIzOiBESiBHQlIsIE1hdGhldXMgZSBLYXVhbi4ifSx7Il9pZCI6Ijg5NzRhZDljLTJiMDUtNGU1OS1hOWQwLWI3ZGIyOTc2YTIxYiIsImNhdGVnb3J5IjoiZXZlbnQiLCJ0aXRsZSI6IlR1c2NhIDIwMjQiLCJwcmljZSI6MTI1LCJwbGF0YWZvcm0iOiJJTkdSRVNTRSIsImRhdGVFdmVudCI6IjIwMjMtMTAtMzFUMTc6MDA6MDAuMDAwWiIsImRhdGVCdXkiOiIyMDIzLTA2LTA3VDEyOjU1OjQxLjA4MVoiLCJkZXNjcmlwdGlvbiI6IkluZ3Jlc3NvIDIgZGlhcyBkbyB0dXNjYSAyMDIzOiBESiBHQlIsIE1hdGhldXMgZSBLYXVhbi4ifSx7Il9pZCI6IjdmMGFiMDFlLWVmY2ItNGVhNi1iNWE4LTZmNTUzNDZkNzhkOSIsImNhdGVnb3J5IjoiZXZlbnQiLCJ0aXRsZSI6IlR1c2NhIDIwMjQiLCJwcmljZSI6MTI1LCJwbGF0YWZvcm0iOiJJTkdSRVNTRSIsImRhdGVFdmVudCI6IjIwMjMtMDctMjJUMDM6MDA6MDAuMDAwWiIsImRhdGVCdXkiOiIyMDIzLTA2LTA3VDEyOjE5OjMwLjUzMFoiLCJkZXNjcmlwdGlvbiI6IkluZ3Jlc3NvIDIgZGlhcyBkbyB0dXNjYSAyMDIzOiBESiBHQlIsIE1hdGhldXMgZSBLYXVhbi4ifV0sImNyZWF0ZWRBdCI6IjIwMjMtMDYtMDZUMTI6MTM6NDUuOTA5WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDYtMDdUMTM6MzY6MjkuMDAzWiIsImlhdCI6MTY4NjE1NTgyOCwiZXhwIjoxNjg2MTU2NzI4fQ.aCkG59sT9lgyCAS8shRsYES18oyrdSZeA4UzmmKz73p1pod6gytW5H8Dg0EOE__6BZSt9zkuhc5WDW-1u3x7C_UgrIKp86GMWWahYahn1jsz2XrzW7hLJ2l4c8g0qusv1tIzP08d3yoo3P9MesOo2qvJopcm42MXakV1cGvkWkbKVk3_IV_0Ss4nsDvtwmM8Uez8bOt5odRDSF0i0OH8fSzdfuNkkwveFLYbSCuX1IwEO7AhWDisnKmUWYloQiC7NCebSb7wwug6NrKnbdwIheqYB1hbvnTtthz2TyZD3w9LwyhY6x7LlDTbe1NjPcCu6DrmP9yZbnrZD_vjWpObSA
 
 
 # Login
@@ -44,24 +44,29 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/auth/sessions/refresh
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ3ZjI3MTIwMGQ5MDViMWQxNDkzNmQ1IiwiaWF0IjoxNjg2MDU0Njc0LCJleHAiOjE3MTc2MTIyNzR9.fs8cCKnO6-UVIjwghqUAxzwe75lBVHMcshmLfv-23fhycPgGBoww7wYkZgk-VtbG0Z2glp1uKITrlCIOhVml9S3KxhmX51A0ixdAYEZ8NAmrR13JV3A08fz5bjD49oOWR3JmRQmFP8iZf8f_H72IFmlGQJf5QJIFgA3ioKfRzism1mPeWYmLuOonpp_c1FZOUvX7hMxnkPF3I4BJGg-YgjG6b8M8-IF1o9Apnnci9BcmW29q9jjMhaQU9xCs6UdRTAidNFA13uUQsESrJNYuVpi_sRZOK4dPLzAkq8otyjNr0IW5hclk0ALvdRw2yPrfPEK6CJ8D0WNK7zHFeaEDqg
- 
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ4MGFhMzU1ZWNjNTMyM2MyZDhjOWZlIiwiaWF0IjoxNjg2MTUzNzgyLCJleHAiOjE3MTc3MTEzODJ9.c038r3C9UUIicpjBMwGXoq_UQUFq1HcGpUfUtoA-FxUvsbPX5aEt3yK3cFm0enndkYHeS2fmbKNC8zf63N-ayV9VKNWoEiAPaFX6WscVmgQdfk1alGzwMjEa52EBy0dEn7AvWlAmMyy-EcvWHYCP0Eg6Hf5egZ4mgegfpQpRrr9ia9bIupSwonTTKvnSJJ49hFdTH7deGvuLytjSG63bVF16RfCcYwptMx6voWFT4Qu-5RvBw01lUhNb7JzqkPHmzkF2ZB4CQEWUtVLvUqbJb5jXGoijNJGSVchiAvl_dQ2KG0N9FA73Wxo7hawazr0s6vvANjv7PH6omz7vuwrwYA
 # Tickets
 ###
-POST http://localhost:8080/tickets/new/64796a38743b602836d5e981
+POST http://localhost:8080/tickets/new/64807356bdf7874fb90410e6
 Content-Type: application/json
 
 {
-    "title":"Tusca 2024",
+    "title":"Show Igor Guimarães",
     "category":"event",
     "price":125,
     "plataform":"INGRESSE",
     "description":"Ingresso 2 dias do tusca 2023: DJ GBR, Matheus e Kauan.",
-    "dateEvent":"07/22/2023"
+    "dateEvent":{
+        "year":2023,
+        "month":6,
+        "day":7,
+        "hour":15,
+        "minutes":30
+    }
 }
 
 ###
-GET http://localhost:8080/tickets/64796a38743b602836d5e981
+GET http://localhost:8080/tickets/64807356bdf7874fb90410e6
 
 ###
 POST http://localhost:8080/tickets/trade
@@ -69,8 +74,8 @@ Content-Type: application/json
 
 {
     "emailSaller":"otavio.bene@outlook.com",
-    "emailBuyer":"luis@outlook.com",
-    "ticketId":"c08ed24a-076e-4aab-877e-d82d0c621e93"
+    "emailBuyer":"suporte@hebrombeneficios.com.br",
+    "ticketId":"33d41c90-e47e-4507-b1d6-2dd33f23f899"
 }
 
 # Trades

@@ -36,6 +36,12 @@ export class TradesService {
       <p>${ticket.price}</p>
       <h5>Plataforma</h5>
       <p>${ticket.plataform}</p>
+      <h5>Data do Evento</h5>
+      <p>${ticket.dateEvent.toLocaleString('pt-br', {
+        hour12: false,
+        dateStyle: 'full',
+        timeStyle: 'full',
+      })}</p>
       </div>
       <h4>Entre no link:<a> ${this.configService.get('web_url')}/${
             newTrade._id
@@ -96,20 +102,21 @@ export class TradesService {
   }
 
   private async dateToSendTicket(dateEvent: Date) {
-    console.log('Data:', dateEvent);
+    console.log(
+      'Data do Evento:',
+      dateEvent.toLocaleDateString('pt-br', {
+        dateStyle: 'short',
+      })
+    );
 
     const today = new Date().getTime();
     const dateSpecific = dateEvent.getTime();
 
-    if (dateSpecific < today) {
+    if (dateSpecific <= today) {
       return 'O evento ja foi!!!';
     }
 
-    let dateToSendTicket: number =
-      today +
-      ((dateSpecific - today) / 2 + dateSpecific / today) +
-      (dateSpecific - today) * 0.1;
-    console.debug(dateToSendTicket);
+    let dateToSendTicket = today + (dateSpecific - today) * 0.8859;
     console.debug(
       new Date(dateToSendTicket).toLocaleDateString('pt-br', {
         dateStyle: 'short',
