@@ -48,7 +48,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ3Z
  
 # Tickets
 ###
-POST http://localhost:8080/tickets/new/647f22f995aa1eaa93f853df
+POST http://localhost:8080/tickets/new/64796a38743b602836d5e981
 Content-Type: application/json
 
 {
@@ -61,18 +61,18 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/tickets/647f22f995aa1eaa93f853df
+GET http://localhost:8080/tickets/64796a38743b602836d5e981
 
 ###
 POST http://localhost:8080/tickets/trade
 Content-Type: application/json
 
 {
-    "emailSaller":"suporte@hebrombeneficios.com.br",
-    "emailBuyer":"otavio@email.com",
-    "ticketId":"7c79e3f2-f19f-4a37-b90f-e0e1767c01fc"
+    "emailSaller":"otavio.bene@outlook.com",
+    "emailBuyer":"luis@outlook.com",
+    "ticketId":"c08ed24a-076e-4aab-877e-d82d0c621e93"
 }
 
 # Trades
 ###
-GET http://localhost:8080/trades/647f22f995aa1eaa93f853df
+GET http://localhost:8080/trades/64796a38743b602836d5e981

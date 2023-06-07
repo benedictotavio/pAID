@@ -15,6 +15,7 @@ export class TradesService {
     @InjectModel(Trade.name) private readonly tradeModel: Model<TradeDocument>,
     @Inject(MailerService) private readonly mailer: MailerService
   ) {}
+
   async createTrade(createTradeDto: CreateTradeDto) {
     const ticket = await this.ticketSession(createTradeDto);
     const timeLimit = await this.defineTimeTrade(createTradeDto);
@@ -62,7 +63,9 @@ export class TradesService {
     return userSession.trades;
   }
 
-  private async defineTimeTrade(payload: CreateTradeDto): Promise<Date> {
+  private async defineTimeTrade(
+    payload: CreateTradeDto
+  ): Promise<Date | string> {
     return await this.dateLimitToTradeTicket(payload);
   }
 
@@ -93,12 +96,25 @@ export class TradesService {
   }
 
   private async dateToSendTicket(dateEvent: Date) {
+    console.log('Data:', dateEvent);
+
     const today = new Date().getTime();
     const dateSpecific = dateEvent.getTime();
 
-    let dateToSendTicket =
-      dateSpecific > today && dateSpecific - today + dateSpecific;
+    if (dateSpecific < today) {
+      return 'O evento ja foi!!!';
+    }
 
+    let dateToSendTicket: number =
+      today +
+      ((dateSpecific - today) / 2 + dateSpecific / today) +
+      (dateSpecific - today) * 0.1;
+    console.debug(dateToSendTicket);
+    console.debug(
+      new Date(dateToSendTicket).toLocaleDateString('pt-br', {
+        dateStyle: 'short',
+      })
+    );
     return new Date(dateToSendTicket);
   }
 
