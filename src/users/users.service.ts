@@ -75,7 +75,6 @@ export class UsersService {
           this.logger.error('Falha no envio de e-mail!', error);
         }
       } else {
-        this.logger.error('User is alrady registered!');
         return `O e-mail ${createUserDto.email} ja esta em uso!`;
       }
     } catch (e: any) {

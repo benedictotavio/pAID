@@ -16,6 +16,6 @@ export class Ticket {
   dateBuy: Date;
   @Prop({ type: Date, required: true })
   dateEvent: Date;
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: true, uppercase: true })
   plataform: string;
 }

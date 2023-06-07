@@ -16,6 +16,7 @@ export class TicketsService {
     private readonly configService: ConfigService,
     private readonly tradeService: TradesService
   ) {}
+
   async addNewTicket(
     createTicketDto: CreateTicketDto,
     id: string
@@ -27,40 +28,54 @@ export class TicketsService {
     }
 
     try {
-      userSession.tickets.unshift({
-        _id: randomUUID(),
-        category: createTicketDto.category,
-        title: createTicketDto.title,
-        price: createTicketDto.price,
-        plataform: createTicketDto.plataform,
-        dateEvent: new Date(
+      if (
+        new Date(
           createTicketDto.dateEvent.year,
           createTicketDto.dateEvent.month - 1,
           createTicketDto.dateEvent.day,
           createTicketDto.dateEvent.hour,
           createTicketDto.dateEvent.minutes
-        ),
-        dateBuy: new Date(),
-        description: createTicketDto.description,
-      });
+        ) <= new Date()
+      ) {
+        return 'O Data do evento não pode ser menor que a data atual.';
+      } else {
+        userSession.tickets.unshift({
+          _id: randomUUID(),
+          category: createTicketDto.category,
+          title: createTicketDto.title,
+          price: createTicketDto.price,
+          plataform: createTicketDto.plataform.toUpperCase(),
+          dateEvent: new Date(
+            createTicketDto.dateEvent.year,
+            createTicketDto.dateEvent.month - 1,
+            createTicketDto.dateEvent.day,
+            createTicketDto.dateEvent.hour,
+            createTicketDto.dateEvent.minutes
+          ),
+          dateBuy: new Date(),
+          description: createTicketDto.description,
+        });
 
-      await userSession.save();
+        await userSession.save();
 
-      return userSession.tickets[0];
+        return userSession.tickets[0];
+      }
     } catch (error) {
       throw new Error(JSON.stringify(error));
     }
   }
 
   async getTicketsByUser(id: string): Promise<Ticket[] | string> {
-    const userSession = await this.userService.findUserById(id);
+    const userTicketsSession = (await this.userService.findUserById(id))
+      .tickets;
 
-    if (userSession) {
-      return userSession.tickets;
+    if (userTicketsSession) {
+      return userTicketsSession;
     } else {
       return 'Usuario não encontrado!';
     }
   }
+
   async tradeTicket(tradeTicketDto: TradeTicketDto): Promise<string> {
     const usersSessionTranfer = await this.getUsersTranfers(tradeTicketDto);
 
@@ -82,6 +97,10 @@ export class TicketsService {
 
     if (usersSessionTranfer.userSeller.email === tradeTicketDto.emailBuyer) {
       return 'O usuario já possui o ticket selecionado!';
+    }
+
+    if (ticketTrade.dateEvent <= new Date()) {
+      return 'O evento ja foi!';
     }
 
     await this.tranferTicket(
@@ -140,6 +159,7 @@ export class TicketsService {
       throw new Error(error);
     }
   }
+
   private async getUsersTranfers(payload: TradeTicketDto) {
     const userSeller = await this.userService.findUserByEmail(
       payload.emailSaller

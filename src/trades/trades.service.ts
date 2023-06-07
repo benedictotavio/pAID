@@ -14,14 +14,14 @@ export class TradesService {
     private readonly configService: ConfigService,
     @InjectModel(Trade.name) private readonly tradeModel: Model<TradeDocument>,
     @Inject(MailerService) private readonly mailer: MailerService
-  ) {}    
+  ) {}
 
   async createTrade(createTradeDto: CreateTradeDto) {
     const ticket = await this.ticketSession(createTradeDto);
     const timeLimit = await this.defineTimeTrade(createTradeDto);
     const newTrade = new this.tradeModel({ ...createTradeDto, timeLimit });
+
     if (newTrade) {
-      console.log('Data Limite: ', newTrade.timeLimit);
       try {
         await this.mailer.sendEmail({
           to: createTradeDto.emailSaller,
@@ -40,7 +40,7 @@ export class TradesService {
       <p>${ticket.dateEvent.toLocaleString('pt-br', {
         hour12: false,
         dateStyle: 'full',
-        timeStyle: 'full',
+        timeStyle: 'medium',
       })}</p>
       </div>
       <h4>Entre no link:<a> ${this.configService.get('web_url')}/${
@@ -49,7 +49,7 @@ export class TradesService {
       <p>Voce tem até ${newTrade.timeLimit.toLocaleString('pt-br', {
         hour12: false,
         dateStyle: 'full',
-        timeStyle: 'full',
+        timeStyle: 'medium',
       })} para enviar o ticket para o email: <b>${
             createTradeDto.emailBuyer
           }</b>.
@@ -69,9 +69,7 @@ export class TradesService {
     return userSession.trades;
   }
 
-  private async defineTimeTrade(
-    payload: CreateTradeDto
-  ): Promise<Date | string> {
+  private async defineTimeTrade(payload: CreateTradeDto): Promise<Date> {
     return await this.dateLimitToTradeTicket(payload);
   }
 
@@ -112,12 +110,9 @@ export class TradesService {
     const today = new Date().getTime();
     const dateSpecific = dateEvent.getTime();
 
-    if (dateSpecific <= today) {
-      return 'O evento ja foi!!!';
-    }
-
-    let dateToSendTicket = today + (dateSpecific - today) * 0.8859;
+    let dateToSendTicket = today + (dateSpecific - today) * 0.8789;
     console.debug(
+      'Data Limite: ',
       new Date(dateToSendTicket).toLocaleDateString('pt-br', {
         dateStyle: 'short',
       })

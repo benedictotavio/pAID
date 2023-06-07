@@ -18,18 +18,22 @@ class DateFormatDto {
   @Min(new Date().getFullYear())
   @Max(new Date().getFullYear() + 5)
   year: number;
+
   @IsNumber()
   @Min(1)
   @Max(12)
   month: number;
+
   @IsNumber()
   @Min(1)
   @Max(31)
   day: number;
+
   @IsNumber()
   @Min(1)
   @Max(24)
   hour: number;
+  
   @IsNumber()
   @Min(0)
   @Max(59)
@@ -65,14 +69,13 @@ export class CreateTicketDto {
       message: 'Plataform is not compatible.',
     }
   )
-  @IsUppercase()
   @IsString()
   plataform:
-    | 'INGRESSO RÁPIDO'
-    | 'BLACKTAG'
-    | 'INGRESSE'
-    | 'SYMPLA'
-    | 'TICKET360'
-    | 'TICKETS FOR FUN'
-    | 'BLUETICKET';
+    | 'ingresso rapido'
+    | 'blacktag'
+    | 'ingresse'
+    | 'sympla'
+    | 'ticket360'
+    | 'tickets for fun'
+    | 'blueticket';
 }

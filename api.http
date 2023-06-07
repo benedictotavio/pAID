@@ -3,11 +3,11 @@ POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-    "email":"otavio.bene@outlook.com",
+    "email":"suporte@hebrombeneficios.com.br",
     "firstName":"Otavio",
     "lastName":"Benedicto",
-    "password":"Otaxx@12",
-    "passwordConfirmation":"Otaxx@12"
+    "password":"Sup@1a2b3c",
+    "passwordConfirmation":"Sup@1a2b3c"
 }
 
 
@@ -29,7 +29,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/users/me
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDdmMjJmOTk1YWExZWFhOTNmODUzZGYiLCJmaXJzdE5hbWUiOiJTdXBvcnRlIiwibGFzdE5hbWUiOiJUSSIsImVtYWlsIjoic3Vwb3J0ZUBoZWJyb21iZW5lZmljaW9zLmNvbS5iciIsInRyYWRlcyI6eyJzaG9wIjpbIjY0ODA4N2RjNWVjYzUzMjNjMmQ4YzlmOSIsIjY0ODA3ZTc4NWVjYzUzMjNjMmQ4YzllYyIsIjY0ODA3NjM3YmRmNzg3NGZiOTA0MTBmOCJdLCJzYWxlcyI6WyI2NDdmNjQzZGZlYTgyZTUyMmRiOWZmMzciLCI2NDdmNjJlNjczZTBlNGI5YjhlYTE2MzYiXX0sInRpY2tldHMiOlt7Il9pZCI6Ijk2NWMwYzdkLWY5Y2ItNDMxZC1hNDJmLWIzZmE3MDc5ZjYwZCIsImNhdGVnb3J5IjoiZXZlbnQiLCJ0aXRsZSI6IlR1c2NhIDIwMjQiLCJwcmljZSI6MTI1LCJwbGF0YWZvcm0iOiJJTkdSRVNTRSIsImRhdGVFdmVudCI6IjIwMjMtMTAtMzFUMTc6MzA6MDAuMDAwWiIsImRhdGVCdXkiOiIyMDIzLTA2LTA3VDEzOjMyOjMwLjk1MloiLCJkZXNjcmlwdGlvbiI6IkluZ3Jlc3NvIDIgZGlhcyBkbyB0dXNjYSAyMDIzOiBESiBHQlIsIE1hdGhldXMgZSBLYXVhbi4ifSx7Il9pZCI6Ijg5NzRhZDljLTJiMDUtNGU1OS1hOWQwLWI3ZGIyOTc2YTIxYiIsImNhdGVnb3J5IjoiZXZlbnQiLCJ0aXRsZSI6IlR1c2NhIDIwMjQiLCJwcmljZSI6MTI1LCJwbGF0YWZvcm0iOiJJTkdSRVNTRSIsImRhdGVFdmVudCI6IjIwMjMtMTAtMzFUMTc6MDA6MDAuMDAwWiIsImRhdGVCdXkiOiIyMDIzLTA2LTA3VDEyOjU1OjQxLjA4MVoiLCJkZXNjcmlwdGlvbiI6IkluZ3Jlc3NvIDIgZGlhcyBkbyB0dXNjYSAyMDIzOiBESiBHQlIsIE1hdGhldXMgZSBLYXVhbi4ifSx7Il9pZCI6IjdmMGFiMDFlLWVmY2ItNGVhNi1iNWE4LTZmNTUzNDZkNzhkOSIsImNhdGVnb3J5IjoiZXZlbnQiLCJ0aXRsZSI6IlR1c2NhIDIwMjQiLCJwcmljZSI6MTI1LCJwbGF0YWZvcm0iOiJJTkdSRVNTRSIsImRhdGVFdmVudCI6IjIwMjMtMDctMjJUMDM6MDA6MDAuMDAwWiIsImRhdGVCdXkiOiIyMDIzLTA2LTA3VDEyOjE5OjMwLjUzMFoiLCJkZXNjcmlwdGlvbiI6IkluZ3Jlc3NvIDIgZGlhcyBkbyB0dXNjYSAyMDIzOiBESiBHQlIsIE1hdGhldXMgZSBLYXVhbi4ifV0sImNyZWF0ZWRBdCI6IjIwMjMtMDYtMDZUMTI6MTM6NDUuOTA5WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDYtMDdUMTM6MzY6MjkuMDAzWiIsImlhdCI6MTY4NjE1NTgyOCwiZXhwIjoxNjg2MTU2NzI4fQ.aCkG59sT9lgyCAS8shRsYES18oyrdSZeA4UzmmKz73p1pod6gytW5H8Dg0EOE__6BZSt9zkuhc5WDW-1u3x7C_UgrIKp86GMWWahYahn1jsz2XrzW7hLJ2l4c8g0qusv1tIzP08d3yoo3P9MesOo2qvJopcm42MXakV1cGvkWkbKVk3_IV_0Ss4nsDvtwmM8Uez8bOt5odRDSF0i0OH8fSzdfuNkkwveFLYbSCuX1IwEO7AhWDisnKmUWYloQiC7NCebSb7wwug6NrKnbdwIheqYB1hbvnTtthz2TyZD3w9LwyhY6x7LlDTbe1NjPcCu6DrmP9yZbnrZD_vjWpObSA
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc5NmEzODc0M2I2MDI4MzZkNWU5ODEiLCJmaXJzdE5hbWUiOiJPdGF2aW8iLCJsYXN0TmFtZSI6IkJlbmVkaWN0byIsImVtYWlsIjoib3RhdmlvLmJlbmVAb3V0bG9vay5jb20iLCJ0cmFkZXMiOnsic2hvcCI6W10sInNhbGVzIjpbXX0sInRpY2tldHMiOltdLCJjcmVhdGVkQXQiOiIyMDIzLTA2LTAyVDA0OjA0OjA4LjU2M1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTA2LTA3VDIzOjM1OjU5LjU0OFoiLCJpYXQiOjE2ODYxODEwNTcsImV4cCI6MTY4NjE4MTk1N30.W1lyq21wnIeAo02dkqaWp6MArGkr_HBfKzldgljU4WCBqXhfkZDvd81dE21ynBNZQdMGUluPHWkXGZqb6ykahdr7kbHBBLSo1TB-irsDn3kS_EJN3tq5t-nrYGIb7WuzifRKjyiKGYEHw3Bbclry5YG7iq6rV30wiDf0sq3ILGbN0Y1squRT92FDnuSZnhrCNfTzHB_F9tI4O1e6H2iudOYPyM_W9nrxd03zueQvrnZR8pIaYNYjls8rBnkkT9T7WMSGYPbIVfWgOhdAJjeBH4HNupjwSJiM2Fqvq6R3D78_gDZfWj-20Z4HgArgMECTni6TmqhAIBt4MThGSSVaVQ
 
 
 # Login
@@ -38,35 +38,36 @@ POST http://localhost:8080/auth/sessions
 Content-Type: application/json
 
 {
-    "email":"suporte@hebrombeneficios.com.br",
-    "password":"Sup@1a2b3c"
+    "email":"otavio.bene@outlook.com",
+    "password":"Otaxx@12"
 }
 
 ###
 GET http://localhost:8080/auth/sessions/refresh
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ4MGFhMzU1ZWNjNTMyM2MyZDhjOWZlIiwiaWF0IjoxNjg2MTUzNzgyLCJleHAiOjE3MTc3MTEzODJ9.c038r3C9UUIicpjBMwGXoq_UQUFq1HcGpUfUtoA-FxUvsbPX5aEt3yK3cFm0enndkYHeS2fmbKNC8zf63N-ayV9VKNWoEiAPaFX6WscVmgQdfk1alGzwMjEa52EBy0dEn7AvWlAmMyy-EcvWHYCP0Eg6Hf5egZ4mgegfpQpRrr9ia9bIupSwonTTKvnSJJ49hFdTH7deGvuLytjSG63bVF16RfCcYwptMx6voWFT4Qu-5RvBw01lUhNb7JzqkPHmzkF2ZB4CQEWUtVLvUqbJb5jXGoijNJGSVchiAvl_dQ2KG0N9FA73Wxo7hawazr0s6vvANjv7PH6omz7vuwrwYA
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ4MTBiM2MyNmQyNWVjMzc4OTEwMWQyIiwiaWF0IjoxNjg2MTc4NjIwLCJleHAiOjE3MTc3MzYyMjB9.GpZ_IpleXHhUSaRoPID906j0NkiHYzJEKCf3kCtBIETrkqxo9xUo75OvX9eqfxhC8y3Fo7er5Ap_AogUwfqX4wSwAZ-EDXeaamCArbaMeOmWtsi8gOHOE-6uJuSCKwpMM1f30uN9mBUh-BuWlyftp9rnPXa47ZSbDdRGvySutDASqS38Gr5IRmod26CBZVGIYJY3pHq4qparnaMWbwQi2gZ0QJa7cN5nyWa75m_9hzakB4tnnav_C57K4FltvAIXABtNuewXvJDkyoyjFjVAqn6xBhIitcTAepqJ_wZ9V6RieiDTCa_M0QBb9ikz6w1Qq_C5cDu0ND2UuNtIsY6-FQ
+
 # Tickets
 ###
-POST http://localhost:8080/tickets/new/64807356bdf7874fb90410e6
+POST http://localhost:8080/tickets/new/64796a38743b602836d5e981
 Content-Type: application/json
 
 {
-    "title":"Show Igor Guimarães",
+    "title":"Rock in Rio 2024",
     "category":"event",
     "price":125,
-    "plataform":"INGRESSE",
+    "plataform":"blacktag",
     "description":"Ingresso 2 dias do tusca 2023: DJ GBR, Matheus e Kauan.",
     "dateEvent":{
         "year":2023,
-        "month":5,
-        "day":7,
-        "hour":15,
+        "month":1,
+        "day":27,
+        "hour":9,
         "minutes":0
     }
 }
 
 ###
-GET http://localhost:8080/tickets/64807356bdf7874fb90410e6
+GET http://localhost:8080/tickets/64796a38743b602836d5e981
 
 ###
 POST http://localhost:8080/tickets/trade
@@ -75,7 +76,7 @@ Content-Type: application/json
 {
     "emailSaller":"otavio.bene@outlook.com",
     "emailBuyer":"suporte@hebrombeneficios.com.br",
-    "ticketId":"33d41c90-e47e-4507-b1d6-2dd33f23f899"
+    "ticketId":"a35adb4b-8fc7-4d0e-9217-d4f615eaa465"
 }
 
 # Trades
