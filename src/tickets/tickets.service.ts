@@ -14,54 +14,53 @@ export class TicketsService {
   constructor(
     private readonly userService: UsersService,
     private readonly configService: ConfigService,
-    private readonly tradeService: TradesService
+    private readonly tradesService: TradesService
   ) {}
 
   async addNewTicket(
     createTicketDto: CreateTicketDto,
     id: string
   ): Promise<string | Ticket> {
+    
     const userSession = await this.userService.findUserById(id);
+
+    const dateEventTicket = new Date(
+      createTicketDto.dateEvent.year,
+      createTicketDto.dateEvent.month - 1,
+      createTicketDto.dateEvent.day,
+      createTicketDto.dateEvent.hour,
+      createTicketDto.dateEvent.minutes
+    );
+
+    if (dateEventTicket.getTime() <= Date.now()) {
+      return 'O evento não ocorrer no passado, rolezeiro!';
+    }
+
+    if (dateEventTicket.getTime() <= Date.now() + 6000000) {
+      return 'A data do evento esta muito próxima para a venda!';
+    }
 
     if (!userSession) {
       return 'Usuario não encontrado!';
     }
 
     try {
-      if (
-        new Date(
-          createTicketDto.dateEvent.year,
-          createTicketDto.dateEvent.month - 1,
-          createTicketDto.dateEvent.day,
-          createTicketDto.dateEvent.hour,
-          createTicketDto.dateEvent.minutes
-        ) <= new Date()
-      ) {
-        return 'O Data do evento não pode ser menor que a data atual.';
-      } else {
-        userSession.tickets.unshift({
-          _id: randomUUID(),
-          category: createTicketDto.category,
-          title: createTicketDto.title,
-          price: createTicketDto.price,
-          plataform: createTicketDto.plataform.toUpperCase(),
-          dateEvent: new Date(
-            createTicketDto.dateEvent.year,
-            createTicketDto.dateEvent.month - 1,
-            createTicketDto.dateEvent.day,
-            createTicketDto.dateEvent.hour,
-            createTicketDto.dateEvent.minutes
-          ),
-          dateBuy: new Date(),
-          description: createTicketDto.description,
-        });
+      userSession.tickets.unshift({
+        _id: randomUUID(),
+        category: createTicketDto.category,
+        title: createTicketDto.title,
+        price: createTicketDto.price,
+        plataform: createTicketDto.plataform.toUpperCase(),
+        dateEvent: dateEventTicket,
+        dateBuy: new Date(),
+        description: createTicketDto.description,
+      });
 
-        await userSession.save();
+      await userSession.save();
 
-        return userSession.tickets[0];
-      }
+      return userSession.tickets[0];
     } catch (error) {
-      throw new Error(JSON.stringify(error));
+      throw new Error(error);
     }
   }
 
@@ -99,10 +98,6 @@ export class TicketsService {
       return 'O usuario já possui o ticket selecionado!';
     }
 
-    if (ticketTrade.dateEvent <= new Date()) {
-      return 'O evento ja foi!';
-    }
-
     await this.tranferTicket(
       ticketTrade,
       usersSessionTranfer.userBuyer,
@@ -110,6 +105,10 @@ export class TicketsService {
     );
 
     return `Finish trade between ${usersSessionTranfer.userSeller.firstName} and ${usersSessionTranfer.userBuyer.firstName}.`;
+  }
+
+  async deleteAllTicketsExpired() {
+    return await this.userService.deleteAllTicketsExpired();
   }
 
   private async tranferTicket(
@@ -128,7 +127,7 @@ export class TicketsService {
     }
 
     try {
-      await this.tradeService
+      await this.tradesService
         .createTrade({
           ticketId: ticketTrade._id,
           buyerId: userBuyer._id,

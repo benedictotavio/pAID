@@ -100,23 +100,10 @@ export class TradesService {
   }
 
   private async dateToSendTicket(dateEvent: Date) {
-    console.log(
-      'Data do Evento:',
-      dateEvent.toLocaleDateString('pt-br', {
-        dateStyle: 'short',
-      })
-    );
-
     const today = new Date().getTime();
     const dateSpecific = dateEvent.getTime();
 
     let dateToSendTicket = today + (dateSpecific - today) * 0.8789;
-    console.debug(
-      'Data Limite: ',
-      new Date(dateToSendTicket).toLocaleDateString('pt-br', {
-        dateStyle: 'short',
-      })
-    );
     return new Date(dateToSendTicket);
   }
 

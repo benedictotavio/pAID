@@ -181,4 +181,7 @@ export class UsersService {
       throw new Error(error);
     }
   }
+  async deleteAllTicketsExpired() {
+    return await this.userModel.find();
+  }
 }

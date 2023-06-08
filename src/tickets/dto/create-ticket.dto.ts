@@ -33,7 +33,7 @@ class DateFormatDto {
   @Min(1)
   @Max(24)
   hour: number;
-  
+
   @IsNumber()
   @Min(0)
   @Max(59)
@@ -43,11 +43,11 @@ class DateFormatDto {
 export class CreateTicketDto {
   @IsString()
   title: string;
-  @Matches(/^(event|game)+$/gi, {
-    message: 'Category must be a event or game.',
+  @Matches(/^(party|theater|sports|)+$/gi, {
+    message: 'Category invalid! You must use: party, sports or theater',
   })
   @IsString()
-  category: 'event' | 'game';
+  category: 'party' | 'theater' | 'sports';
 
   @IsNumber()
   price: number;
