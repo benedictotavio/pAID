@@ -64,8 +64,13 @@ export class TradesService {
     return await newTrade.save();
   }
 
-  async findAllTradesByUser(id_user: string): Promise<object> {
+  async findAllTradesByUser(id_user: string): Promise<object | string> {
     const userSession = await this.userService.findUserById(id_user);
+
+    if (!userSession) {
+      return 'User not found';
+    }
+
     return userSession.trades;
   }
 

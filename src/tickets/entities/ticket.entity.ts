@@ -12,10 +12,12 @@ export class Ticket {
   description: string;
   @Prop({ default: randomUUID(), unique: true })
   _id: UUID;
-  @Prop({ default: new Date(Date.now()) })
+  @Prop({ type: Date, default: new Date() })
   dateBuy: Date;
   @Prop({ type: Date, required: true })
   dateEvent: Date;
   @Prop({ type: String, required: true, uppercase: true })
   plataform: string;
+  @Prop({ type: Boolean, default: true })
+  active: boolean;
 }

@@ -28,11 +28,6 @@ export class TicketsController {
     return this.ticketsService.getTicketsByUser(id);
   }
 
-  @Get('expired')
-  deleteAllTicketsExpired() {
-    return this.ticketsService.deleteAllTicketsExpired();
-  }
-
   @Post('trade')
   @UsePipes(new ValidationPipe())
   tradeTicket(@Body() tradeTicketDto: TradeTicketDto) {

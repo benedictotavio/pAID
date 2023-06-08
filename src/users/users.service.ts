@@ -10,6 +10,7 @@ import { ConfigService } from '@nestjs/config';
 import { randomUUID } from 'crypto';
 import { PasswordResetDto } from './dto/password-reset.dto';
 import { MailerService } from './utils/mailer';
+import { Ticket } from 'src/tickets/entities/ticket.entity';
 
 @Injectable()
 export class UsersService {
@@ -181,7 +182,23 @@ export class UsersService {
       throw new Error(error);
     }
   }
-  async deleteAllTicketsExpired() {
-    return await this.userModel.find();
+  async updateAllTicketsExpired() {
+    return this.userModel
+      .updateMany(
+        {
+          'tickets.dateEvent': { $lte: new Date() },
+        },
+        {
+          $set: {
+            'tickets.$.active': false,
+          },
+        }
+      )
+      .then((result) => {
+        this.logger.log(result);
+      })
+      .catch((error) => {
+        this.logger.error(error);
+      });
   }
 }

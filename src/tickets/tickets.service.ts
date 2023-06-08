@@ -21,8 +21,11 @@ export class TicketsService {
     createTicketDto: CreateTicketDto,
     id: string
   ): Promise<string | Ticket> {
-    
     const userSession = await this.userService.findUserById(id);
+
+    if (!userSession) {
+      return 'Usuario não encontrado!';
+    }
 
     const dateEventTicket = new Date(
       createTicketDto.dateEvent.year,
@@ -33,15 +36,11 @@ export class TicketsService {
     );
 
     if (dateEventTicket.getTime() <= Date.now()) {
-      return 'O evento não ocorrer no passado, rolezeiro!';
+      return 'O evento não pode ocorrer no passado, rolezeiro!';
     }
 
     if (dateEventTicket.getTime() <= Date.now() + 6000000) {
       return 'A data do evento esta muito próxima para a venda!';
-    }
-
-    if (!userSession) {
-      return 'Usuario não encontrado!';
     }
 
     try {
@@ -54,22 +53,25 @@ export class TicketsService {
         dateEvent: dateEventTicket,
         dateBuy: new Date(),
         description: createTicketDto.description,
+        active: true,
       });
-
       await userSession.save();
-
       return userSession.tickets[0];
     } catch (error) {
-      throw new Error(error);
+      this.logger.error(error);
     }
   }
 
-  async getTicketsByUser(id: string): Promise<Ticket[] | string> {
-    const userTicketsSession = (await this.userService.findUserById(id))
-      .tickets;
+  async getTicketsByUser(id: string): Promise<Ticket[] | void[] | string> {
+    const userTicketsSession = await this.userService.findUserById(id);
+
+    if (userTicketsSession.tickets.length > 0) {
+      await this.userService.updateAllTicketsExpired();
+    }
 
     if (userTicketsSession) {
-      return userTicketsSession;
+      userTicketsSession.save();
+      return userTicketsSession.tickets;
     } else {
       return 'Usuario não encontrado!';
     }
@@ -105,10 +107,6 @@ export class TicketsService {
     );
 
     return `Finish trade between ${usersSessionTranfer.userSeller.firstName} and ${usersSessionTranfer.userBuyer.firstName}.`;
-  }
-
-  async deleteAllTicketsExpired() {
-    return await this.userService.deleteAllTicketsExpired();
   }
 
   private async tranferTicket(
