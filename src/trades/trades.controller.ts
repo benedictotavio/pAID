@@ -24,4 +24,9 @@ export class TradesController {
   findAllTradesByUser(@Param('id') id: string) {
     return this.tradesService.findAllTradesByUser(id);
   }
+
+  @Get(':id')
+  findTradeById(@Param('id') id: string) {
+    return this.tradesService.findTradeById(id);
+  }
 }

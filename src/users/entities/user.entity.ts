@@ -18,12 +18,12 @@ export class Trade extends Document {
   @Prop({
     type: [{ _id: String, active: Boolean }],
   })
-  shop: { _id: ObjectId; active?: boolean }[];
+  shop: { _id: UUID; active?: boolean }[];
 
   @Prop({
     type: [{ _id: String, active: Boolean }],
   })
-  sales: { _id: ObjectId; active?: boolean }[];
+  sales: { _id: UUID; active?: boolean }[];
 }
 
 @Schema({

@@ -74,6 +74,11 @@ export class TradesService {
     return userSession.trades;
   }
 
+  async findTradeById(id: string) {
+    const trade = await this.tradeModel.findById(id);
+    return trade ? trade : 'Trade is not ';
+  }
+
   private async defineTimeTrade(payload: CreateTradeDto): Promise<Date> {
     return await this.dateLimitToTradeTicket(payload);
   }
