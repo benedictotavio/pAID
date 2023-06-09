@@ -29,7 +29,8 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/users/me
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyMjg3MTU2ZDg1NGIyNzMzN2IxZjYiLCJmaXJzdE5hbWUiOiJPdGF2aW8iLCJsYXN0TmFtZSI6IkJlbmVkaWN0byIsImVtYWlsIjoic3Vwb3J0ZUBoZWJyb21iZW5lZmljaW9zLmNvbS5iciIsInRyYWRlcyI6eyJzaG9wIjpbXSwic2FsZXMiOltdfSwidGlja2V0cyI6W3siX2lkIjoiMmZlNzFkYjktYzNhNS00ZWMzLTgxMzgtOTFlYjVkMzA2NjU5IiwiY2F0ZWdvcnkiOiJ0aGVhdGVyIiwidGl0bGUiOiJBIE5vdmnDp2EgUmViZWxkZSIsInByaWNlIjoxMjUsInBsYXRhZm9ybSI6IklOR1JFU1NFIiwiZGF0ZUV2ZW50IjoiMjAyMy0wOS0xMVQxODo0NTowMC4wMDBaIiwiZGF0ZUJ1eSI6IjIwMjMtMDYtMDhUMTk6MzU6MTAuNzA0WiIsImRlc2NyaXB0aW9uIjoiSW5ncmVzc28gcGFyYSBvIHNob3cgZGEgbm92acOnYSByZWJlbGRlIG5vIFRlYXRybyBSZW5hc2NlbmNlIiwiYWN0aXZlIjp0cnVlfSx7Il9pZCI6IjVlZGJiZDExLTUzZTktNGUyYi05OGY3LTE1ODE0YTIwODZhMSIsImNhdGVnb3J5IjoidGhlYXRlciIsInRpdGxlIjoiQSBOb3Zpw6dhIFJlYmVsZGUiLCJwcmljZSI6MTI1LCJwbGF0YWZvcm0iOiJJTkdSRVNTRSIsImRhdGVFdmVudCI6IjIwMjMtMDktMTFUMTg6NDU6MDAuMDAwWiIsImRhdGVCdXkiOiIyMDIzLTA2LTA4VDE5OjMzOjM1Ljk5MloiLCJkZXNjcmlwdGlvbiI6IkluZ3Jlc3NvIHBhcmEgbyBzaG93IGRhIG5vdmnDp2EgcmViZWxkZSBubyBUZWF0cm8gUmVuYXNjZW5jZSIsImFjdGl2ZSI6dHJ1ZX1dLCJjcmVhdGVkQXQiOiIyMDIzLTA2LTA4VDE5OjEzOjUzLjI3M1oiLCJ1cGRhdGVkQXQiOiIyMDIzLTA2LTA4VDE5OjM1OjEwLjcwOVoiLCJpYXQiOjE2ODYyNTMzODUsImV4cCI6MTY4NjI1NDI4NX0.UX5T0-Rqfhnaa2RBNh8yF5pZVyRdwEf2SAfv_GP4LUoDE5_j1zSRfvEgGicj8v2P2KmPsUelfl_TBCecH3p0ty15QFGjftfh7ZP9KkWu4t55nQliSlP5gmma19FFuJ9qWyruXf0k-8seYV53j-6JunBUyvplz0xcVnT-MzuKpzgUeHAeD7-avX8iLh-7kD10_wRA_DexMHDkv0mnecn5eeDti1f0HdYCTi_NAcj6LT8vIBbng2YidKi4PcFkgD4dh2fCRXLF0gm15smj8_WDA0w6kYz-gmrj78zL_GFXlkknT4cve3Q8OVO2zWG3UxG7F41e1VcmA55AnscEKGZ2eQ
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgyOGRmZDA2NDgzNTI3MDBmYzFkOGMiLCJmaXJzdE5hbWUiOiJPdGF2aW8iLCJsYXN0TmFtZSI6IkJlbmVkaWN0byIsImVtYWlsIjoib3RhdmlvLmJlbmVAb3V0bG9vay5jb20iLCJ0cmFkZXMiOnsic2hvcCI6W10sInNhbGVzIjpbXX0sInRpY2tldHMiOltdLCJwYWlkQ29pbnMiOjAsImNyZWF0ZWRBdCI6IjIwMjMtMDYtMDlUMDI6Mjc6MDkuNDI5WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDYtMDlUMDI6Mjc6MDkuNDI5WiIsImlhdCI6MTY4NjI3NzY3MSwiZXhwIjoxNjg2Mjc4NTcxfQ.H0iASUk7G9qqMoHwYY64DqyGDQqz95I-GyQ49DxJl6S8Jtb0ZsxWDLi5I3aOG9CDKxaU9HN560xNOt-oFRYMTZ2cURyOvaHK3iD4Ky6GpvOw4awUankPTlYTscbxLJOMJO5kYu9uFZwXqtxe7crw3tWMkNk4ygLe1e6Dv0OAwJghlTR2fWPm3xhXoBXjKKVHU7Ov_ppUwu6IlCuUUuJSCDZYIt59miw_bUrk7ESmcGD2uCa-8Qm075my_rQvmNbbGF2vQZ3HvUc8F67QqpAH0YfvWvW6kMHu17YOFPiFhdJqtRpTRogi4C6UjFyyF-I021FweAuBqWVvhdzcJXBVuQ
+
 
 
 # Login
@@ -38,17 +39,17 @@ POST http://localhost:8080/auth/sessions
 Content-Type: application/json
 
 {
-    "email":"suporte@hebrombeneficios.com.br",
+    "email":"otavio.bene@outlook.com",
     "password":"Sup@1a2b3c"
 }
 
 ###
 GET http://localhost:8080/auth/sessions/refresh
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ4MjJmNDk0ZTQ3NDI3MzQwMGNiNTllIiwiaWF0IjoxNjg2MjUzMzg1LCJleHAiOjE3MTc4MTA5ODV9.OczSgL3LaXb1AiILCBLndsy10PdE_kwi8xqyzG3LuFzIK4OrAZh4lgSJ6Va-em4bDgArfrwdx6UlasK2MzNiByCMYluWWkTYD6Kmxsb0CkulNaVEbHBAIvWldjFb0aH5uvVR00pR0fLiUgzX_ATP_HqQ-dcdQl6bwJwwmQfzXAllQOTKQ4iVgnJGgJqNvRYnzhuroA6071kobfGDVHE8IN3MqZLAO46yneM4pDS1A2mmiQHBnA_BCcNA_YEQBk2_Ag5wy7jcxRyrJjmp9FL59sntGlFjuSHcLdwFiWGHT_PkMem0AZ7skAgMirFN80VDpB9HMaXr5BTmld9Oo4rcGA"
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ4MjhlMTcwNjQ4MzUyNzAwZmMxZDkyIiwiaWF0IjoxNjg2Mjc3NjU1LCJleHAiOjE3MTc4MzUyNTV9.dcYbj1jvm9AyM2Bj7frYC1TVdMP96gHI1gXY53nAa7O5uUotcftQNeJs7CoICt-LJAY1XIbn4BYTpyOTtFRytnjzk6bOlhjN0YSu8eSRxHaU6myWf1m-_xYXkixUj_Ll6KASFZY0-rSWBUScFnCsQKsw9GoPiSXVOWmFE09d__ZJhTgM8VJTg02Ng3IBVtoy7Veyzrd2jjQH7FtpMtQ1ZcNMAzd7jQ_DqaOMfary0uZ1U8kHW3RyzE8DNW27pzweygP_9EUOKwdrqARUeXYdMKUTL8XTTO-VLRb8BSgDXKNTbdqzyYfoZPxG74bKsWwlcqdSyqYcG8hYphEIJNDIgw
 
 # Tickets
 ###
-POST http://localhost:8080/tickets/new/6482287156d854b27337b1f6
+POST http://localhost:8080/tickets/new/64828dfd0648352700fc1d8c
 Content-Type: application/json
 
 {
@@ -59,24 +60,23 @@ Content-Type: application/json
     "description":"Ingresso para o show da noviça rebelde no Teatro Renascence",
     "dateEvent":{
         "year":2023,
-        "month":9,
-        "day":11,
-        "hour":15,
-        "minutes":45
+        "month":6,
+        "day":18,
+        "hour":23,
+        "minutes":30
     }
 }
 
 ###
-GET http://localhost:8080/tickets/6482287156d854b27337b1f6
-
+GET http://localhost:8080/tickets/64828dfd0648352700fc1d8c
 ###
 POST http://localhost:8080/tickets/trade
 Content-Type: application/json
 
 {
-    "emailBuyer":"otavio.bene@outlook.com",
-    "emailSaller":"suporte@hebrombeneficios.com.br",
-    "ticketId":"93d70963-f866-48aa-8ef0-229d857f562d"
+    "emailBuyer":"suporte@hebrombeneficios.com.br",
+    "emailSaller":"otavio.bene@outlook.com",
+    "ticketId":"89cf61f3-ec68-414d-be15-838c46236a22"
 }
 
 ###
@@ -85,3 +85,17 @@ GET http://localhost:8080/tickets/expired
 # Trades
 ###
 GET http://localhost:8080/trades/6482287156d854b27337b1f6
+
+
+# Credits
+###
+POST http://localhost:8080/credits/64828e0a0648352700fc1d8f
+Content-Type: application/json
+
+{
+    "value":125,
+    "payment":{
+        "method":"PIX",
+        "installment":2
+    }
+}

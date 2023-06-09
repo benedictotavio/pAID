@@ -44,6 +44,10 @@ export class TicketsService {
     }
 
     try {
+      if (userSession.tickets.length > 0) {
+        await this.userService.updateAllTicketsExpired();
+        userSession.save();
+      }
       userSession.tickets.unshift({
         _id: randomUUID(),
         category: createTicketDto.category,
@@ -65,16 +69,16 @@ export class TicketsService {
   async getTicketsByUser(id: string): Promise<Ticket[] | void[] | string> {
     const userTicketsSession = await this.userService.findUserById(id);
 
-    if (userTicketsSession.tickets.length > 0) {
-      await this.userService.updateAllTicketsExpired();
-    }
-
-    if (userTicketsSession) {
-      userTicketsSession.save();
-      return userTicketsSession.tickets;
-    } else {
+    if (!userTicketsSession) {
       return 'Usuario não encontrado!';
     }
+
+    if (userTicketsSession.tickets.length > 0) {
+      await this.userService.updateAllTicketsExpired();
+      userTicketsSession.save();
+    }
+
+    return userTicketsSession.tickets;
   }
 
   async tradeTicket(tradeTicketDto: TradeTicketDto): Promise<string> {
@@ -98,6 +102,10 @@ export class TicketsService {
 
     if (usersSessionTranfer.userSeller.email === tradeTicketDto.emailBuyer) {
       return 'O usuario já possui o ticket selecionado!';
+    }
+
+    if (usersSessionTranfer.userBuyer.paidCoins < ticketTrade.price) {
+      return `${usersSessionTranfer.userBuyer.firstName} não possui paidCoins suficiente para comprar esse ticket.`;
     }
 
     await this.tranferTicket(
@@ -130,22 +138,19 @@ export class TicketsService {
           ticketId: ticketTrade._id,
           buyerId: userBuyer._id,
           emailSaller: userSeller.email,
-          payment: {
-            price: ticketTrade.price,
-            installment: 1,
-            method: 'PIX',
-          },
           emailBuyer: userBuyer.email,
         })
         .then((res) => {
           try {
-            userSeller.trades.sales.unshift(res._id);
-            userBuyer.trades.shop.unshift(res._id);
+            userSeller.trades.sales.unshift({ _id: res._id, active: true });
+            userBuyer.trades.shop.unshift({ _id: res._id, active: true });
             userBuyer.tickets.unshift(ticketTrade);
             const index = userSeller.tickets.findIndex(
               (item) => item._id == ticketTrade._id
             );
             index >= 0 && userSeller.tickets.splice(index, 1);
+            userBuyer.paidCoins = userBuyer.paidCoins - ticketTrade.price;
+            userSeller.paidCoins = userBuyer.paidCoins + ticketTrade.price;
             userBuyer.save();
             userSeller.save();
           } catch (error) {

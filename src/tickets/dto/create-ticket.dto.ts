@@ -1,12 +1,10 @@
 import { Type } from 'class-transformer';
 import {
-  IsDate,
   IsDefined,
   IsNotEmptyObject,
   IsNumber,
   IsObject,
   IsString,
-  IsUppercase,
   Matches,
   Max,
   Min,

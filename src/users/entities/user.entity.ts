@@ -14,12 +14,16 @@ export const privateFields = [
 ];
 
 @Schema({ _id: false })
-class Trade extends Document {
-  @Prop({ default: [] })
-  shop: ObjectId[];
+export class Trade extends Document {
+  @Prop({
+    type: [{ _id: String, active: Boolean }],
+  })
+  shop: { _id: ObjectId; active?: boolean }[];
 
-  @Prop({ default: [] })
-  sales: ObjectId[];
+  @Prop({
+    type: [{ _id: String, active: Boolean }],
+  })
+  sales: { _id: ObjectId; active?: boolean }[];
 }
 
 @Schema({
@@ -51,8 +55,11 @@ export class User extends Document {
   @Prop()
   passwordResetCode?: string | null;
 
-  @Prop({ default: false })
+  @Prop({ type: Boolean, default: false })
   verified?: boolean;
+
+  @Prop({ type: Number, default: 0 })
+  paidCoins: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

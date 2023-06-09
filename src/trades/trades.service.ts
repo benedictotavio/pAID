@@ -89,7 +89,7 @@ export class TradesService {
       return new Date(
         Date.now() +
           +this.configService.get<number>('time.fixed_time') +
-          payload.payment.price * 7666
+          (await this.ticketSession(payload)).price * 7666
       );
     } else {
       return this.dateToSendTicket(

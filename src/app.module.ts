@@ -9,6 +9,7 @@ import { UsersController } from './users/users.controller';
 import { Jwt } from './users/utils/jwt';
 import { TicketsModule } from './tickets/tickets.module';
 import { TradesModule } from './trades/trades.module';
+import { CreditsModule } from './credits/credits.module';
 
 const configService = new ConfigService();
 
@@ -29,6 +30,7 @@ const configService = new ConfigService();
     UsersModule,
     TicketsModule,
     TradesModule,
+    CreditsModule,
   ],
   controllers: [],
   providers: [Jwt],
