@@ -70,7 +70,7 @@ export class TicketsService {
     }
 
     if (userTicketsSession.tickets.length > 0) {
-      this.userService.updateAllTicketsExpired();
+      this.userService.updateAllTicketsExpired(userTicketsSession._id);
       userTicketsSession.save();
     }
 
