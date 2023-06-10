@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import { CreateTradeDto } from './dto/create-trade.dto';
 import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
@@ -9,6 +9,7 @@ import { MailerService } from '../users/utils/mailer';
 
 @Injectable()
 export class TradesService {
+  logger = new Logger(TradesService.name);
   constructor(
     private readonly userService: UsersService,
     private readonly configService: ConfigService,
@@ -19,7 +20,12 @@ export class TradesService {
   async createTrade(createTradeDto: CreateTradeDto) {
     const ticket = await this.ticketSession(createTradeDto);
     const timeLimit = await this.defineTimeTrade(createTradeDto);
-    const newTrade = new this.tradeModel({ ...createTradeDto, timeLimit });
+    const newTrade = new this.tradeModel({
+      saler: createTradeDto.emailSaller,
+      buyer: createTradeDto.emailBuyer,
+      ticketId: createTradeDto.ticketId,
+      timeLimit: timeLimit,
+    });
 
     if (newTrade) {
       try {
@@ -64,19 +70,54 @@ export class TradesService {
     return await newTrade.save();
   }
 
-  async findAllTradesByUser(id_user: string): Promise<object | string> {
+  async findAllTradesByUser(
+    id_user: string,
+    typeTrade?: 'saler' | 'buyer'
+  ): Promise<object | string> {
     const userSession = await this.userService.findUserById(id_user);
 
     if (!userSession) {
       return 'User not found';
     }
 
-    return userSession.trades;
+    if (typeTrade === 'saler') {
+      try {
+        return this.tradeModel
+          .find({
+            saler: userSession.email,
+          })
+          .exec();
+      } catch (error) {
+        this.logger.error(error);
+      }
+    }
+
+    if (typeTrade === 'buyer') {
+      try {
+        return this.tradeModel
+          .find({
+            buyer: userSession.email,
+          })
+          .exec();
+      } catch (error) {
+        this.logger.error(error);
+      }
+    }
+
+    try {
+      return this.tradeModel
+        .find({
+          $or: [{ saler: userSession.email }, { buyer: userSession.email }],
+        })
+        .exec();
+    } catch (error) {
+      this.logger.error(error);
+    }
   }
 
   async findTradeById(id: string) {
     const trade = await this.tradeModel.findById(id);
-    return trade ? trade : 'Trade is not ';
+    return trade ? trade : 'Trade not find';
   }
 
   private async defineTimeTrade(payload: CreateTradeDto): Promise<Date> {

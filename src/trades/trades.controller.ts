@@ -6,6 +6,7 @@ import {
   Param,
   UsePipes,
   ValidationPipe,
+  Query,
 } from '@nestjs/common';
 import { TradesService } from './trades.service';
 import { CreateTradeDto } from './dto/create-trade.dto';
@@ -21,8 +22,11 @@ export class TradesController {
   }
 
   @Get(':id')
-  findAllTradesByUser(@Param('id') id: string) {
-    return this.tradesService.findAllTradesByUser(id);
+  findAllTradesByUser(
+    @Param('id') id: string,
+    @Query('typeTrade') typeTrade?: 'saler' | 'buyer'
+  ) {
+    return this.tradesService.findAllTradesByUser(id, typeTrade);
   }
 
   @Get(':id')

@@ -16,7 +16,8 @@ export class CreditsService {
     const userSessionAddTicket = await this.userService.findUserById(id);
     if (userSessionAddTicket) {
       userSessionAddTicket.paidCoins = userSessionAddTicket.paidCoins + value;
-      return userSessionAddTicket.save();
+      userSessionAddTicket.save();
+      return userSessionAddTicket.paidCoins;
     } else {
       throw new Error('User is not found!');
     }

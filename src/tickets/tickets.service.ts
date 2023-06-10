@@ -44,10 +44,6 @@ export class TicketsService {
     }
 
     try {
-      if (userSession.tickets.length > 0) {
-        await this.userService.updateAllTicketsExpired();
-        userSession.save();
-      }
       userSession.tickets.unshift({
         _id: randomUUID(),
         category: createTicketDto.category,
@@ -74,7 +70,7 @@ export class TicketsService {
     }
 
     if (userTicketsSession.tickets.length > 0) {
-      await this.userService.updateAllTicketsExpired();
+      this.userService.updateAllTicketsExpired();
       userTicketsSession.save();
     }
 
@@ -136,7 +132,6 @@ export class TicketsService {
       await this.tradesService
         .createTrade({
           ticketId: ticketTrade._id,
-          buyerId: userBuyer._id,
           emailSaller: userSeller.email,
           emailBuyer: userBuyer.email,
         })

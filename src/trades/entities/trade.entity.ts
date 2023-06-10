@@ -11,9 +11,9 @@ export class Trade extends Document {
   @Prop({ type: String })
   ticketId: UUID;
   @Prop({ type: String })
-  buyerId: string;
+  buyer: string;
   @Prop({ type: String })
-  salerId: string;
+  saler: string;
   @Prop({ type: Date })
   timeLimit: Date;
   @Prop({ type: String, default: 'waiting for seller user' })
