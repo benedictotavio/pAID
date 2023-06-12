@@ -10,6 +10,7 @@ import {
 import { TicketsService } from './tickets.service';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { TradeTicketDto } from './dto/trade-ticket.dto';
+import { UpdateTicketDto } from './dto/update-ticket.dto';
 
 @Controller('tickets')
 export class TicketsController {
@@ -21,6 +22,15 @@ export class TicketsController {
     @Param('id') id: string
   ) {
     return this.ticketsService.addNewTicket(createTicketDto, id);
+  }
+
+  @Post('edit/:id')
+  @UsePipes(new ValidationPipe())
+  updateTicket(
+    @Body() updateTicketDto: UpdateTicketDto,
+    @Param('id') id: string
+  ) {
+    return this.ticketsService.updateTicket(id, updateTicketDto);
   }
 
   @Get(':id')

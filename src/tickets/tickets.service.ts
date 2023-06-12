@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UsersService } from '../users/users.service';
 import { Ticket } from './entities/ticket.entity';
@@ -7,6 +7,8 @@ import { randomUUID } from 'crypto';
 import { ConfigService } from '@nestjs/config';
 import { TradesService } from 'src/trades/trades.service';
 import { User } from 'src/users/entities/user.entity';
+import { UpdateCreditDto } from 'src/credits/dto/update-credit.dto';
+import { UpdateTicketDto } from './dto/update-ticket.dto';
 
 @Injectable()
 export class TicketsService {
@@ -78,39 +80,72 @@ export class TicketsService {
   }
 
   async tradeTicket(tradeTicketDto: TradeTicketDto): Promise<string> {
-    const usersSessionTranfer = await this.getUsersTranfers(tradeTicketDto);
+    const usersSeller = await this.getUserTranfer(tradeTicketDto.emailSaller);
+    const usersBuyer = await this.getUserTranfer(tradeTicketDto.emailBuyer);
 
-    if (usersSessionTranfer.userSeller.tickets.length <= 0) {
+    if (usersSeller.tickets.length <= 0) {
       return `O vendedor não possui tickets disponiveis.`;
     }
 
-    if (!usersSessionTranfer.userBuyer || !usersSessionTranfer.userSeller) {
+    if (!usersBuyer || !usersSeller) {
       return `Um dos usuarios não foi encontrado.`;
     }
 
-    const ticketTrade = usersSessionTranfer.userSeller.tickets.find(
+    const ticketTrade = usersSeller.tickets.find(
       (item) => item._id === tradeTicketDto.ticketId
     );
 
     if (!ticketTrade) {
-      return `ticket ${tradeTicketDto.ticketId}, was not found! in User ${usersSessionTranfer.userSeller.firstName} ${usersSessionTranfer.userSeller.lastName}`;
+      return `ticket ${tradeTicketDto.ticketId}, was not found! in User ${usersSeller.firstName} ${usersSeller.lastName}`;
     }
 
-    if (usersSessionTranfer.userSeller.email === tradeTicketDto.emailBuyer) {
+    if (ticketTrade.active === false) {
+      return 'O ticket esta expirado';
+    }
+
+    if (usersSeller.email === tradeTicketDto.emailBuyer) {
       return 'O usuario já possui o ticket selecionado!';
     }
 
-    if (usersSessionTranfer.userBuyer.paidCoins < ticketTrade.price) {
-      return `${usersSessionTranfer.userBuyer.firstName} não possui paidCoins suficiente para comprar esse ticket.`;
+    if (usersBuyer.paidCoins < ticketTrade.price) {
+      return `${usersBuyer.firstName} não possui paidCoins suficiente para comprar esse ticket.`;
     }
 
-    await this.tranferTicket(
-      ticketTrade,
-      usersSessionTranfer.userBuyer,
-      usersSessionTranfer.userSeller
+    await this.tranferTicket(ticketTrade, usersBuyer, usersSeller);
+
+    return `Finish trade between ${usersSeller.firstName} and ${usersBuyer.firstName}.`;
+  }
+
+  async updateTicket(id: string, updateTicket: UpdateTicketDto) {
+    const userSession = await this.userService.findUserById(id);
+
+    const ticket = userSession.tickets.find(
+      (item) => item._id === updateTicket._id
     );
 
-    return `Finish trade between ${usersSessionTranfer.userSeller.firstName} and ${usersSessionTranfer.userBuyer.firstName}.`;
+    if (!ticket) {
+      throw new NotFoundException(
+        `Ticket ${updateTicket._id} não foi encontrado.`
+      );
+    }
+
+    if (updateTicket.category) {
+      ticket.category = updateTicket.category;
+    }
+    if (updateTicket.title) {
+      ticket.title = updateTicket.title;
+    }
+    if (updateTicket.price) {
+      ticket.price = updateTicket.price;
+    }
+    if (updateTicket.plataform) {
+      ticket.plataform = updateTicket.plataform;
+    }
+    if (updateTicket.description) {
+      ticket.description = updateTicket.description;
+    }
+
+    return await userSession.save();
   }
 
   private async tranferTicket(
@@ -157,17 +192,8 @@ export class TicketsService {
     }
   }
 
-  private async getUsersTranfers(payload: TradeTicketDto) {
-    const userSeller = await this.userService.findUserByEmail(
-      payload.emailSaller
-    );
-    const userBuyer = await this.userService.findUserByEmail(
-      payload.emailBuyer
-    );
-
-    return {
-      userBuyer,
-      userSeller,
-    };
+  private async getUserTranfer(email: string) {
+    const userSession = await this.userService.findUserByEmail(email);
+    return userSession;
   }
 }

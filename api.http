@@ -78,15 +78,27 @@ Content-Type: application/json
 {
     "emailBuyer":"otavio.bene@outlook.com",
     "emailSaller":"suporte@hebrombeneficios.com.br",
-    "ticketId":"43b3b668-edaa-450a-9bc6-19a7ba862768"
+    "ticketId":"2ee30d4e-f0db-4b12-989a-afc814c2d784"
 }
+
+###
+POST http://localhost:8080/tickets/edit/648411b21575ebd1b5017e5f
+Content-Type: application/json
+
+{
+    "_id": "5e139ba6-0fa8-4461-86db-334a7c773a5a",
+    "title":"Show Igor Guimarães",
+    "price":160,
+    "plataform":"Blacktag"
+}
+
 
 # Trades
 ###
 GET http://localhost:8080/trades/648411b21575ebd1b5017e5f
 
 ###
-GET http://localhost:8080/trades/6483faba3faa8abcd4e083b1?typeTrade=saler
+GET http://localhost:8080/trades/648411b21575ebd1b5017e5f?typeTrade=saler
 
 
 # Credits
