@@ -1,73 +1,110 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# pAID - Tickets Trade Project
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This project is a Tickets Trade system built using Nest.js as the framework language (Node.js) and MongoDB as the database.
 
-## Description
+## Routes
+The project consists of the following route prefixes:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Users**: Handles user-related operations such as user creation and verification.
+- **Tickets**: Manages ticket-related operations such as adding new tickets, retrieving tickets by user, and trading tickets.
+- **Credits**: Handles operations related to credits, such as adding credits to a user's account.
+- **Trades**: Manages trade-related operations, including trade creation, finding trades by user, and finding trades by ID.
 
-## Installation
+## Requirements
 
-```bash
-$ npm install
+### Necessary
+
+- NEST **2.3.0**
+- Node.js **13.0.0**
+- MongoDB **7.0.5**
+
+
+## Api Route Details
+
+## Tickets
+
+#### Add a new ticket
+
+```http
+  POST /tickets/new/{user_id}
 ```
 
-## Running the app
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `user_id` | `string` | **Required**. Registered user  |
+
+#### Example Value | Schema
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+  {
+    title:"string",
+    category:"string",
+    price:number,
+    plataform:"string",
+    description:"string",
+    dateEvent: Date
+  }
 ```
 
-## Test
+#### Get tickets by user
+
+```http
+  GET  /tickets/{user_id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `user_id` | `string` | **Required**. Registered user in sistem |
+
+#### Trade a ticket
+
+```http
+  POST /tickets/trade
+```
+#### Example Value Schema
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+  {
+    emailBuyer:"string",
+    emailSaller:"string",
+    ticketId:"string"
+  }
 ```
 
-## Support
+## Trades
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+#### Get all trades by user
 
-## Stay in touch
+```http
+  GET /trades/{user_id}
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `user_id` | `string` | **Required**. Registered user  |
 
-## License
+## Credits
 
-Nest is [MIT licensed](LICENSE).
+#### Add credits in a user
+
+```http
+  POST /credits/{user_id}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `user_id` | `string` | **Required**. Registered user  |
+
+#### Example Value Schema
+
+```bash
+  {
+    value:number,
+    payment:{
+        "method":"string",
+        "installment":number
+    }
+  }
+```
+

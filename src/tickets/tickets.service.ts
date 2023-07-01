@@ -29,19 +29,11 @@ export class TicketsService {
       return 'Usuario não encontrado!';
     }
 
-    const dateEventTicket = new Date(
-      createTicketDto.dateEvent.year,
-      createTicketDto.dateEvent.month - 1,
-      createTicketDto.dateEvent.day,
-      createTicketDto.dateEvent.hour,
-      createTicketDto.dateEvent.minutes
-    );
-
-    if (dateEventTicket.getTime() <= Date.now()) {
+    if (new Date(createTicketDto.dateEvent).getTime() <= Date.now()) {
       return 'O evento não pode ocorrer no passado, rolezeiro!';
     }
 
-    if (dateEventTicket.getTime() <= Date.now() + 6000000) {
+    if (new Date(createTicketDto.dateEvent).getTime() <= Date.now() + 6000000) {
       return 'A data do evento esta muito próxima para a venda!';
     }
 
@@ -52,7 +44,7 @@ export class TicketsService {
         title: createTicketDto.title,
         price: createTicketDto.price,
         plataform: createTicketDto.plataform.toUpperCase(),
-        dateEvent: dateEventTicket,
+        dateEvent: new Date(createTicketDto.dateEvent),
         dateBuy: new Date(),
         description: createTicketDto.description,
         active: true,
@@ -116,36 +108,8 @@ export class TicketsService {
     return `Finish trade between ${usersSeller.firstName} and ${usersBuyer.firstName}.`;
   }
 
-  async updateTicket(id: string, updateTicket: UpdateTicketDto) {
-    const userSession = await this.userService.findUserById(id);
-
-    const ticket = userSession.tickets.find(
-      (item) => item._id === updateTicket._id
-    );
-
-    if (!ticket) {
-      throw new NotFoundException(
-        `Ticket ${updateTicket._id} não foi encontrado.`
-      );
-    }
-
-    if (updateTicket.category) {
-      ticket.category = updateTicket.category;
-    }
-    if (updateTicket.title) {
-      ticket.title = updateTicket.title;
-    }
-    if (updateTicket.price) {
-      ticket.price = updateTicket.price;
-    }
-    if (updateTicket.plataform) {
-      ticket.plataform = updateTicket.plataform;
-    }
-    if (updateTicket.description) {
-      ticket.description = updateTicket.description;
-    }
-
-    return await userSession.save();
+  async updateTicket(id: string, updateTicket: UpdateTicketDto): Promise<User> {
+    return await this.userService.updateTicket(id, updateTicket);
   }
 
   private async tranferTicket(

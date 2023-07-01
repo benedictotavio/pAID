@@ -10,6 +10,7 @@ import { ConfigService } from '@nestjs/config';
 import { randomUUID } from 'crypto';
 import { PasswordResetDto } from './dto/password-reset.dto';
 import { MailerService } from './utils/mailer';
+import { UpdateTicketDto } from 'src/tickets/dto/update-ticket.dto';
 
 @Injectable()
 export class UsersService {
@@ -204,5 +205,123 @@ export class UsersService {
       .catch((error) => {
         console.error(error);
       });
+  }
+  async updateTicket(id: string, updateTicket: UpdateTicketDto): Promise<User> {
+    const userSession = await this.findUserById(id);
+
+    const ticket = userSession.tickets.find(
+      (item) => item._id === updateTicket._id
+    );
+
+    if (!ticket) {
+      throw new NotFoundException(
+        `Ticket ${updateTicket._id} não foi encontrado.`
+      );
+    }
+
+    if (updateTicket.category) {
+      await this.userModel
+        .updateOne(
+          { _id: id, 'tickets._id': updateTicket._id },
+          {
+            $set: {
+              'tickets.$.category': updateTicket.category,
+            },
+          }
+        )
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+    if (updateTicket.title) {
+      await this.userModel
+        .updateOne(
+          { _id: id, 'tickets._id': updateTicket._id },
+          {
+            $set: {
+              'tickets.$.title': updateTicket.title,
+            },
+          }
+        )
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+    if (updateTicket.price) {
+      await this.userModel
+        .updateOne(
+          { _id: id, 'tickets._id': updateTicket._id },
+          {
+            $set: {
+              'tickets.$.price': updateTicket.price,
+            },
+          }
+        )
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+    if (updateTicket.plataform) {
+      await this.userModel
+        .updateOne(
+          { _id: id, 'tickets._id': updateTicket._id },
+          {
+            $set: {
+              'tickets.$.plataform': updateTicket.plataform,
+            },
+          }
+        )
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+    if (updateTicket.description) {
+      await this.userModel
+        .updateOne(
+          { _id: id, 'tickets._id': updateTicket._id },
+          {
+            $set: {
+              'tickets.$.description': updateTicket.description,
+            },
+          }
+        )
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+    if (updateTicket.dateEvent) {
+      await this.userModel
+        .updateOne(
+          { _id: id, 'tickets._id': updateTicket._id },
+          {
+            $set: {
+              'tickets.$.dateEvent': new Date(updateTicket.dateEvent),
+            },
+          }
+        )
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+
+    return await userSession.save();
   }
 }
