@@ -7,11 +7,7 @@ import { TradesService } from '../trades/trades.service';
 
 @Injectable()
 export class CreditsService {
-  constructor(
-    private readonly userService: UsersService,
-    private readonly configService: ConfigService,
-    private readonly tradesService: TradesService
-  ) {}
+  constructor(private readonly userService: UsersService) {}
   async addCredits(id: string, value: number) {
     const userSessionAddTicket = await this.userService.findUserById(id);
     if (userSessionAddTicket) {
