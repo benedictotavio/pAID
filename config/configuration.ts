@@ -1,5 +1,5 @@
 export default () => ({
-  port: process.env.PORT || 8080,
+  port: process.env.PORT || 3030,
   mongo_uri: process.env.MONGO_URI,
   accessTokenPrivateKey: process.env.ACCESS_TOKEN_PRIVATE_KEY,
   refreshTokenPrivateKey: process.env.REFRESH_PRIVATE_KEY,
@@ -18,3 +18,5 @@ export default () => ({
     fixed_time: process.env.FIXED_TIME_TRADE,
   },
 });
+
+

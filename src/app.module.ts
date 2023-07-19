@@ -12,14 +12,14 @@ import { TradesModule } from './trades/trades.module';
 import { CreditsModule } from './credits/credits.module';
 
 const configService = new ConfigService();
-
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       load: [configuration],
+      envFilePath: '.env',
     }),
-    MongooseModule.forRoot(configService.get('mongo_uri'), {
+    MongooseModule.forRoot(configService.get<string>('mongo_uri'), {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       writeConcern: {
@@ -40,3 +40,5 @@ export class AppModule implements NestModule {
     consumer.apply(UserMiddlewares).forRoutes(UsersController);
   }
 }
+console.log('Mongo URI(Config): ', configService.get<string>('mongo_uri'));
+console.log('Mongo URI(No config): ', process.env.MONGO_URI);

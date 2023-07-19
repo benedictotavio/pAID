@@ -1,23 +1,30 @@
-# Use a base image with Node.js pre-installed
+# Base image
 FROM node:latest
 
-# Set the working directory inside the container
-WORKDIR /usr/src/api
+# Set the working directory
+WORKDIR /usr/src/app
 
-# Copy the package.json and package-lock.json files to the working directory
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install the application dependencies
-RUN npm install --quiet --no-optional --no-fund
+# Install dependencies
+RUN npm install -g npm@9.8.0
+RUN npm install
 
-# Install the application dependencies
-RUN npm build
-
-# Copy the source code to the working directory
+# Copy the rest of the application code
 COPY . .
 
-# Expose the port on which the Nest.js application will listen
-EXPOSE 3000
+# Copy the .env file
+COPY ./.env.production ./.env
 
-# Start the Nest.js application
-CMD [ "npm","run" ,"start:prod"]
+# Add any other environment variables you need
+RUN npm run build
+
+# Expose the port that the Nest.js application listens on (if applicable)
+EXPOSE 3030
+
+# Variable Enviroment
+ENV MONGO_URI='mongodb+srv://benedictotavio:YDIju1AhCNCZzdaO@clusterpaidtest.niwhwbt.mongodb.net/?retryWrites=true&w=majority'
+
+# Start the app
+CMD [ "npm", "run", "start:prod" ]
