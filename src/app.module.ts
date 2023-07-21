@@ -15,11 +15,10 @@ const configService = new ConfigService();
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
       load: [configuration],
-      envFilePath: '.env',
+      isGlobal: true,
     }),
-    MongooseModule.forRoot(configService.get<string>('mongo_uri'), {
+    MongooseModule.forRoot(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       writeConcern: {
@@ -40,5 +39,3 @@ export class AppModule implements NestModule {
     consumer.apply(UserMiddlewares).forRoutes(UsersController);
   }
 }
-console.log('Mongo URI(Config): ', configService.get<string>('mongo_uri'));
-console.log('Mongo URI(No config): ', process.env.MONGO_URI);

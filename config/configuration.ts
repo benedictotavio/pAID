@@ -18,5 +18,3 @@ export default () => ({
     fixed_time: process.env.FIXED_TIME_TRADE,
   },
 });
-
-

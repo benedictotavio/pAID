@@ -12,7 +12,6 @@ async function bootstrap() {
   // CORS
 
   // var whitelist = [`${configService.get('web_url')}`];
-  // logger.debug(whitelist);
   // app.enableCors({
   //   origin: function (origin, callback) {
   //     if (whitelist.indexOf(origin) !== -1) {

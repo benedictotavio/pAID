@@ -21,10 +21,7 @@ COPY ./.env.production ./.env
 RUN npm run build
 
 # Expose the port that the Nest.js application listens on (if applicable)
-EXPOSE 3030
-
-# Variable Enviroment
-ENV MONGO_URI='mongodb+srv://benedictotavio:YDIju1AhCNCZzdaO@clusterpaidtest.niwhwbt.mongodb.net/?retryWrites=true&w=majority'
+EXPOSE 8080
 
 # Start the app
 CMD [ "npm", "run", "start:prod" ]
