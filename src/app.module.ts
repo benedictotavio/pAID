@@ -18,12 +18,13 @@ const configService = new ConfigService();
       load: [configuration],
       isGlobal: true,
     }),
-    MongooseModule.forRoot(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      writeConcern: {
-        wtimeoutMS: 600000,
-      },
+    MongooseModule.forRootAsync({
+      useFactory: (configService: ConfigService) => ({
+        uri: configService.get<string>('mongo_uri'),
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }),
+      inject: [ConfigService],
     }),
     AuthModule,
     UsersModule,

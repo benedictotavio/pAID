@@ -3,6 +3,16 @@
 
 This project is a Tickets Trade system built using Nest.js as the framework language (Node.js) and MongoDB as the database.
 
+# Initialization
+
+```bash
+  docker build -t <image_name> .
+
+  docker run -p <host_port>:<container_port> --name <container_name> <image_name>
+```
+
+
+
 ## Routes
 The project consists of the following route prefixes:
 
