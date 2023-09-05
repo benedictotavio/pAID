@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Logger, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import configuration from 'config/configuration';
@@ -11,7 +11,8 @@ import { TicketsModule } from './tickets/tickets.module';
 import { TradesModule } from './trades/trades.module';
 import { CreditsModule } from './credits/credits.module';
 
-const configService = new ConfigService();
+console.log(process.env.MONGO_URI);
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -20,9 +21,10 @@ const configService = new ConfigService();
     }),
     MongooseModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
-        uri: configService.get<string>('mongo_uri'),
+        uri: configService.get('mongo_uri'),
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        dbName: 'pAID',
       }),
       inject: [ConfigService],
     }),

@@ -4,18 +4,14 @@ FROM node:latest
 # Set the working directory
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json
 COPY package*.json ./
-
-# Install dependencies
-RUN npm install -g npm@9.8.0
-RUN npm install
 
 # Copy the rest of the application code
 COPY . .
 
-# Copy the .env file
-COPY ./.env.production ./.env
+# Install dependencies
+RUN npm install -g npm@9.8.0
+RUN npm install
 
 # Add any other environment variables you need
 RUN npm run build

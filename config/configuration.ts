@@ -1,6 +1,6 @@
 export default () => ({
-  port: process.env.PORT || 3030,
-  mongo_uri: process.env.MONGO_URI,
+  port: process.env.PORT || 8080,
+  mongo_uri: process.env.MONGO_URI || 'mongodb+srv://benedictotavio:KZLuaYSBnfCmE9bf@clusterpaidtest.niwhwbt.mongodb.net/?authMechanism=SCRAM-SHA-1',
   accessTokenPrivateKey: process.env.ACCESS_TOKEN_PRIVATE_KEY,
   refreshTokenPrivateKey: process.env.REFRESH_PRIVATE_KEY,
   accessTokenPublicKey: process.env.ACCESS_TOKEN_PUBLIC_KEY,
