@@ -5,13 +5,11 @@ This project is a Tickets Trade system built using Nest.js as the framework lang
 
 # Initialization
 
+Define .env.productions variables
+
 ```bash
-  docker build -t <image_name> .
-
-  docker run -p <host_port>:<container_port> --name <container_name> <image_name>
+  docker compose up -d
 ```
-
-
 
 ## Routes
 The project consists of the following route prefixes:

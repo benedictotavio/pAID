@@ -11,8 +11,6 @@ import { TicketsModule } from './tickets/tickets.module';
 import { TradesModule } from './trades/trades.module';
 import { CreditsModule } from './credits/credits.module';
 
-console.log(process.env.MONGO_URI);
-
 @Module({
   imports: [
     ConfigModule.forRoot({
