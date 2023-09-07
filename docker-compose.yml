@@ -1,27 +1,40 @@
-version: '3'
+version: '1'
 services:
-  mongo_db:
+  mongodb:
     image: mongo:latest
-    container_name: db_mongo
+    container_name: mongodb
     restart: always
     volumes:
       - mongo_db:/data/db
     ports:
       - 27017:27017
-  sys:
-    build: .
-    container_name: paid_sys
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:latest
+    ports:
+      - 5672:5672
+      - 15672:15672
+  main:
+    build:
+      context: ./trades
+      dockerfile: Dockerfile
+    container_name: paid_main
     env_file:
-      - .env.production
+      - ./main/.env
     ports:
       - 8080:8080
     depends_on:
-      - mongo_db
-
-networks:
-  paid_network:
-    driver: bridge
-
+      - mongodb
+      - rabbitmq
+  trades:
+    build:
+      context: ./trades
+      dockerfile: Dockerfile
+    container_name: paid_trades
+    ports:
+      - 9090:9090
+    depends_on:
+      - rabbitmq      
 volumes:
   mongo_db: {}
 

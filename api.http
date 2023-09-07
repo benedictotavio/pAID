@@ -12,7 +12,7 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:8080/users/verify/64795787ea07070452cac7b0?verifyCode=0c21ac75-6950-41bc-b5fe-6c65b89c3ed0
+POST http://localhost:8080/users/verify/64f8d6b5f61c4d05aa05f1b1?verifyCode=8b1081b7-1488-429c-a240-7ce44605e8dc
 
 ###
 POST http://localhost:8080/users/forgotpassword?email=otavio.bene@outlook.com
@@ -29,7 +29,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/users/me
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDgzNGY3YTY2MWNkMjA3NmZmODBkOTciLCJmaXJzdE5hbWUiOiJTdXBvcnRlIiwibGFzdE5hbWUiOiJUSSIsImVtYWlsIjoic3Vwb3J0ZUBoZWJyb21iZW5lZmljaW9zLmNvbS5iciIsInRyYWRlcyI6eyJzaG9wIjpbXSwic2FsZXMiOltdfSwidGlja2V0cyI6W10sInBhaWRDb2lucyI6MCwiY3JlYXRlZEF0IjoiMjAyMy0wNi0wOVQxNjoxMjo0Mi4yMjVaIiwidXBkYXRlZEF0IjoiMjAyMy0wNi0wOVQxNjoxMjo0Mi4yMjVaIiwiaWF0IjoxNjkwMDAxODM5LCJleHAiOjE2OTAwMDI3Mzl9.W-lwSt9wsYRQvDjWDZTIlejwxQv2oSpY4UqupAezNPOAD5Jdj2kuAzayD6eQqPF3fYLi7iZfQv44xxawM0aX5aL6swcNQWUPNHiQJ4LmwPTGpV01l37iwCKsRLItesrTrAA5PiNUidmOmttpNSs5eWjedEM_wMYTCUoMr2UMGGBddMV5NaPFtIFBmyIgBGzKDmbk73uYY2yKyBBedu_qEWrbEDhQzerX1SZNjeUTO4s4s2pqXKxqxloWtzOXj_E37ZTvzPvCAltvIGRzwDpXtdPKT712DTaTYKA00qCbd3scryTazKcn_OiROxR3-6-tcy1CXyBOX0PzGpPuM-CA-w
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY4ZDdiY2Y2MWM0ZDA1YWEwNWYxYmIiLCJmaXJzdE5hbWUiOiJVc2VyIiwibGFzdE5hbWUiOiJUd28iLCJlbWFpbCI6InVzZXJfMkBlbWFpbC5jb20iLCJ0cmFkZXMiOnsic2hvcCI6W10sInNhbGVzIjpbXX0sInRpY2tldHMiOltdLCJwYWlkQ29pbnMiOjAsImNyZWF0ZWRBdCI6IjIwMjMtMDktMDZUMTk6NDk6MTYuOTQ1WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDktMDZUMTk6NDk6MTYuOTQ1WiIsImlhdCI6MTY5NDAyOTg2MCwiZXhwIjoxNjk0MDMwNzYwfQ.AbzJFvTCfbbWYTfg0p7qv03HSG6Ay-nDz_BVVERTKbJblC4DqKAAv9Kc6-tAvNj58lg0R-KqYO9a7riuhHl2eAhFN5__EDtAPNPwMyHXb0zpwcNsprZyLo1MMps6f9QcLRBRP8gCdrGkNR5tdgpOT8xxKBpCbEFOfwnHjzb3UP3WJhLcoVP338mWvLLDdvS356rjvYSWP2m4xDXk6EXuVIThzh6J7pAdnfRH0uZe5v7snm0ftQMLaeQM5U3Q8scFuEDa7Wj3Z9V8A12thMH3Ccfh1LyeMHQUCNcpPUsxd4vd_nJNk-dAwEf9Sh2wd5fE40pIuCWMDpBs11o3iwaKig
 
 
 # Login
@@ -38,17 +38,17 @@ POST http://localhost:8080/auth/sessions
 Content-Type: application/json
 
 {
-    "email":"suporte@hebrombeneficios.com.br",
+    "email":"user_2@email.com",
     "password":"Sup@1a2b3c"
 }
 
 ###
 GET http://localhost:8080/auth/sessions/refresh
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjQ4NDAwZTBkNWNkMGQyMDkxZjNkOThhIiwiaWF0IjoxNjg2MzcyNTc2LCJleHAiOjE3MTc5MzAxNzZ9.HxBlWBJUqP1P08ePkGhQ-HK1aMw9QSNHyWaMn8-NbflWNSelJBTFs4XKOWIrNKVi3l64LVEFkhQTLny-tcK5YhV2KpVy8mwVh64ndcViRm9wIn4kKXajkOXElYsaxHkDYbhA3Vnsf_isgYxpCwljEPIDoLwUs6Gp03nOWx9EtdqoBeAnrifR62JgECLlYfRD6f9IUHPnAwYIIBINvWG9cojawYE0KCDrKI9aS5g2T2FyEO0kg7tZVyvJ4dBg6EJMm6Et1FQm_mdZnoJxWsfauMed_ldv7YkRos0Uo_YVtoiSQCtRJ1d8R0PO2-Pe6TgC87M5gLgFgt8FikeMwS1E7g
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY4ZDdiY2Y2MWM0ZDA1YWEwNWYxYmIiLCJmaXJzdE5hbWUiOiJVc2VyIiwibGFzdE5hbWUiOiJUd28iLCJlbWFpbCI6InVzZXJfMkBlbWFpbC5jb20iLCJ0cmFkZXMiOnsic2hvcCI6W10sInNhbGVzIjpbXX0sInRpY2tldHMiOltdLCJwYWlkQ29pbnMiOjAsImNyZWF0ZWRBdCI6IjIwMjMtMDktMDZUMTk6NDk6MTYuOTQ1WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDktMDZUMTk6NDk6MTYuOTQ1WiIsImlhdCI6MTY5NDAyOTgwOCwiZXhwIjoxNjk0MDMwNzA4fQ.J9FEMPCLvseKZPEC5ut_8AyJhHpuaMYiVehM69DmC-o69ozqjNsZqooIVu4VauS5ermFvpD1_au9VEQYAXow2qCYLiMKtVvTnk-zmqGdureQic3li25uefAGxEyYtfiLF10tLTSBiuUlz2mwfvGNO4Yuapkqx1vys9V5lTyWwDPk1Uh1CN9f6tAFf8WVnL8Bvo-4P47RcIzDyBuh3pPC1hDUtaXPF5amzpbNeW8pEYa4e8hznKtUNHMjmpEEUDmMXZ67Q7Bik_XehWF5iMvbfDZ3xO9QLSwG-xHrh4lopUH0NF2KWC312oBYjQ-YmuQd7Oz5dAApCks6xdAFXB8AxQ
 
 # Tickets
 ###
-POST http://localhost:8080/tickets/new/648411b21575ebd1b5017e5f
+POST http://localhost:8080/tickets/new/64f8d6b5f61c4d05aa05f1b1
 Content-Type: application/json
 
 {
@@ -57,19 +57,19 @@ Content-Type: application/json
     "price":125,
     "plataform":"ingresse",
     "description":"Ingresso para o show da noviça rebelde no Teatro Renascence",
-    "dateEvent":"2023-07-01T03:31:39"
+    "dateEvent":"2024-07-01T03:31:39"
 }
 
 ###
-GET http://localhost:8080/tickets/64834fdf661cd2076ff80d9a
+GET http://localhost:8080/tickets/64f8d6b5f61c4d05aa05f1b1
 ###
 POST http://localhost:8080/tickets/trade
 Content-Type: application/json
 
 {
-    "emailBuyer":"otavio.bene@outlook.com",
-    "emailSaller":"suporte@hebrombeneficios.com.br",
-    "ticketId":"615b2315-b6c6-476e-85d7-115eca2a0d68"
+    "emailBuyer":"user_2@email.com",
+    "emailSaller":"otavio.bene@outlook.com",
+    "ticketId":"19683847-d8b9-4bea-acca-ac8d78642a4a"
 }
 
 ###
