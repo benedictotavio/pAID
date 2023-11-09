@@ -1,7 +1,7 @@
-import { Logger, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import configuration from 'config/configuration';
+import configuration from '../../config/configuration';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { UserMiddlewares } from './users/middleware/user.midleware';
@@ -10,8 +10,6 @@ import { Jwt } from './users/utils/jwt';
 import { TicketsModule } from './tickets/tickets.module';
 import { TradesModule } from './trades/trades.module';
 import { CreditsModule } from './credits/credits.module';
-
-console.log(process.env.MONGO_URI);
 
 @Module({
   imports: [
@@ -39,6 +37,8 @@ console.log(process.env.MONGO_URI);
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
+    console.log(consumer.apply.name);
+    console.log('Middleware is working!!!');
     consumer.apply(UserMiddlewares).forRoutes(UsersController);
   }
 }

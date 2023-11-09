@@ -18,4 +18,8 @@ export class CreditsService {
       throw new Error('User is not found!');
     }
   }
+
+  private async emitDatabasePayment() {
+    
+  }
 }

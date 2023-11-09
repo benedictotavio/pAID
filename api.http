@@ -48,7 +48,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY4ZDdiY
 
 # Tickets
 ###
-POST http://localhost:8080/tickets/new/64f8d6b5f61c4d05aa05f1b1
+POST http://localhost:8080/tickets/new/64fbc5d536f353b04fb3b5cd
 Content-Type: application/json
 
 {
@@ -67,13 +67,13 @@ POST http://localhost:8080/tickets/trade
 Content-Type: application/json
 
 {
-    "emailBuyer":"user_2@email.com",
+    "emailBuyer":"otavio.bene2@outlook.com",
     "emailSaller":"otavio.bene@outlook.com",
-    "ticketId":"19683847-d8b9-4bea-acca-ac8d78642a4a"
+    "ticketId":"84859c3b-7436-483c-a45b-07e4a7e1774f"
 }
 
 ###
-POST http://localhost:8080/tickets/edit/648411b21575ebd1b5017e5f
+POST http://localhost:8080/tickets/edit/64fbc5d536f353b04fb3b5cd
 Content-Type: application/json
 
 {
@@ -94,11 +94,11 @@ GET http://localhost:8080/trades/648411b21575ebd1b5017e5f?typeTrade=saler
 
 # Credits
 ###
-POST http://localhost:8080/credits/648411b21575ebd1b5017e5f
+POST http://localhost:8080/credits/64fbc5e836f353b04fb3b5d0
 Content-Type: application/json
 
 {
-    "value":125,
+    "value":1255,
     "payment":{
         "method":"PIX",
         "installment":2

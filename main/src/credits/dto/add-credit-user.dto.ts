@@ -10,9 +10,15 @@ import {
   ValidateNested,
 } from 'class-validator';
 
+export enum PaymentMethod{
+  PIX,
+  CREDIT_CARD,
+  DEBIT_CARD,
+}
+
 class paymentTicket {
  @IsString()
-  method: string;
+  method: PaymentMethod;
 
   @IsNumber()
   @Min(1)

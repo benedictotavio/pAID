@@ -1,4 +1,4 @@
-import { IsDate, IsEmail, IsObject, IsString, IsUUID } from 'class-validator';
+import { IsDate, IsEmail, IsUUID } from 'class-validator';
 import { UUID } from 'crypto';
 
 export class CreateTradeDto {

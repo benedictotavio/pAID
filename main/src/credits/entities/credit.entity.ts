@@ -1,7 +1,8 @@
 import { Prop } from '@nestjs/mongoose';
+import { PaymentMethod } from '../dto/add-credit-user.dto';
 
 export type paymentTicket = {
-  method: string;
+  method: PaymentMethod;
   installment: number;
 };
 

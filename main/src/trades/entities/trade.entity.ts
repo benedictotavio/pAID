@@ -3,6 +3,11 @@ import { Document, HydratedDocument } from 'mongoose';
 import { UUID } from 'crypto';
 
 export type TradeDocument = HydratedDocument<Trade>;
+export enum StatusTrade{
+  COMPLETE,
+  WAITING,
+  CANCELED
+}
 
 @Schema({
   timestamps: true,
@@ -16,8 +21,8 @@ export class Trade extends Document {
   saler: string;
   @Prop({ type: Date })
   timeLimit: Date;
-  @Prop({ type: String, default: 'waiting for seller user' })
-  status: 'complete' | 'waiting for seller user' | 'canceled';
+  @Prop({ type: String, default: StatusTrade.WAITING})
+  status: StatusTrade;
 }
 
 export const TradeSchema = SchemaFactory.createForClass(Trade);

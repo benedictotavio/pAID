@@ -1,4 +1,4 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UsersService } from '../users/users.service';
 import { Ticket } from './entities/ticket.entity';
@@ -9,6 +9,7 @@ import { TradesService } from 'src/trades/trades.service';
 import { User } from 'src/users/entities/user.entity';
 import { UpdateCreditDto } from 'src/credits/dto/update-credit.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
+import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
 export class TicketsService {
@@ -16,13 +17,15 @@ export class TicketsService {
   constructor(
     private readonly userService: UsersService,
     private readonly configService: ConfigService,
-    private readonly tradesService: TradesService
-  ) {}
+    private readonly tradesService: TradesService,
+    @Inject('TICKETS_SERVICE') private readonly tradeClient: ClientProxy
+  ) { }
 
   async addNewTicket(
     createTicketDto: CreateTicketDto,
     id: string
   ): Promise<string | Ticket> {
+
     const userSession = await this.userService.findUserById(id);
 
     if (!userSession) {
@@ -50,6 +53,7 @@ export class TicketsService {
         active: true,
       });
       await userSession.save();
+      this.tradeClient.emit('tickets', userSession.tickets)
       return userSession.tickets[0];
     } catch (error) {
       this.logger.error(error);

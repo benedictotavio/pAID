@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-import { TradesService } from './trades.service';
 import { TradesController } from './trades.controller';
+import { TradesService } from './trades.service';
 
 @Module({
+  imports: [],
   controllers: [TradesController],
   providers: [TradesService],
 })
