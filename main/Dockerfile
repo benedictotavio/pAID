@@ -11,7 +11,7 @@ COPY . .
 
 # Install dependencies
 RUN npm install -g npm@9.8.1
-RUN npm install --legacy-peer-deps
+RUN npm install --force
 # RUN npm install
 
 # Add any other environment variables you need

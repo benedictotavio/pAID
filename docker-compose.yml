@@ -4,8 +4,8 @@ services:
     image: mongo:latest
     container_name: mongodb
     restart: always
-    volumes:
-      - mongo_db:/data/db
+    #volumes:
+      #- mongo_db:/data/db
     ports:
       - 27017:27017
   rabbitmq:
@@ -35,6 +35,6 @@ services:
       - 9090:9090
     depends_on:
       - rabbitmq      
-volumes:
-  mongo_db: {}
+#volumes:
+  #mongo_db: {}
 
